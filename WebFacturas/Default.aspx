@@ -11,9 +11,7 @@
     <form id="form1" runat="server">
     <div>
         <h1>
-            proyecto facturación
-
-            </h1>
+            proyecto facturación...</h1>
     
     </div>
     </form>
