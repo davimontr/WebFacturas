@@ -38,6 +38,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -47,62 +48,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clientes.cs">
-      <DependentUpon>Facturas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Facturas.Context.cs">
+    <Compile Include="FacturasDB.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Facturas.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Facturas.cs">
-      <DependentUpon>Facturas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Facturas.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Facturas.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Facturas1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Facturas.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Productos.cs">
-      <DependentUpon>Facturas.tt</DependentUpon>
+      <DependentUpon>FacturasDB.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>Facturas.tt</DependentUpon>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Facturas.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Facturas.Designer.cs</LastGenOutput>
-    </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Facturas.edmx.diagram">
-      <DependentUpon>Facturas.edmx</DependentUpon>
+    <None Include="FacturasDB.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>FacturasDB.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Facturas.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Facturas.Context.cs</LastGenOutput>
-      <DependentUpon>Facturas.edmx</DependentUpon>
-    </Content>
-    <Content Include="Facturas.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Facturas.edmx</DependentUpon>
-      <LastGenOutput>Facturas1.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FacturasDB.dbml.layout">
+      <DependentUpon>FacturasDB.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
