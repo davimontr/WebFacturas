@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f47e8216ef5d4080a9a2d1ab06662132" Name="Diagram1">
+        <EntityTypeShape EntityType="FacturacionModel.Articulo" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturacionModel.Cliente" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturacionModel.Factura" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturacionModel.Producto" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturacionModel.Proveedore" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturacionModel.Role" Width="1.5" PointX="5.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FacturacionModel.Usuario" Width="1.5" PointX="8" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="FacturacionModel.FK_Articulos_Facturas" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturacionModel.FK_Articulos_Productos" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturacionModel.FK_Facturas_Clientes" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturacionModel.FK_Productos_Proveedores" ManuallyRouted="false" />
+        <AssociationConnector Association="FacturacionModel.FK_Usuarios_Roles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
