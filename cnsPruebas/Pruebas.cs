@@ -11,6 +11,7 @@ namespace cnsPruebas
         static void Main(string[] args)
         {
             new UsuariosPruebas().ejecutar();
+            Console.ReadKey();
         }
     }
 }

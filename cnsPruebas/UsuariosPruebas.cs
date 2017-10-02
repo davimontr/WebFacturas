@@ -9,6 +9,8 @@ namespace cnsPruebas
 {
     class UsuariosPruebas
     {
+        private IServiciosUsuarios usuarios = new AccionesUsuarios();
+
         public void ejecutar()
         {
             this.iniciarSession();
@@ -16,8 +18,7 @@ namespace cnsPruebas
 
         public void iniciarSession()
         {
-            IServiciosUsuarios usuarios = new AccionesUsuarios();
-            if (usuarios.iniciarSession("keboca@gmail.com", "clave"))
+            if (this.usuarios.iniciarSession("keboca@gmail.com", "clave"))
             {
                 Console.WriteLine("Session iniciada!");
             }
@@ -25,7 +26,6 @@ namespace cnsPruebas
             {
                 Console.WriteLine("No se logra iniciar session.");
             }
-            Console.ReadKey();
         }
     }
 }
