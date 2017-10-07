@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebFacturas {
+namespace slnPresentacion {
     
     
-    public partial class Dashboard {
+    public partial class MenuInterno {
         
         /// <summary>
-        /// MenuInterno control.
+        /// ltlMenu control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::slnPresentacion.MenuInterno MenuInterno;
+        protected global::System.Web.UI.WebControls.Literal ltlMenu;
     }
 }

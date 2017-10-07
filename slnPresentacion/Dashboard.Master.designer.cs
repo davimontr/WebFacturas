@@ -31,6 +31,15 @@ namespace WebFacturas {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// ltlNavegacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltlNavegacion;
+        
+        /// <summary>
         /// btnSalir control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace WebFacturas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSalir;
+        
+        /// <summary>
+        /// menuInterno control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder menuInterno;
         
         /// <summary>
         /// contenido control.

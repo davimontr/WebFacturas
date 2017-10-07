@@ -4,8 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Dashboard</title>
     <link href="recursos/css/bootstrap.min.css" rel="stylesheet" />
     <link href="recursos/css/dashboard.css" rel="stylesheet" />
@@ -18,36 +18,28 @@
 </head>
 <body>
     <form id="form1" runat="server">
-
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-           <a class="navbar-brand" href="#">Dashboard</a>
-           <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Usuarios</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Perfil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Ayuda</a>
-              </li>
-            </ul>
-            <div class="form-inline mt-2 mt-md-0">
-                <asp:Button class="btn btn-outline-warning my-2 my-sm-0"  ID="btnSalir" runat="server" Text="Salir" OnClick="btnSalir_Click" />
+            <a class="navbar-brand" href="#">Facturaci&oacute;n</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <asp:Literal ID="ltlNavegacion" runat="server"></asp:Literal>
+                <div class="form-inline mt-2 mt-md-0">
+                    <asp:Button class="btn btn-outline-warning my-2 my-sm-0" ID="btnSalir" runat="server" Text="Salir" OnClick="btnSalir_Click" />
+                </div>
             </div>
-          </div>
         </nav>
-
-        <asp:ContentPlaceHolder ID="contenido" runat="server">
-        </asp:ContentPlaceHolder>
-    
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
+                    <asp:ContentPlaceHolder ID="menuInterno" runat="server"></asp:ContentPlaceHolder>
+                </nav>
+                <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+                    <asp:ContentPlaceHolder ID="contenido" runat="server"></asp:ContentPlaceHolder>
+                </main>
+            </div>
+        </div>
     </form>
 </body>
 </html>

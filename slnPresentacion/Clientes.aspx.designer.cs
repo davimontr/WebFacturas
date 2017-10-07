@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebFacturas {
+namespace slnPresentacion {
     
     
-    public partial class Dashboard {
+    public partial class Clientes {
         
         /// <summary>
         /// MenuInterno control.
