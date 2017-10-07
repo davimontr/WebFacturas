@@ -1,0 +1,24 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Inicio.master.cs" Inherits="WebFacturas.Inicio" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Facturacion</title>
+    <link href="recursos/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="recursos/css/signin.css" rel="stylesheet" />
+    <script src="recursos/js/ie10-viewport-bug-workaround.js"></script>
+    <asp:ContentPlaceHolder ID="cabecera" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="container">
+        <form id="form1" runat="server" class="form-signin">
+            <asp:ContentPlaceHolder ID="contenido" runat="server">
+            </asp:ContentPlaceHolder>
+        </form>
+    </div>
+</body>
+</html>

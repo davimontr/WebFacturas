@@ -10,7 +10,7 @@
 namespace WebFacturas {
     
     
-    public partial class DashboardMaster {
+    public partial class Inicio {
         
         /// <summary>
         /// cabecera control.
