@@ -13,7 +13,14 @@ namespace WebFacturas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            try
+            {
+                this.gvFacturas.DataBind();
+            }
+            catch (Exception ex)
+            {
+                this.lblMensaje.Text = ex.Message;
+            }
         }
     }
 }

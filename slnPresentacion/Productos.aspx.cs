@@ -11,7 +11,14 @@ namespace slnPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                this.gvProductos.DataBind();
+            }
+            catch (Exception ex)
+            {
+                this.lblMensaje.Text = ex.Message;
+            }
         }
     }
 }
