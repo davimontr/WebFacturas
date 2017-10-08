@@ -27,5 +27,39 @@ namespace slnLogica
             return this.contexto.Proveedores.ToList();
 
         }
+
+        // se agrega el proveedor
+        public void incluirProveedor(string nombre)
+        {
+            this.contexto.Proveedores.Add(new Proveedore { Nombre = nombre });
+            this.contexto.SaveChanges();
+
+        }
+
+        public Proveedore obtenProveedorSegunIdentificador(int Id)
+        {
+            return this.contexto.Proveedores.FirstOrDefault(u => u.Id == Id);
+        }
+
+        //actualiza el proveedor
+        public void actualizaProveedor(int Id, string nombre)
+        {
+            Proveedore proveed = this.obtenProveedorSegunIdentificador(Id);
+            proveed.Nombre = nombre;
+            this.contexto.SaveChanges();
+        }
+ 
+
+        //metodo eliminar
+        public void eliminarProveedor(int id)
+        {
+            Proveedore usu = this.obtenProveedorSegunIdentificador(id);
+            this.contexto.Proveedores.Remove(usu);
+
+        }
+
+
+
+
     }
 }

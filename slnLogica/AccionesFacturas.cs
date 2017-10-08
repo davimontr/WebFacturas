@@ -27,5 +27,35 @@ namespace slnLogica
             return this.contexto.Facturas.ToList();
 
         }
+
+
+
+        // metodo agregar
+        public void incluirFactura(string fact, DateTime fecha, int idCliente, int descu)
+        {
+            this.contexto.Facturas.Add(new Factura { Factura1 = fact, Fecha = fecha, IdCliente = idCliente, Descuento = descu });
+            this.contexto.SaveChanges();
+
+        }
+
+        public Factura obtenFacturaSegunIdentificador(int Id)
+        {
+            return this.contexto.Facturas.FirstOrDefault(u => u.Id == Id);
+        }
+
+
+
+
+        //metodo eliminar
+        public void eliminarFactura(int id)
+        {
+            Factura fac = this.obtenFacturaSegunIdentificador(id);
+            this.contexto.Facturas.Remove(fac);
+
+        }
+
+
+
+
     }
 }
