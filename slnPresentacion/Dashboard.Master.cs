@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Text;
 
 namespace WebFacturas
@@ -14,6 +15,16 @@ namespace WebFacturas
         private void agregarNavegacion()
         {
             string ruta = this.contenido.Page.AppRelativeVirtualPath;
+            string[] paginas = {
+                "~/Dashboard.aspx",
+                "~/Clientes.aspx",
+                "~/Productos.aspx",
+                "~/Proveedores.aspx"
+            };
+            if(paginas.Contains(ruta))
+            {
+                this.pnlMenuRapido.Visible = true;
+            }
             StringBuilder HTML = new StringBuilder();
             NameValueCollection menu = new NameValueCollection()
             {
