@@ -200,6 +200,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\slnDatos\slnDatos.csproj">
+      <Project>{292c3364-2729-4895-bae7-cdb68ca7f072}</Project>
+      <Name>slnDatos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\slnLogica\slnLogica.csproj">
       <Project>{e4a7ae08-3277-4395-ab0b-35cebdbe8ae1}</Project>
       <Name>slnLogica</Name>

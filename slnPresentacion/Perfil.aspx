@@ -2,4 +2,25 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="cabecera" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
+    <h1>Perfil</h1>
+    <section class="row text-center placeholders">
+        <div class="col-6 col-sm-6 placeholder">
+        </div>
+        <div class="col-4 col-sm-4 placeholder">
+        </div>
+    </section>
+    <label for="contenido_txtEmail">Correo</label><br/>
+    <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="El correo electronico es obligatorio." ControlToValidate="txtEmail" ForeColor="Red"></asp:RequiredFieldValidator>
+    <br/>
+    <label for="contenido_txtClave">Clave</label><br/>
+    <asp:TextBox ID="txtClave" runat="server" TextMode="Password"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="La clave es obligatoria." ControlToValidate="txtClave" ForeColor="Red"></asp:RequiredFieldValidator>
+    <br/>
+    <label for="contenido_ddRoles">Rol</label><br/>
+    <asp:DropDownList ID="ddlRoles" runat="server"  ViewStateMode="Disabled" DataTextField="Nombre" DataValueField="Id"></asp:DropDownList>
+    <br/>
+    <asp:Button ID="btnSalvar" runat="server" Text="Salvar" />
+    <br/>
+    <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 </asp:Content>
