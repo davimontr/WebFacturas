@@ -12,7 +12,7 @@
             <h4>Administraci&oacute;n de proveedores</h4>
         </div>
         <div class="col-2 col-sm-2 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="100" height="100" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+            <a class="w3-button w3-large w3-circle w3-xlarge w3-ripple w3-teal" style="z-index:0">+</a>
             <h4>Nueva</h4>
             <span class="text-muted">Agregar proveedor</span>
         </div>
