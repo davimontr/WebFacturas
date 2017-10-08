@@ -94,8 +94,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClienteForm.aspx" />
     <Content Include="Clientes.aspx" />
     <Content Include="controles\MenuInterno.ascx" />
+    <Content Include="FacturaForm.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -113,8 +115,10 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Perfil.aspx" />
+    <Content Include="ProductoForm.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Proveedores.aspx" />
+    <Content Include="ProveedorForm.aspx" />
     <Content Include="recursos\css\bootstrap.min.css" />
     <Content Include="recursos\css\dashboard.css" />
     <Content Include="recursos\css\signin.css" />
@@ -123,10 +127,18 @@
     <Content Include="recursos\js\popper.min.js" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="UsuarioForm.aspx" />
     <Content Include="Usuarios.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClienteForm.aspx.cs">
+      <DependentUpon>ClienteForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClienteForm.aspx.designer.cs">
+      <DependentUpon>ClienteForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Clientes.aspx.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -155,6 +167,13 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FacturaForm.aspx.cs">
+      <DependentUpon>FacturaForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FacturaForm.aspx.designer.cs">
+      <DependentUpon>FacturaForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Inicio.Master.cs">
       <DependentUpon>Inicio.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -176,6 +195,13 @@
     <Compile Include="Perfil.aspx.designer.cs">
       <DependentUpon>Perfil.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProductoForm.aspx.cs">
+      <DependentUpon>ProductoForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductoForm.aspx.designer.cs">
+      <DependentUpon>ProductoForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Productos.aspx.cs">
       <DependentUpon>Productos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -190,6 +216,20 @@
     </Compile>
     <Compile Include="Proveedores.aspx.designer.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ProveedorForm.aspx.cs">
+      <DependentUpon>ProveedorForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProveedorForm.aspx.designer.cs">
+      <DependentUpon>ProveedorForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioForm.aspx.cs">
+      <DependentUpon>UsuarioForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UsuarioForm.aspx.designer.cs">
+      <DependentUpon>UsuarioForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>

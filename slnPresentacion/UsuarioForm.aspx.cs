@@ -3,7 +3,7 @@ using slnLogica;
 
 namespace slnPresentacion
 {
-    public partial class Perfil : System.Web.UI.Page
+    public partial class UsuarioForm : System.Web.UI.Page
     {
         private IServiciosRoles roles = new AccionesRoles();
 

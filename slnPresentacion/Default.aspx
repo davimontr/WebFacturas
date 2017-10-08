@@ -1,6 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Inicio.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="WebFacturas.InicioSession" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="cabecera" runat="server">
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <h2 class="form-signin-heading">Facturaci&oacute;n</h2><br/>
     <asp:TextBox ID="txtEmail" runat="server" class="form-control" placeholder="Correo"></asp:TextBox>

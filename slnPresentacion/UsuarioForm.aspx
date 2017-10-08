@@ -1,11 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dashboard.Master" AutoEventWireup="true" CodeBehind="Perfil.aspx.cs" Inherits="slnPresentacion.Perfil" %>
-<asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
-    <h1>Mi Perfil</h1>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dashboard.Master" AutoEventWireup="true" CodeBehind="UsuarioForm.aspx.cs" Inherits="slnPresentacion.UsuarioForm" %>
+<asp:Content ID="Content3" ContentPlaceHolderID="contenido" runat="server">
+    <h1>Usuario</h1>
     <section class="row text-center placeholders">
-        <div class="col-6 col-sm-6 placeholder">
-            <h4>Administrar mi perfil</h4>
-        </div>
-        <div class="col-4 col-sm-4 placeholder">
+        <div class="col-10 col-sm-10 placeholder">
         </div>
     </section>
     <label for="contenido_txtEmail">Correo</label><br/>

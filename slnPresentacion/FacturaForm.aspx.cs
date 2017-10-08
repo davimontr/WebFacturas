@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace WebFacturas
+namespace slnPresentacion
 {
-    public partial class Inicio : System.Web.UI.MasterPage
+    public partial class FacturaForm : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
