@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccionesClientes.cs" />
+    <Compile Include="AccionesFacturas.cs" />
+    <Compile Include="AccionesProductos.cs" />
+    <Compile Include="AccionesProveedores.cs" />
     <Compile Include="AccionesRoles.cs" />
     <Compile Include="AccionesUsuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

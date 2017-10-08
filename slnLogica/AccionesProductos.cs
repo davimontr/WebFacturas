@@ -7,35 +7,25 @@ using slnDatos;
 
 namespace slnLogica
 {
-    //se definen los metodos
-    public interface IServiciosRoles
+    public interface IserviciosProductos
     {
-        //definimos el metodo
-        List<Role> obtenerTodos();
-
+        List<Producto> obtenerTodos();
 
     }
 
-
-    public class AccionesRoles : IServiciosRoles
+    public class AccionesProductos : IserviciosProductos
     {
-
         private FacturacionEntidades contexto;
         //constructor de la clase de acciones roles
-        public AccionesRoles()
+        public AccionesProductos()
         {
             this.contexto = new FacturacionEntidades();
         }
 
-        //se hacen los metodos
-        public List<Role> obtenerTodos()
+        public List<Producto> obtenerTodos()
         {
-            return this.contexto.Roles.ToList();
+            return this.contexto.Productos.ToList();
 
         }
-
-
-
-
     }
 }
