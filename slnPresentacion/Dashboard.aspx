@@ -6,30 +6,17 @@
     <ucMenu:MenuInterno ID="MenuInterno" runat="server" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="contenido" runat="server">
-    <h1>Dashboard</h1>
+    <h1>Facturas</h1>
     <section class="row text-center placeholders">
-        <div class="col-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-            <h4>Label</h4>
-            <div class="text-muted">Something else</div>
+        <div class="col-10 col-sm-10 placeholder">
+            <h4>Administraci&oacute;n de facturas</h4>
         </div>
-        <div class="col-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-            <h4>Label</h4>
-            <span class="text-muted">Something else</span>
-        </div>
-        <div class="col-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-            <h4>Label</h4>
-            <span class="text-muted">Something else</span>
-        </div>
-        <div class="col-6 col-sm-3 placeholder">
-            <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
-            <h4>Label</h4>
-            <span class="text-muted">Something else</span>
+        <div class="col-2 col-sm-2 placeholder">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="100" height="100" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+            <h4>Nueva</h4>
+            <span class="text-muted">Agregar factura</span>
         </div>
     </section>
-    <h2>Facturaci&oacute;n</h2>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>

@@ -7,7 +7,16 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <h1>Clientes</h1>
-    <h2>Administraci&oacute;n de clientes</h2>
+     <section class="row text-center placeholders">
+        <div class="col-10 col-sm-10 placeholder">
+            <h4>Administraci&oacute;n de clientes</h4>
+        </div>
+        <div class="col-2 col-sm-2 placeholder">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="100" height="100" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+            <h4>Nuevo</h4>
+            <span class="text-muted">Agregar cliente</span>
+        </div>
+    </section>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
