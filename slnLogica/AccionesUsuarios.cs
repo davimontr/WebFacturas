@@ -26,6 +26,23 @@ namespace slnLogica
             Usuario usuario = this.contexto.Usuarios.FirstOrDefault(u => u.Email.Equals(correo));
             return (usuario != null);
         }
+
+        // metodo para actualizar la clave de usuario 
+        public void actualizaClaveUsuario(int Id, string Clave)
+        {
+            Usuario usuario = this.obtenUsuarioSegunIdentificador(Id);
+            usuario.Clave = Clave;
+            this.contexto.SaveChanges();
+        }
+
+        // metodo  para verificar correo
+        public bool existeCorreo(string Correo)
+        {
+            return (this.contexto.Usuarios.Where(u => u.Email.Equals(Correo)).Count() == 1) ? true : false;
+        }
+
+
+
         // se agrega el usuario
         public void incluirUsuario(string email, string contrasenna, int idrol)
         {
