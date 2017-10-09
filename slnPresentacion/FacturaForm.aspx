@@ -44,7 +44,7 @@
             </div>
             <div class="col-sm-4 col-md-4">
                 <label for="contenido_ddlProducto">Producto</label><br />
-                <asp:DropDownList ID="ddlProducto" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlProducto" runat="server" DataValueField="Id" DataTextField="Producto1"></asp:DropDownList>
             </div>
             <div class="col-sm-4 col-md-4">
                 <label for="contenido_txtCantidad">Cantidad</label><br />

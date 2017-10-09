@@ -26,7 +26,7 @@
     <label for="contenido_txtImpuesto">Impuesto</label><br />
     <asp:TextBox ID="txtImpuesto" runat="server" TextMode="Number"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="El Impuesto del producto es obligatorio." ControlToValidate="txtImpuesto" ForeColor="Red"></asp:RequiredFieldValidator>
-    <asp:RangeValidator ID="RangeValidator2" runat="server" ErrorMessage="Impuesto es porcentual entero desde 1 a 100." ControlToValidate="txtImpuesto" MinimumValue="1" MaximumValue="100"></asp:RangeValidator>
+    <%--<asp:RangeValidator ID="RangeValidator2" runat="server" ErrorMessage="Impuesto es porcentual entero desde 1 a 100." ControlToValidate="txtImpuesto" MinimumValue="1" MaximumValue="100"></asp:RangeValidator>--%>
     <br />
     <label for="contenido_txtExistencia">Existencia</label><br />
     <asp:TextBox ID="txtExistencia" runat="server" TextMode="Number"></asp:TextBox>
@@ -34,7 +34,7 @@
     <%--<asp:RangeValidator ID="RangeValidator3" runat="server" ErrorMessage="Existencia es entero desde 0." ControlToValidate="txtExistencia" MinimumValue="0"></asp:RangeValidator>--%>
     <br />
     <label for="contenido_ddlProveedor">Proveedor</label><br />
-    <asp:DropDownList ID="ddlProveedor" runat="server"></asp:DropDownList>
+    <asp:DropDownList ID="ddlProveedor" runat="server" DataValueField="Id" DataTextField="Nombre"></asp:DropDownList>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="El proveedor del producto es obligatorio." ControlToValidate="ddlProveedor" ForeColor="Red"></asp:RequiredFieldValidator>
     <br />
     <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />
