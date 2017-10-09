@@ -12,8 +12,8 @@ namespace slnPresentacion
         {
             try
             {
-                // this.gvProductos.DataBind();
                 this.gvProductos.DataSource = this.productos.obtenerTodos();
+                this.gvProductos.DataBind();
             }
             catch (Exception ex)
             {
