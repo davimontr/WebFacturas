@@ -1,5 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dashboard.Master.cs" Inherits="WebFacturas.DashboardMaster" %>
 
+<%@ Register Src="~/controles/MensajeSession.ascx" TagName="MensajeSesion" TagPrefix="ucMensaje" %>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -54,6 +56,7 @@
                     </ul>
                 </asp:Panel>
                 <main class="col-sm-9 ml-sm-auto col-md-10 pt-3" role="main">
+                    <ucMensaje:MensajeSesion ID="MenuInterno1" runat="server" />
                     <asp:ContentPlaceHolder ID="contenido" runat="server"></asp:ContentPlaceHolder>
                 </main>
             </div>

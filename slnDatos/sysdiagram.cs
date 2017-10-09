@@ -15,36 +15,18 @@ namespace slnDatos
 using System;
     using System.Collections.Generic;
     
-public partial class Producto
+public partial class sysdiagram
 {
 
-    public Producto()
-    {
+    public string name { get; set; }
 
-        this.LineaArticuloes = new HashSet<LineaArticulo>();
+    public int principal_id { get; set; }
 
-    }
+    public int diagram_id { get; set; }
 
+    public Nullable<int> version { get; set; }
 
-    public int Id { get; set; }
-
-    public string Producto1 { get; set; }
-
-    public int Costo { get; set; }
-
-    public int Utilidad { get; set; }
-
-    public int Impuesto { get; set; }
-
-    public int Existencia { get; set; }
-
-    public int IdProveedor { get; set; }
-
-
-
-    public virtual Proveedore Proveedore { get; set; }
-
-    public virtual ICollection<LineaArticulo> LineaArticuloes { get; set; }
+    public byte[] definition { get; set; }
 
 }
 

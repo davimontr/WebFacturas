@@ -9,6 +9,7 @@ namespace slnLogica
 {
     public interface IServiciosUsuarios
     {
+
         List<Usuario> obtenerTodos();
         bool iniciarSession(string correo, string clave);
         void actualizaClaveUsuario(int Id, string Clave);
@@ -16,7 +17,6 @@ namespace slnLogica
         void incluirUsuario(string email, string contrasenna, int idrol);
         void eliminarUsuario(int id);
         void actualizaUsuario(int Id, string correo, string contrasena, int rol);
-
     }
 
     public class AccionesUsuarios : IServiciosUsuarios

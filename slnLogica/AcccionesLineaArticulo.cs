@@ -9,7 +9,7 @@ namespace slnLogica
 
     public interface IserviciosLineaArticulo
     {
-        List<Articulo> obtenerTodos();
+        List<LineaArticulo> obtenerTodos();
         void incluirLineaArticulo(int idproducto, int cant, int idfact);
         void actualizaLineaArticulos(int Id, int idproducto, int cant, int idfact);
         void eliminarLineaArticulo(int id);
@@ -27,9 +27,9 @@ namespace slnLogica
             this.contexto = new FacturacionEntidades();
         }
 
-        public List<Articulo> obtenerTodos()
+        public List<LineaArticulo> obtenerTodos()
         {
-            return this.contexto.Articulos.ToList();
+            return this.contexto.LineaArticuloes.ToList();
 
         }
 
@@ -37,7 +37,7 @@ namespace slnLogica
 
         public void incluirLineaArticulo(int idproducto, int cant,int idfact)
         {
-            this.contexto.Articulos.Add(new Articulo { IdProducto = idproducto, Cantidad = cant,IdFactura=idfact });
+            this.contexto.LineaArticuloes.Add(new LineaArticulo { IdProducto = idproducto, Cantidad = cant,IdFactura=idfact });
             this.contexto.SaveChanges();
 
         }
@@ -45,7 +45,7 @@ namespace slnLogica
         //actualiza articulos 
         public void actualizaLineaArticulos(int Id,int idproducto, int cant, int idfact)
         {
-            Articulo artic = this.obtenLineaArticuloSegunIdentificador(Id);
+            LineaArticulo artic = this.obtenLineaArticuloSegunIdentificador(Id);
             artic.IdProducto = idproducto;
             artic.Cantidad = cant;
             artic.IdFactura = idfact;
@@ -56,15 +56,15 @@ namespace slnLogica
         //metodo eliminar
         public void eliminarLineaArticulo(int id)
         {
-            Articulo art = this.obtenLineaArticuloSegunIdentificador(id);
-            this.contexto.Articulos.Remove(art);
+            LineaArticulo art = this.obtenLineaArticuloSegunIdentificador(id);
+            this.contexto.LineaArticuloes.Remove(art);
 
         }
 
         
-        public Articulo obtenLineaArticuloSegunIdentificador(int Id)
+        public LineaArticulo obtenLineaArticuloSegunIdentificador(int Id)
         {
-            return this.contexto.Articulos.FirstOrDefault(u => u.Id == Id);
+            return this.contexto.LineaArticuloes.FirstOrDefault(u => u.Id == Id);
         }
 
 
