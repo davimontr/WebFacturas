@@ -10,6 +10,7 @@ namespace slnLogica
     public interface IServiciosUsuarios
     {
         bool iniciarSession(string correo, string clave);
+        void incluirUsuario(string email, string contrasenna, int idrol);
     }
 
     public class AccionesUsuarios : IServiciosUsuarios

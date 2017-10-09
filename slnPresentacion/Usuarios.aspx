@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <h1>Usuarios</h1>
+    <asp:Literal ID="ltlMensajeSession" runat="server"></asp:Literal>
     <section class="row text-center placeholders">
         <div class="col-6 col-sm-6 placeholder">
             <h4>Administraci&oacute;n de usuarios</h4>

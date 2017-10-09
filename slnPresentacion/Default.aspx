@@ -8,5 +8,5 @@
     <asp:TextBox ID="txtClave" runat="server" class="form-control" placeholder="Clave" TextMode="Password"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="La clave es obligatoria." ControlToValidate="txtClave" ForeColor="Red"></asp:RequiredFieldValidator>
     <asp:Button ID="btnIniciar" runat="server" Text="Iniciar" class="btn btn-lg btn-primary btn-block" OnClick="btnIniciar_Click" />
-    <asp:Label ID="lblInicioSession" runat="server" Text=""></asp:Label>
+    <asp:Label ID="lblInicioSession" runat="server" Text="" ForeColor="Red"></asp:Label>
 </asp:Content>
