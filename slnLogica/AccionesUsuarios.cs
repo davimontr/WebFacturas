@@ -12,6 +12,7 @@ namespace slnLogica
         bool iniciarSession(string correo, string clave);
         void actualizaClaveUsuario(int Id, string Clave);
         bool existeCorreo(string Correo);
+        void incluirUsuario(string email, string contrasenna, int idrol);
     }
 
     public class AccionesUsuarios : IServiciosUsuarios
@@ -68,7 +69,7 @@ namespace slnLogica
 
         //metodo de modificar
 
-        public void actualizaProveedor(int Id, string correo, string contrasena,int rol)
+        public void actualizaUsuario(int Id, string correo, string contrasena,int rol)
         {
             Usuario usu = this.obtenUsuarioSegunIdentificador(Id);
             usu.Email = correo;
