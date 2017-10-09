@@ -43,8 +43,17 @@ namespace slnLogica
             return this.contexto.Facturas.FirstOrDefault(u => u.Id == Id);
         }
 
+        // Metodo de modifcar factura
 
-
+        public void actualizaFactura(int Id, string factura, DateTime fecha, int idcliente, int desc)
+        {
+            Factura fact = this.obtenFacturaSegunIdentificador(Id);
+            fact.Factura1 = factura;
+            fact.Fecha = fecha;
+            fact.IdCliente = idcliente;
+            fact.Descuento = desc;
+            this.contexto.SaveChanges();
+        }
 
         //metodo eliminar
         public void eliminarFactura(int id)

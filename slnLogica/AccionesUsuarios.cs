@@ -10,6 +10,8 @@ namespace slnLogica
     public interface IServiciosUsuarios
     {
         bool iniciarSession(string correo, string clave);
+        void actualizaClaveUsuario(int Id, string Clave);
+        bool existeCorreo(string Correo);
     }
 
     public class AccionesUsuarios : IServiciosUsuarios
@@ -55,20 +57,8 @@ namespace slnLogica
         {
             return this.contexto.Usuarios.FirstOrDefault(u => u.Id == Id);
         }
-        //actualiza clave de ususario
-        public void actualizaClaveUsuario(int Id, string Clave)
-        {
-            Usuario usuario = this.obtenUsuarioSegunIdentificador(Id);
-            usuario.Clave = Clave;
-            this.contexto.SaveChanges();
-        }
-        //metodo para que lance un msj si el correo no exite
-        public bool existeCorreo(string Correo)
-        {
-            return (this.contexto.Usuarios.Where(u => u.Email.Equals(Correo)).Count() == 1) ? true : false;
-        }
-
-        //metodo eliminar
+        
+        //metodo de eliminar 
         public void eliminarUsuario(int id)
         {
             Usuario usu = this.obtenUsuarioSegunIdentificador(id);
@@ -76,8 +66,16 @@ namespace slnLogica
 
         }
 
+        //metodo de modificar
 
-
+        public void actualizaProveedor(int Id, string correo, string contrasena,int rol)
+        {
+            Usuario usu = this.obtenUsuarioSegunIdentificador(Id);
+            usu.Email = correo;
+            usu.Clave = contrasena;
+            usu.IdRol = rol;
+            this.contexto.SaveChanges();
+        }
 
 
     }
