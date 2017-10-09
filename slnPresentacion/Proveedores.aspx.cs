@@ -13,7 +13,6 @@ namespace slnPresentacion
         {
             try
             {
-
                 this.gvProveedores.DataSource = this.proveedores.obtenerTodos();
                 this.gvProveedores.DataBind();
             }

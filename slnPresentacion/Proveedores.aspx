@@ -16,20 +16,23 @@
             <span class="text-muted">Agregar proveedor</span>
         </div>
     </section>
-    <asp:GridView ID="gvProveedores" runat="server"  
-            EmptyDataText="No Existen Proveedores Registrados"  
-            CssClass="table table-striped"  
-            OnRowDeleting="gvProveedores_RowDeleting"  
-            OnRowEditing="gvProveedores_RowEditing" 
-            DataKeyNames="Id"> 
-            <Columns> 
-                <asp:CommandField EditText="Editar" ShowEditButton="true"> 
-                <ControlStyle CssClass="btn btn-primary active" /> 
-                </asp:CommandField> 
-                <asp:CommandField DeleteText="Borrar" ShowDeleteButton="True"> 
-                <ControlStyle CssClass="btn btn-danger btn-sm" /> 
-                </asp:CommandField> 
-            </Columns> 
-        </asp:GridView> 
+    <asp:GridView ID="gvProveedores" runat="server"
+        EmptyDataText="No Existen Proveedores Registrados"
+        CssClass="table table-striped"
+        OnRowDeleting="gvProveedores_RowDeleting"
+        OnRowEditing="gvProveedores_RowEditing"
+        AutoGenerateColumns="False"
+        DataKeyNames="Id">
+        <Columns>
+            <asp:BoundField DataField="Id" HeaderText="Id" />
+            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+            <asp:CommandField EditText="Editar" ShowEditButton="true">
+                <ControlStyle CssClass="btn btn-primary active" />
+            </asp:CommandField>
+            <asp:CommandField DeleteText="Borrar" ShowDeleteButton="True">
+                <ControlStyle CssClass="btn btn-danger btn-sm" />
+            </asp:CommandField>
+        </Columns>
+    </asp:GridView>
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 </asp:Content>
