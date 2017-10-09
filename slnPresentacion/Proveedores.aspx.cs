@@ -24,12 +24,10 @@ namespace slnPresentacion
         }
 
         protected void gvProveedores_RowDeleting(object sender, GridViewDeleteEventArgs e)
-
         {
 
             try
             {
-
                 int index = int.Parse(e.Keys["Id"].ToString());
                 this.proveedores.eliminarProveedor(index);
                 ScriptManager.RegisterStartupScript(this, GetType(), "Alerta", "alert('Proveedor eliminado.');", true);
@@ -41,11 +39,9 @@ namespace slnPresentacion
 
         }
 
-
-
         protected void gvProveedores_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            
+            Response.Redirect("~/ProveedorForm.aspx?Id=" + this.gvProveedores.Rows[e.NewEditIndex].Cells[2].Text);
         }
     }
 }

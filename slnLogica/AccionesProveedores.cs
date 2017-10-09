@@ -13,6 +13,7 @@ namespace slnLogica
         void incluirProveedor(string nombre);
         void actualizaProveedor(int Id, string nombre);
         void eliminarProveedor(int id);
+        Proveedore obtenProveedorSegunIdentificador(int Id);
     }
 
     public class AccionesProveedores : IserviciosProveedores

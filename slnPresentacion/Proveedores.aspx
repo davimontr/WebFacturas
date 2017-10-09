@@ -23,7 +23,7 @@
             OnRowEditing="gvProveedores_RowEditing" 
             DataKeyNames="Id"> 
             <Columns> 
-                <asp:CommandField EditText="Editar" ShowEditButton="True"> 
+                <asp:CommandField EditText="Editar" ShowEditButton="true"> 
                 <ControlStyle CssClass="btn btn-primary active" /> 
                 </asp:CommandField> 
                 <asp:CommandField DeleteText="Borrar" ShowDeleteButton="True"> 
