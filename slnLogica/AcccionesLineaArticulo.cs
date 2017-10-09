@@ -10,6 +10,10 @@ namespace slnLogica
     public interface IserviciosLineaArticulo
     {
         List<Articulo> obtenerTodos();
+        void incluirLineaArticulo(int idproducto, int cant, int idfact);
+        void actualizaLineaArticulos(int Id, int idproducto, int cant, int idfact);
+        void eliminarLineaArticulo(int id);
+
 
     }
 

@@ -10,7 +10,9 @@ namespace slnLogica
     public interface IserviciosProductos
     {
         List<Producto> obtenerTodos();
-
+        void  incluirProducto(string product, int costo, int utilidad, int imp, int stock, int idProvee);
+        void actualizaProducto(int Id, string product, int costo, int utilidad, int imp, int stock, int idProvee);
+        void eliminarProducto(int id);
     }
 
     public class AccionesProductos : IserviciosProductos

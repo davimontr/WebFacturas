@@ -9,10 +9,14 @@ namespace slnLogica
 {
     public interface IServiciosUsuarios
     {
+        List<Usuario> obtenerTodos();
         bool iniciarSession(string correo, string clave);
         void actualizaClaveUsuario(int Id, string Clave);
         bool existeCorreo(string Correo);
         void incluirUsuario(string email, string contrasenna, int idrol);
+        void eliminarUsuario(int id);
+        void actualizaUsuario(int Id, string correo, string contrasena, int rol);
+
     }
 
     public class AccionesUsuarios : IServiciosUsuarios
@@ -26,9 +30,25 @@ namespace slnLogica
         public bool iniciarSession(string correo, string clave)
         {
             // Encriptar clave.
-            Usuario usuario = this.contexto.Usuarios.FirstOrDefault(u => u.Email.Equals(correo));
+            Usuario usuario = this.contexto.Usuarios.FirstOrDefault(u => u.Email.Equals(correo )&&(u.Clave.Equals(clave)));
             return (usuario != null);
+
+
+           
+
         }
+
+        //string encriptar(string cadena)
+        //{
+        //    string resultado = string.Empty;
+        //    Byte[] encriptar = System.Text.Encoding.Unicode.GetBytes(cadena);
+        //    resultado = Convert.ToBase64String(encriptar);
+        //    return resultado;
+  
+        //}
+
+
+
 
         // metodo para actualizar la clave de usuario 
         public void actualizaClaveUsuario(int Id, string Clave)
@@ -44,6 +64,12 @@ namespace slnLogica
             return (this.contexto.Usuarios.Where(u => u.Email.Equals(Correo)).Count() == 1) ? true : false;
         }
 
+
+        public List<Usuario> obtenerTodos()
+        {
+            return this.contexto.Usuarios.ToList();
+
+        }
 
 
         // se agrega el usuario

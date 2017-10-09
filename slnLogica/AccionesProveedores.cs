@@ -10,7 +10,9 @@ namespace slnLogica
     public interface IserviciosProveedores
     {
         List<Proveedore> obtenerTodos();
-
+        void incluirProveedor(string nombre);
+        void actualizaProveedor(int Id, string nombre);
+        void eliminarProveedor(int id);
     }
 
     public class AccionesProveedores : IserviciosProveedores
