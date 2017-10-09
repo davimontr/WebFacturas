@@ -37,7 +37,7 @@
     <asp:DropDownList ID="ddlProveedor" runat="server"></asp:DropDownList>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="El proveedor del producto es obligatorio." ControlToValidate="ddlProveedor" ForeColor="Red"></asp:RequiredFieldValidator>
     <br />
-    <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" />
+    <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />
     <br />
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 </asp:Content>

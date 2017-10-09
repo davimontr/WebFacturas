@@ -10,7 +10,7 @@ namespace slnLogica
     public interface IserviciosFacturas
     {
         List<Factura> obtenerTodos();
-
+        void incluirFactura(string fact, DateTime fecha, int idCliente, int descu);
     }
 
     public class AccionesFacturas : IserviciosFacturas

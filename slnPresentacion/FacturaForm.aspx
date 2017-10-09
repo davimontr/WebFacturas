@@ -12,30 +12,35 @@
     </section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-4 col-md-4">
+            <div class="col-sm-6 col-md-6">
                 <label for="contenido_txtFactura">Factura</label><br />
                 <asp:TextBox ID="txtFactura" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="La factura es obligatoria." ControlToValidate="txtFactura" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
-            <div class="col-sm-4 col-md-4">
+            <div class="col-sm-6 col-md-6">
                 <label for="contenido_txtFecha">Fecha</label><br />
                 <asp:TextBox ID="txtFecha" runat="server" TextMode="DateTime"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="La fecha es obligatoria." ControlToValidate="txtFecha" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
-            <div class="col-sm-4 col-md-4">
+            <div class="col-sm-6 col-md-6">
+                <label for="contenido_ddlCliente">Cliente</label><br />
+                <asp:DropDownList ID="ddlCliente" runat="server"></asp:DropDownList>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Cliente es obligatorio." ControlToValidate="ddlCliente" ForeColor="Red"></asp:RequiredFieldValidator>
+            </div>
+            <div class="col-sm-6 col-md-6">
                 <label for="contenido_txtDescuento">Descuento</label><br />
                 <asp:TextBox ID="txtDescuento" runat="server" TextMode="Number"></asp:TextBox>
                 <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Descuento puede ser desde 1 al 100" ControlToValidate="txtDescuento" ForeColor="Red" MinimumValue="1" MaximumValue="100"></asp:RangeValidator>
             </div>
         </div>
     </div>
-    <hr/>
+    <hr />
     <div class="container">
         <div class="row">
             <div class="col-sm-12 col-md-12">
                 <div>
-<h4>Lineas de Articulos</h4>
-</div>
+                    <h4>Lineas de Articulos</h4>
+                </div>
             </div>
             <div class="col-sm-4 col-md-4">
                 <label for="contenido_ddlProducto">Producto</label><br />
@@ -43,8 +48,8 @@
             </div>
             <div class="col-sm-4 col-md-4">
                 <label for="contenido_txtCantidad">Cantidad</label><br />
-                    <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number"></asp:TextBox>
-                    <%--<asp:RangeValidator ID="RangeValidator2" runat="server" ErrorMessage="Cantidad puede positiva desde 1" ControlToValidate="txtCantidad" ForeColor="Red" MinimumValue="1"></asp:RangeValidator>--%>
+                <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number"></asp:TextBox>
+                <%--<asp:RangeValidator ID="RangeValidator2" runat="server" ErrorMessage="Cantidad puede positiva desde 1" ControlToValidate="txtCantidad" ForeColor="Red" MinimumValue="1"></asp:RangeValidator>--%>
             </div>
             <div class="col-sm-4 col-md-4">
                 <asp:HyperLink ID="lnkAgregarLinea" runat="server" CssClass="btn btn-secondary">Agregar</asp:HyperLink>
@@ -54,12 +59,12 @@
             </div>
         </div>
     </div>
-    <hr/>
+    <hr />
     <div class="container">
         <div class="row">
             <div class="col-sm-4 col-md-6"></div>
             <div class="col-sm-8 col-md-6">
-                <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" />
+                <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />
             </div>
         </div>
     </div>

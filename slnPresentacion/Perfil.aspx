@@ -20,7 +20,7 @@
     <label for="contenido_ddRoles">Rol</label><br />
     <asp:DropDownList ID="ddlRoles" runat="server" ViewStateMode="Disabled" DataTextField="Nombre" DataValueField="Id"></asp:DropDownList>
     <br />
-    <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" />
+    <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />
     <br />
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 </asp:Content>
