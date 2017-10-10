@@ -121,13 +121,13 @@ namespace slnPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtCantidad;
         
         /// <summary>
-        /// lnkAgregarLinea control.
+        /// btnAgregarArticulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkAgregarLinea;
+        protected global::System.Web.UI.WebControls.Button btnAgregarArticulo;
         
         /// <summary>
         /// gvLineaArticulos control.

@@ -22,7 +22,7 @@ namespace slnPresentacion
                 this.txtDescuento.Text = factura.Descuento.ToString();
                 this.hdnIdentificador.Value = Identificador.ToString();
             }
-                try
+            try
             {
                 this.ddlCliente.DataSource = this.clientes.obtenerTodos();
                 this.ddlCliente.DataBind();
@@ -67,6 +67,21 @@ namespace slnPresentacion
             {
                 this.lblMensaje.Text = ex.Message;
             }
+        }
+
+        protected void btnAgregarArticulo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void gvLineaArticulos_RowDeleting(object sender, System.Web.UI.WebControls.GridViewDeleteEventArgs e)
+        {
+
+        }
+
+        protected void gvLineaArticulos_RowEditing(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
+        {
+
         }
     }
 }

@@ -53,10 +53,35 @@
                 <%--<asp:RangeValidator ID="RangeValidator2" runat="server" ErrorMessage="Cantidad puede positiva desde 1" ControlToValidate="txtCantidad" ForeColor="Red" MinimumValue="1"></asp:RangeValidator>--%>
             </div>
             <div class="col-sm-4 col-md-4">
-                <asp:HyperLink ID="lnkAgregarLinea" runat="server" CssClass="btn btn-secondary">Agregar</asp:HyperLink>
+                <asp:Button ID="btnAgregarArticulo" runat="server" CssClass="btn btn-secondary" Text="Agregar" OnClick="btnAgregarArticulo_Click" />
             </div>
             <div class="col-sm-12 col-md-12">
-                <asp:GridView ID="gvLineaArticulos" runat="server" EmptyDataText="No Existen Lineas de articulos en la factura" CssClass="table table-striped"></asp:GridView>
+                <asp:GridView ID="gvLineaArticulos" runat="server" 
+                    EmptyDataText="No Existen Lineas de articulos en la factura" 
+                    CssClass="table table-striped"
+                    OnRowDeleting="gvLineaArticulos_RowDeleting"
+                    OnRowEditing="gvLineaArticulos_RowEditing"
+                    AutoGenerateColumns="False"
+                    DataKeyNames="Id">
+                    <Columns>
+                         <asp:BoundField DataField="Id" HeaderText="Id">
+                            <ItemStyle CssClass="d-none" />
+                            <HeaderStyle CssClass="d-none" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="IdProducto" HeaderText="IdProducto">
+                            <ItemStyle CssClass="d-none" />
+                            <HeaderStyle CssClass="d-none" />
+                        </asp:BoundField>
+                        <asp:BoundField DataField="Producto.Producto1" HeaderText="Producto" />
+                        <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+                        <asp:BoundField DataField="IdFactura" HeaderText="IdFactura">
+                            <ItemStyle CssClass="d-none" />
+                            <HeaderStyle CssClass="d-none" />
+                        </asp:BoundField>
+                        <asp:CommandField ShowEditButton="True" />
+                        <asp:CommandField ShowDeleteButton="True" />
+                    </Columns>
+                </asp:GridView>
             </div>
         </div>
     </div>
