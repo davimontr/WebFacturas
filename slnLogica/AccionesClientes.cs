@@ -12,7 +12,10 @@ namespace slnLogica
     public interface IserviciosClientes
 {
     List<Cliente> obtenerTodos();
-
+    void eliminarCliente(int id);
+    Cliente obtenClienteSegunIdentificador(int Id);
+    void actualizaCliente(int Id, string cedula, string nombreCompleto);
+    void incluirCliente(string cedula, string nombreCompleto);
 }
 
     public class AccionesClientes : IserviciosClientes 

@@ -1,5 +1,6 @@
 ﻿using System;
 using slnLogica;
+using System.Web.UI;
 
 namespace slnPresentacion
 {
@@ -18,6 +19,25 @@ namespace slnPresentacion
             {
                 this.lblMensaje.Text = ex.Message;
             }
+        }
+
+        protected void gvClientes_RowDeleting(object sender, System.Web.UI.WebControls.GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                int index = int.Parse(e.Keys["Id"].ToString());
+                this.clientes.eliminarCliente(index);
+                ScriptManager.RegisterStartupScript(this, GetType(), "Alerta", "alert('Cliente eliminado.');", true);
+            }
+            catch (Exception ex)
+            {
+                this.lblMensaje.Text = ex.Message;
+            }
+        }
+
+        protected void gvClientes_RowEditing(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
+        {
+            Response.Redirect("~/ClienteForm.aspx?Id=" + this.gvClientes.Rows[e.NewEditIndex].Cells[0].Text);
         }
     }
 }

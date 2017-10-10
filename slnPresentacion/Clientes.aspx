@@ -16,6 +16,27 @@
             <span class="text-muted">Agregar cliente</span>
         </div>
     </section>
-    <asp:GridView ID="gvClientes" runat="server" EmptyDataText="No Existen Clientes Registrados" CssClass="table table-striped"></asp:GridView>
+    <asp:GridView ID="gvClientes" runat="server" 
+        EmptyDataText="No Existen Clientes Registrados" 
+        CssClass="table table-striped" 
+        OnRowDeleting="gvClientes_RowDeleting" 
+        OnRowEditing="gvClientes_RowEditing"
+        AutoGenerateColumns="False"
+        DataKeyNames="Id">
+        <Columns>
+            <asp:BoundField DataField="Id" HeaderText="Id">
+                <ItemStyle CssClass="d-none" />
+                <HeaderStyle CssClass="d-none" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Cedula" HeaderText="Cedula" />
+            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+            <asp:CommandField EditText="Editar" ShowEditButton="true">
+                <ControlStyle CssClass="btn btn-primary active" />
+            </asp:CommandField>
+            <asp:CommandField DeleteText="Borrar" ShowDeleteButton="True">
+                <ControlStyle CssClass="btn btn-danger btn-sm" />
+            </asp:CommandField>
+        </Columns>
+    </asp:GridView>
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 </asp:Content>

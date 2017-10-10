@@ -16,6 +16,31 @@
             <span class="text-muted">Agregar producto</span>
         </div>
     </section>
-    <asp:GridView ID="gvProductos" runat="server" EmptyDataText="No Existen Productos Registrados" CssClass="table table-striped"></asp:GridView>
+    <asp:GridView ID="gvProductos" runat="server" 
+        EmptyDataText="No Existen Productos Registrados" 
+        CssClass="table table-striped"
+        OnRowDeleting="gvProductos_RowDeleting" 
+        OnRowEditing="gvProductos_RowEditing"
+        AutoGenerateColumns="False"
+        DataKeyNames="Id">
+        <Columns>
+            <asp:BoundField DataField="Id" HeaderText="Id">
+                <ItemStyle CssClass="d-none" />
+                <HeaderStyle CssClass="d-none" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Producto1" HeaderText="Producto" />
+            <asp:BoundField DataField="Costo" HeaderText="Costo" />
+            <asp:BoundField DataField="Utilidad" HeaderText="Utilidad" />
+            <asp:BoundField DataField="Impuesto" HeaderText="Impuesto" />
+            <asp:BoundField DataField="Existencia" HeaderText="Existencia" />
+            <asp:BoundField DataField="Proveedor.Nombre" HeaderText="Proveedor" />
+            <asp:CommandField EditText="Editar" ShowEditButton="true">
+                <ControlStyle CssClass="btn btn-primary active" />
+            </asp:CommandField>
+            <asp:CommandField DeleteText="Borrar" ShowDeleteButton="True">
+                <ControlStyle CssClass="btn btn-danger btn-sm" />
+            </asp:CommandField>
+        </Columns>
+    </asp:GridView>
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 </asp:Content>
