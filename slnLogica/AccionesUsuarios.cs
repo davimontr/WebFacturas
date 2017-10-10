@@ -17,6 +17,7 @@ namespace slnLogica
         void incluirUsuario(string email, string contrasenna, int idrol);
         void eliminarUsuario(int id);
         void actualizaUsuario(int Id, string correo, string contrasena, int rol);
+        Usuario obtenUsuarioSegunIdentificador(int Id);
     }
 
     public class AccionesUsuarios : IServiciosUsuarios

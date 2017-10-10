@@ -15,7 +15,7 @@ namespace slnPresentacion
                 int Identificador = int.Parse(Request.QueryString["Id"]);
                 Proveedore proveedor = this.proveedores.obtenProveedorSegunIdentificador(Identificador);
                 this.txtNombre.Text = proveedor.Nombre;
-                this.hdnId.Value = Identificador.ToString();
+                this.hdnIdentificador.Value = Identificador.ToString();
             }
         }
 
@@ -24,7 +24,7 @@ namespace slnPresentacion
             
             try
             {
-                string Identificador = this.hdnId.Value;
+                string Identificador = this.hdnIdentificador.Value;
                 if (String.IsNullOrEmpty(Identificador))
                 {
                     this.proveedores.incluirProveedor(this.txtNombre.Text);

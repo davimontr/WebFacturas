@@ -12,6 +12,27 @@
             <span class="text-muted">Agregar usuario</span>
         </div>
     </section>
-    <asp:GridView ID="gvUsuarios" runat="server" EmptyDataText="No Existen Usuarios Registrados" CssClass="table table-striped"></asp:GridView>
+    <asp:GridView ID="gvUsuarios" runat="server" 
+        EmptyDataText="No Existen Usuarios Registrados" 
+        CssClass="table table-striped"
+        OnRowDeleting="gvUsuarios_RowDeleting" 
+        OnRowEditing="gvUsuarios_RowEditing"
+        AutoGenerateColumns="False"
+        DataKeyNames="Id">
+        <Columns>
+            <asp:BoundField DataField="Id" HeaderText="Id">
+                <ItemStyle CssClass="d-none" />
+                <HeaderStyle CssClass="d-none" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Email" HeaderText="Email" />
+            <asp:BoundField DataField="Role.Nombre" HeaderText="Rol" />
+            <asp:CommandField EditText="Editar" ShowEditButton="true">
+                <ControlStyle CssClass="btn btn-primary active" />
+            </asp:CommandField>
+            <asp:CommandField DeleteText="Borrar" ShowDeleteButton="True">
+                <ControlStyle CssClass="btn btn-danger btn-sm" />
+            </asp:CommandField>
+        </Columns>
+    </asp:GridView>
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 </asp:Content>

@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="contenido" runat="server">
     <h1>Usuario</h1>
+    <asp:HiddenField ID="hdnIdentificador" runat="server" />
     <section class="row text-center placeholders">
         <div class="col-10 col-sm-10 placeholder">
         </div>

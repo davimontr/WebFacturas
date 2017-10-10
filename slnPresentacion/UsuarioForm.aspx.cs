@@ -1,5 +1,6 @@
 ﻿using System;
 using slnLogica;
+using slnDatos;
 
 namespace slnPresentacion
 {
@@ -10,6 +11,15 @@ namespace slnPresentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
+            {
+                int Identificador = int.Parse(Request.QueryString["Id"]);
+                Usuario usuario = this.usuarios.obtenUsuarioSegunIdentificador(Identificador);
+                this.txtEmail.Text = usuario.Email;
+                this.txtClave.Attributes["value"] = usuario.Clave;
+                this.ddlRoles.SelectedValue = usuario.IdRol.ToString();
+                this.hdnIdentificador.Value = Identificador.ToString();
+            }
             try
             {
                 this.ddlRoles.DataSource = this.roles.obtenerTodos();
@@ -25,7 +35,15 @@ namespace slnPresentacion
         {
             try
             {
-                this.usuarios.incluirUsuario(this.txtEmail.Text, this.txtClave.Text, Int32.Parse(this.ddlRoles.SelectedValue));
+                string Identificador = this.hdnIdentificador.Value;
+                if (String.IsNullOrEmpty(Identificador))
+                {
+                    this.usuarios.incluirUsuario(this.txtEmail.Text, this.txtClave.Text, Int32.Parse(this.ddlRoles.SelectedValue));
+                }
+                else
+                {
+                    this.usuarios.actualizaUsuario(int.Parse(Identificador),this.txtEmail.Text, this.txtClave.Text, int.Parse(this.ddlRoles.SelectedValue));
+                }
                 Page.Session.Add("mensaje", "Usuario salvado!");
                 Response.Redirect("~/Usuarios.aspx");
             }

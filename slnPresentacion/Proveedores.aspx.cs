@@ -24,7 +24,6 @@ namespace slnPresentacion
 
         protected void gvProveedores_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
             try
             {
                 int index = int.Parse(e.Keys["Id"].ToString());
@@ -40,7 +39,7 @@ namespace slnPresentacion
 
         protected void gvProveedores_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            Response.Redirect("~/ProveedorForm.aspx?Id=" + this.gvProveedores.Rows[e.NewEditIndex].Cells[2].Text);
+            Response.Redirect("~/ProveedorForm.aspx?Id=" + this.gvProveedores.Rows[e.NewEditIndex].Cells[0].Text);
         }
     }
 }
