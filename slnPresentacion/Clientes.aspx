@@ -29,7 +29,7 @@
                 <HeaderStyle CssClass="d-none" />
             </asp:BoundField>
             <asp:BoundField DataField="Cedula" HeaderText="Cedula" />
-            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+            <asp:BoundField DataField="NombreCompleto" HeaderText="Nombre" />
             <asp:CommandField EditText="Editar" ShowEditButton="true">
                 <ControlStyle CssClass="btn btn-primary active" />
             </asp:CommandField>

@@ -33,7 +33,7 @@
             <asp:BoundField DataField="Utilidad" HeaderText="Utilidad" />
             <asp:BoundField DataField="Impuesto" HeaderText="Impuesto" />
             <asp:BoundField DataField="Existencia" HeaderText="Existencia" />
-            <asp:BoundField DataField="Proveedor.Nombre" HeaderText="Proveedor" />
+            <asp:BoundField DataField="Proveedore.Nombre" HeaderText="Proveedor" />
             <asp:CommandField EditText="Editar" ShowEditButton="true">
                 <ControlStyle CssClass="btn btn-primary active" />
             </asp:CommandField>
