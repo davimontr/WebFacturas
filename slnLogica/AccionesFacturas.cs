@@ -11,7 +11,7 @@ namespace slnLogica
     {
         List<Factura> obtenerTodos();
         void incluirFactura(string fact, DateTime fecha, int idCliente, int descu);
-
+        Factura obtenFacturaSegunIdentificador(int Id);
         void actualizaFactura(int Id, string factura, DateTime fecha, int idcliente, int desc);
         void eliminarFactura(int id);
 

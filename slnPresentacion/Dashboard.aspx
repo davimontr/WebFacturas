@@ -16,6 +16,29 @@
             <span class="text-muted">Agregar factura</span>
         </div>
     </section>
-    <asp:GridView ID="gvFacturas" runat="server" EmptyDataText="No Existen Facturas Registradas" CssClass="table table-striped"></asp:GridView>
+    <asp:GridView ID="gvFacturas" runat="server" 
+        EmptyDataText="No Existen Facturas Registradas" 
+        CssClass="table table-striped" 
+        OnRowDeleting="gvFacturas_RowDeleting" 
+        OnRowEditing="gvFacturas_RowEditing"
+        AutoGenerateColumns="False"
+        DataKeyNames="Id">
+        <Columns>
+            <asp:BoundField DataField="Id" HeaderText="Id">
+                <ItemStyle CssClass="d-none" />
+                <HeaderStyle CssClass="d-none" />
+            </asp:BoundField>
+            <asp:BoundField DataField="Factura" HeaderText="Factura" />
+            <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+            <asp:BoundField DataField="Cliente.NombreCompleto" HeaderText="Cliente" />
+            <asp:BoundField DataField="Descuento" HeaderText="Descuento" />
+            <asp:CommandField EditText="Editar" ShowEditButton="true">
+                <ControlStyle CssClass="btn btn-primary active" />
+            </asp:CommandField>
+            <asp:CommandField DeleteText="Borrar" ShowDeleteButton="True">
+                <ControlStyle CssClass="btn btn-danger btn-sm" />
+            </asp:CommandField>
+        </Columns>
+    </asp:GridView>
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 </asp:Content>

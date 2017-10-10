@@ -1,5 +1,6 @@
 ﻿using System;
 using slnLogica;
+using slnDatos;
 
 namespace slnPresentacion
 {
@@ -11,7 +12,17 @@ namespace slnPresentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
+            {
+                int Identificador = int.Parse(Request.QueryString["Id"]);
+                Factura factura = this.facturas.obtenFacturaSegunIdentificador(Identificador);
+                this.txtFactura.Text = factura.Factura1.ToString();
+                this.txtFecha.Text = factura.Fecha.ToShortDateString();
+                this.ddlCliente.SelectedValue = factura.IdCliente.ToString();
+                this.txtDescuento.Text = factura.Descuento.ToString();
+                this.hdnIdentificador.Value = Identificador.ToString();
+            }
+                try
             {
                 this.ddlCliente.DataSource = this.clientes.obtenerTodos();
                 this.ddlCliente.DataBind();
@@ -29,12 +40,26 @@ namespace slnPresentacion
         {
             try
             {
-                this.facturas.incluirFactura(
+                string Identificador = this.hdnIdentificador.Value;
+                if (String.IsNullOrEmpty(Identificador))
+                {
+                    this.facturas.incluirFactura(
                     this.txtFactura.Text,
                     DateTime.Parse(this.txtFecha.Text),
                     Int32.Parse(this.ddlCliente.SelectedValue),
                     Int32.Parse(this.txtDescuento.Text)
                 );
+                }
+                else
+                {
+                    this.facturas.actualizaFactura(
+                        int.Parse(Identificador),
+                        this.txtFactura.Text,
+                        DateTime.Parse(this.txtFecha.Text),
+                        Int32.Parse(this.ddlCliente.SelectedValue),
+                        Int32.Parse(this.txtDescuento.Text)
+                   );
+                }    
                 Page.Session.Add("mensaje", "Factura salvada!");
                 Response.Redirect("~/Dashboard.aspx");
             }
