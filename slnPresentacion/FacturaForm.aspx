@@ -25,7 +25,7 @@
             </div>
             <div class="col-sm-6 col-md-6">
                 <label for="contenido_ddlCliente">Cliente</label><br />
-                <asp:DropDownList ID="ddlCliente" runat="server"></asp:DropDownList>
+                <asp:DropDownList ID="ddlCliente" runat="server" DataValueField="Id" DataTextField="NombreCompleto"></asp:DropDownList>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Cliente es obligatorio." ControlToValidate="ddlCliente" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <div class="col-sm-6 col-md-6">
