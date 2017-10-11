@@ -58,6 +58,7 @@ namespace slnLogica
         {
             Proveedore usu = this.obtenProveedorSegunIdentificador(id);
             this.contexto.Proveedores.Remove(usu);
+            this.contexto.SaveChanges();
 
         }
 

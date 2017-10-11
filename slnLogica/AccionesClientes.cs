@@ -57,6 +57,7 @@ namespace slnLogica
         {
             Cliente clie = this.obtenClienteSegunIdentificador(id);
             this.contexto.Clientes.Remove(clie);
+            this.contexto.SaveChanges();
 
         }
 

@@ -13,7 +13,9 @@ namespace slnLogica
         List<Usuario> obtenerTodos();
         bool iniciarSession(string correo, string clave);
         void actualizaClaveUsuario(int Id, string Clave);
+        void actualizarCorreo(int Id, string correo);
         bool existeCorreo(string Correo);
+        string encriptarClaveUsuario(string clave);
         void incluirUsuario(string email, string contrasenna, int idrol);
         void eliminarUsuario(int id);
         void actualizaUsuario(int Id, string correo, string contrasena, int rol);
@@ -31,22 +33,23 @@ namespace slnLogica
         public bool iniciarSession(string correo, string clave)
         {
             // Encriptar clave.
+            string encriptada = this.encriptarClaveUsuario(clave);
             Usuario usuario = this.contexto.Usuarios.FirstOrDefault(u => u.Email.Equals(correo )&&(u.Clave.Equals(clave)));
             return (usuario != null);
-
-
-           
-
         }
 
-        //string encriptar(string cadena)
-        //{
-        //    string resultado = string.Empty;
-        //    Byte[] encriptar = System.Text.Encoding.Unicode.GetBytes(cadena);
-        //    resultado = Convert.ToBase64String(encriptar);
-        //    return resultado;
-  
-        //}
+
+      public  string encriptarClaveUsuario(string clave)
+        {
+            System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create();
+            byte[] datos = md5.ComputeHash(Encoding.Default.GetBytes(clave));
+            StringBuilder strConstructor = new StringBuilder();
+            for (int i = 0; i < datos.Length; i++)
+            {
+                strConstructor.Append(datos[i].ToString("x2"));
+            }
+            return strConstructor.ToString();
+        }
 
 
 
@@ -56,6 +59,14 @@ namespace slnLogica
         {
             Usuario usuario = this.obtenUsuarioSegunIdentificador(Id);
             usuario.Clave = Clave;
+            this.contexto.SaveChanges();
+        }
+
+      public  void actualizarCorreo(int Id, string correo)
+        {
+        
+            Usuario usuario = this.obtenUsuarioSegunIdentificador(Id);
+            usuario.Email = correo;
             this.contexto.SaveChanges();
         }
 
@@ -91,6 +102,7 @@ namespace slnLogica
         {
             Usuario usu = this.obtenUsuarioSegunIdentificador(id);
             this.contexto.Usuarios.Remove(usu);
+            this.contexto.SaveChanges();
 
         }
 

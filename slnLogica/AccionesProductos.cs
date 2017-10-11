@@ -64,6 +64,7 @@ namespace slnLogica
         {
             Producto prd = this.obtenProductoSegunIdentificador(id);
             this.contexto.Productos.Remove(prd);
+            this.contexto.SaveChanges();
 
         }
 

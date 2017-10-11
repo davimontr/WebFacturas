@@ -64,6 +64,7 @@ namespace slnLogica
         {
             Factura fac = this.obtenFacturaSegunIdentificador(id);
             this.contexto.Facturas.Remove(fac);
+            this.contexto.SaveChanges();
 
         }
 
