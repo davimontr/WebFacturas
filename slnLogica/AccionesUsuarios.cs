@@ -36,11 +36,13 @@ namespace slnLogica
             string encriptada = this.encriptarClaveUsuario(clave);
             Usuario usuario = this.contexto.Usuarios.FirstOrDefault(u => u.Email.Equals(correo )&&(u.Clave.Equals(clave)));
             return (usuario != null);
+
         }
 
 
       public  string encriptarClaveUsuario(string clave)
         {
+  
             System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create();
             byte[] datos = md5.ComputeHash(Encoding.Default.GetBytes(clave));
             StringBuilder strConstructor = new StringBuilder();
@@ -57,8 +59,11 @@ namespace slnLogica
         // metodo para actualizar la clave de usuario 
         public void actualizaClaveUsuario(int Id, string Clave)
         {
+
             Usuario usuario = this.obtenUsuarioSegunIdentificador(Id);
+            string encriptada = this.encriptarClaveUsuario(Clave);
             usuario.Clave = Clave;
+            this.encriptarClaveUsuario(Clave);
             this.contexto.SaveChanges();
         }
 
@@ -87,7 +92,9 @@ namespace slnLogica
         // se agrega el usuario
         public void incluirUsuario(string email, string contrasenna, int idrol)
         {
+             string clave = this.encriptarClaveUsuario(contrasenna);
             this.contexto.Usuarios.Add(new Usuario { Email = email, Clave = contrasenna, IdRol = idrol });
+            clave = this.encriptarClaveUsuario(contrasenna);
             this.contexto.SaveChanges();
             
         }

@@ -13,38 +13,41 @@ namespace cnsPruebas
 
         public void ejecutar()
         {
-            //this.iniciarSession();
-            this.ModificarUsu();
-            //this.ingresarUsuario();
+            this.iniciarSession();
+            //this.ModificarUsu();
+             //this.ingresarUsuario();
+            this.encriptarClave();
             //this.eliminar();
-            
+            //this.encriptar();
         }
 
-        //public void iniciarSession()
+        public void iniciarSession()
+        {
+            if (this.usuarios.iniciarSession("olgeragt@gmail.com", "12345"))
+            {
+                Console.WriteLine("Session iniciada!");
+            }
+            else
+            {
+                Console.WriteLine("No se logra iniciar session.");
+            }
+        }
+
+        //public void ModificarUsu()
         //{
-        //    if (this.usuarios.iniciarSession("keboca@gmail.com", "clave"))
-        //    {
-        //        Console.WriteLine("Session iniciada!");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("No se logra iniciar session.");
-        //    }
+
+        //    this.usuarios.actualizaUsuario(1, "olgeragt@gmail.com", "12345,", 1);
+
+        //    Console.WriteLine("Usuario modificado!");
+
+
         //}
 
-        public void ModificarUsu()
-        {
 
-            this.usuarios.actualizaUsuario(1, "olgeragt@gmail.com", "12345,", 1);
-
-            Console.WriteLine("Usuario modificado!");
-
-
-        }
 
         //public void ingresarUsuario()
         //{
-        //    this.usuarios.incluirUsuario("andres@gmail.com", "111,", 2);
+        //    this.usuarios.incluirUsuario("patito@gmail.com", "aaaa", 1);
         //    Console.WriteLine("Usuario agregado!");
         //}
 
@@ -54,7 +57,11 @@ namespace cnsPruebas
         //  Console.WriteLine("Usuario eliminado!");
         //}
 
-
+        public void encriptarClave()
+        {
+            
+            Console.WriteLine("Encriptada: {0}", this.usuarios.encriptarClaveUsuario("12345"));
+        }
 
     }
 }
