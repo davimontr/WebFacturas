@@ -11,6 +11,11 @@ namespace slnPresentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.cargarProveedores();
+        }
+
+        private void cargarProveedores()
+        {
             try
             {
                 this.gvProveedores.DataSource = this.proveedores.obtenerTodos();
@@ -29,6 +34,7 @@ namespace slnPresentacion
                 int index = int.Parse(e.Keys["Id"].ToString());
                 this.proveedores.eliminarProveedor(index);
                 ScriptManager.RegisterStartupScript(this, GetType(), "Alerta", "alert('Proveedor eliminado.');", true);
+                this.cargarProveedores();
             }
             catch (Exception ex)
             {

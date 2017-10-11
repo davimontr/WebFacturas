@@ -10,6 +10,11 @@ namespace slnPresentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.cargarClientes();
+        }
+
+        private void cargarClientes()
+        {
             try
             {
                 this.gvClientes.DataSource = this.clientes.obtenerTodos();
@@ -28,6 +33,7 @@ namespace slnPresentacion
                 int index = int.Parse(e.Keys["Id"].ToString());
                 this.clientes.eliminarCliente(index);
                 ScriptManager.RegisterStartupScript(this, GetType(), "Alerta", "alert('Cliente eliminado.');", true);
+                this.cargarClientes();
             }
             catch (Exception ex)
             {

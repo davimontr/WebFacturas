@@ -10,6 +10,11 @@ namespace WebFacturas
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.cargarFacturas();
+        }
+
+        private void cargarFacturas()
+        {
             try
             {
                 this.gvFacturas.DataSource = this.facturas.obtenerTodos();
@@ -28,6 +33,7 @@ namespace WebFacturas
                 int index = int.Parse(e.Keys["Id"].ToString());
                 this.facturas.eliminarFactura(index);
                 ScriptManager.RegisterStartupScript(this, GetType(), "Alerta", "alert('Factura eliminada.');", true);
+                this.cargarFacturas();
             }
             catch (Exception ex)
             {
