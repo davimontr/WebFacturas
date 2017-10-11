@@ -17,7 +17,8 @@ namespace slnPresentacion
                 int Identificador = int.Parse(Request.QueryString["Id"]);
                 Factura factura = this.facturas.obtenFacturaSegunIdentificador(Identificador);
                 this.txtFactura.Text = factura.Factura1.ToString();
-                this.txtFecha.Text = factura.Fecha.ToShortDateString();
+                this.cldFecha.SelectedDate = factura.Fecha.Date;
+                this.cldFecha.VisibleDate = factura.Fecha.Date;
                 this.ddlCliente.SelectedValue = factura.IdCliente.ToString();
                 this.txtDescuento.Text = factura.Descuento.ToString();
                 this.hdnIdentificador.Value = Identificador.ToString();
@@ -45,7 +46,7 @@ namespace slnPresentacion
                 {
                     this.facturas.incluirFactura(
                     this.txtFactura.Text,
-                    DateTime.Parse(this.txtFecha.Text),
+                    this.cldFecha.SelectedDate,
                     Int32.Parse(this.ddlCliente.SelectedValue),
                     Int32.Parse(this.txtDescuento.Text)
                 );
@@ -55,7 +56,7 @@ namespace slnPresentacion
                     this.facturas.actualizaFactura(
                         int.Parse(Identificador),
                         this.txtFactura.Text,
-                        DateTime.Parse(this.txtFecha.Text),
+                        this.cldFecha.SelectedDate,
                         Int32.Parse(this.ddlCliente.SelectedValue),
                         Int32.Parse(this.txtDescuento.Text)
                    );

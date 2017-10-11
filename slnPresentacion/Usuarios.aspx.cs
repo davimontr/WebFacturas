@@ -10,6 +10,11 @@ namespace slnPresentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.cargarUsuarios();
+        }
+
+        private void cargarUsuarios()
+        {
             try
             {
                 this.gvUsuarios.DataSource = this.usuarios.obtenerTodos();
@@ -28,6 +33,7 @@ namespace slnPresentacion
                 int index = int.Parse(e.Keys["Id"].ToString());
                 this.usuarios.eliminarUsuario(index);
                 ScriptManager.RegisterStartupScript(this, GetType(), "Alerta", "alert('Usuario eliminado.');", true);
+                this.cargarUsuarios();
             }
             catch (Exception ex)
             {

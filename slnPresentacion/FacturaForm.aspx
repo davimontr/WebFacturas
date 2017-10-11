@@ -20,8 +20,16 @@
             </div>
             <div class="col-sm-6 col-md-6">
                 <label for="contenido_txtFecha">Fecha</label><br />
-                <asp:TextBox ID="txtFecha" runat="server" TextMode="DateTime"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="La fecha es obligatoria." ControlToValidate="txtFecha" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:Calendar ID="cldFecha" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
+                    <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
+                    <NextPrevStyle VerticalAlign="Bottom" />
+                    <OtherMonthDayStyle ForeColor="#808080" />
+                    <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
+                    <SelectorStyle BackColor="#CCCCCC" />
+                    <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
+                    <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
+                    <WeekendDayStyle BackColor="#FFFFCC" />
+                </asp:Calendar>
             </div>
             <div class="col-sm-6 col-md-6">
                 <label for="contenido_ddlCliente">Cliente</label><br />
@@ -31,7 +39,7 @@
             <div class="col-sm-6 col-md-6">
                 <label for="contenido_txtDescuento">Descuento</label><br />
                 <asp:TextBox ID="txtDescuento" runat="server" TextMode="Number"></asp:TextBox>
-                <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Descuento puede ser desde 1 al 100" ControlToValidate="txtDescuento" ForeColor="Red" MinimumValue="1" MaximumValue="100"></asp:RangeValidator>
+                <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Descuento puede ser desde 0 al 100" ControlToValidate="txtDescuento" ForeColor="Red" MinimumValue="0" MaximumValue="100"></asp:RangeValidator>
             </div>
         </div>
     </div>

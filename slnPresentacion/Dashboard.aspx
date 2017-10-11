@@ -28,10 +28,9 @@
                 <ItemStyle CssClass="d-none" />
                 <HeaderStyle CssClass="d-none" />
             </asp:BoundField>
-            <asp:BoundField DataField="Factura" HeaderText="Factura" />
-            <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+            <asp:BoundField DataField="Factura1" HeaderText="Factura" />
+            <asp:BoundField DataField="Fecha" HeaderText="Fecha"  DataFormatString="{0:dd/MM/yyyy}" />
             <asp:BoundField DataField="Cliente.NombreCompleto" HeaderText="Cliente" />
-            <asp:BoundField DataField="Descuento" HeaderText="Descuento" />
             <asp:CommandField EditText="Editar" ShowEditButton="true">
                 <ControlStyle CssClass="btn btn-primary active" />
             </asp:CommandField>
