@@ -12,12 +12,12 @@ namespace slnLogica
 
         List<Usuario> obtenerTodos();
         bool iniciarSession(string correo, string clave);
-        void actualizarCorreo(int Id, string correo);
         string encriptarClaveUsuario(string clave);
         void incluirUsuario(string email, string contrasenna, int idrol);
         void eliminarUsuario(int id);
         void actualizaUsuario(int Id, string correo, string contrasena, int rol);
         Usuario obtenUsuarioSegunIdentificador(int Id);
+ 
     }
 
     public class AccionesUsuarios : IServiciosUsuarios
@@ -36,8 +36,9 @@ namespace slnLogica
             string encriptada = this.encriptarClaveUsuario(clave);
             Usuario usuario = this.contexto.Usuarios.FirstOrDefault(u => u.Email.Equals(correo )&&(u.Clave.Equals(encriptada)));
             return (usuario != null);
-
+           
         }
+
 
         // Metodo de encriptar la clave
       public  string encriptarClaveUsuario(string clave)
@@ -51,18 +52,6 @@ namespace slnLogica
                 strConstructor.Append(datos[i].ToString("x2"));
             }
             return strConstructor.ToString();
-        }
-
-
-
-
-        // metodo para actualizar el correo de usuario 
-
-      public  void actualizarCorreo(int Id, string correo)
-        {
-            Usuario usuario = this.obtenUsuarioSegunIdentificador(Id);
-            usuario.Email = correo;
-            this.contexto.SaveChanges();
         }
 
 
