@@ -11,7 +11,7 @@ namespace slnLogica
     {
 
         List<Usuario> obtenerTodos();
-        bool iniciarSession(string correo, string clave);
+        bool iniciarSession(string correo, string clave,out Usuario usuariOutput);
         string encriptarClaveUsuario(string clave);
         void incluirUsuario(string email, string contrasenna, int idrol);
         void eliminarUsuario(int id);
@@ -30,11 +30,12 @@ namespace slnLogica
         }
 
       //inicio de session
-        public bool iniciarSession(string correo, string clave)
-        {
-             
+        public bool iniciarSession( string correo, string clave, out Usuario  usuariOutput)
+        { 
+
             string encriptada = this.encriptarClaveUsuario(clave);
-            Usuario usuario = this.contexto.Usuarios.FirstOrDefault(u => u.Email.Equals(correo )&&(u.Clave.Equals(encriptada)));
+            Usuario usuario = this.contexto.Usuarios.FirstOrDefault(u => u.Email.Equals( correo )&&(u.Clave.Equals(encriptada)));
+            usuariOutput = usuario;
             return (usuario != null);
            
         }
@@ -63,7 +64,7 @@ namespace slnLogica
 
 
         // se agrega el usuario
-        public void incluirUsuario(string email, string contrasenna, int idrol)
+        public void incluirUsuario( string email,  string contrasenna,  int idrol)
         {
              string clave = this.encriptarClaveUsuario(contrasenna);
             this.contexto.Usuarios.Add(new Usuario { Email = email, Clave = clave, IdRol = idrol });
