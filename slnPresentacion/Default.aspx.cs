@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.UI;
 using slnLogica;
+using slnDatos;
 
 namespace WebFacturas
 {
@@ -14,7 +15,8 @@ namespace WebFacturas
             {
                 try
                 {
-                    if (this.usuarios.iniciarSession(this.txtEmail.Text, this.txtClave.Text))
+                    Usuario usuario = null;
+                    if (this.usuarios.iniciarSession(this.txtEmail.Text, this.txtClave.Text, out usuario))
                     {
                         Response.Redirect("~/Dashboard.aspx");
                     }
