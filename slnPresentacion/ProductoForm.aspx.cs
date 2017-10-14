@@ -75,8 +75,7 @@ namespace slnPresentacion
                         Int32.Parse(this.ddlProveedor.SelectedValue)
                     );
                 }
-
-                Page.Session.Add("mensaje", "Producto salvado!");
+                new SesionMensajes(Page).crearAviso("Producto salvado.");
                 Response.Redirect("~/Productos.aspx");
             }
             catch (Exception ex)

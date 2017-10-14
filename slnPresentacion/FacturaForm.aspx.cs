@@ -73,8 +73,8 @@ namespace slnPresentacion
                         Int32.Parse(this.ddlCliente.SelectedValue),
                         Int32.Parse(this.txtDescuento.Text)
                    );
-                }    
-                Page.Session.Add("mensaje", "Factura salvada!");
+                }
+                new SesionMensajes(Page).crearAviso("Factura salvada.");
                 Response.Redirect("~/Dashboard.aspx");
             }
             catch (Exception ex)

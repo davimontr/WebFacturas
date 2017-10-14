@@ -1,4 +1,5 @@
-﻿using System;
+﻿using slnPresentacion;
+using System;
 
 namespace WebFacturas
 {
@@ -6,7 +7,11 @@ namespace WebFacturas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Page.Session["sesion"] != null)
+            {
+                new SesionMensajes(Page).crearAlerta("Sesion ya esta iniciada.");
+                Response.Redirect("~/Dashboard.aspx");
+            }
         }
     }
 }

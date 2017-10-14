@@ -1,4 +1,5 @@
-﻿using System;
+﻿using slnPresentacion;
+using System;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
@@ -7,8 +8,18 @@ namespace WebFacturas
 {
     public partial class DashboardMaster : System.Web.UI.MasterPage
     {
+        private void revisarSesion()
+        {
+            if (Page.Session["sesion"] == null)
+            {
+                new SesionMensajes(Page).crearAlerta("Debe iniciar sesion.");
+                Response.Redirect("~/Default.aspx");
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            this.revisarSesion();
             this.agregarNavegacion();
         }
 
@@ -52,6 +63,8 @@ namespace WebFacturas
 
         protected void btnSalir_Click(object sender, EventArgs e)
         {
+            Page.Session.Remove("sesion");
+            new SesionMensajes(Page).crearAviso("Sesion terminada.");
             Response.Redirect("~/Default.aspx");
         }
     }

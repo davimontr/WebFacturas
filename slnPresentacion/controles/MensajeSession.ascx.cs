@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Collections.Specialized;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace slnPresentacion.controles
 {
@@ -13,7 +10,8 @@ namespace slnPresentacion.controles
         {
             if (Page.Session["mensaje"] != null)
             {
-                this.ltlMensajeSession.Text = string.Format("<div class=\"alert alert-success\">{0}</div>", Page.Session["mensaje"]);
+                NameValueCollection mensaje = (NameValueCollection)Page.Session["mensaje"];
+                this.ltlMensajeSession.Text = string.Format("<div class=\"alert {0}\">{1}</div>", mensaje["tipo"], mensaje["texto"]);
                 Page.Session.Remove("mensaje");
             }
         }

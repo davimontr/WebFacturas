@@ -1,5 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Inicio.master.cs" Inherits="WebFacturas.Inicio" %>
 
+<%@ Register Src="~/controles/MensajeSession.ascx" TagName="MensajeSesion" TagPrefix="ucMensaje" %>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -15,6 +17,7 @@
 <body>
     <div class="container">
         <form id="form1" runat="server" class="form-signin">
+            <ucMensaje:MensajeSesion ID="MensajeSesion" runat="server" />
             <asp:ContentPlaceHolder ID="contenido" runat="server">
             </asp:ContentPlaceHolder>
         </form>

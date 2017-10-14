@@ -41,7 +41,7 @@ namespace slnPresentacion
                 {
                     this.clientes.actualizaCliente(int.Parse(Identificador), this.txtCedula.Text, this.txtNombre.Text);
                 }
-                Page.Session.Add("mensaje", "Cliente salvado!");
+                new SesionMensajes(Page).crearAviso("Cliente salvado.");
                 Response.Redirect("~/Clientes.aspx");
             }
             catch (Exception ex)

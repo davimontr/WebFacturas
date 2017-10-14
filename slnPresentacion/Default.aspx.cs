@@ -18,6 +18,7 @@ namespace WebFacturas
                     Usuario usuario = null;
                     if (this.usuarios.iniciarSession(this.txtEmail.Text, this.txtClave.Text, out usuario))
                     {
+                        Page.Session.Add("sesion", usuario);
                         Response.Redirect("~/Dashboard.aspx");
                     }
                     else

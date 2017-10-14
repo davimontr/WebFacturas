@@ -232,6 +232,7 @@
     <Compile Include="ProveedorForm.aspx.designer.cs">
       <DependentUpon>ProveedorForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SesionMensajes.cs" />
     <Compile Include="UsuarioForm.aspx.cs">
       <DependentUpon>UsuarioForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
