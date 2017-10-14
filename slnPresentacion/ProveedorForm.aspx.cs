@@ -8,14 +8,22 @@ namespace slnPresentacion
     {
         private IserviciosProveedores proveedores = new AccionesProveedores();
 
-        protected void Page_Load(object sender, EventArgs e)
+        private void cargarProveedorDeUrl()
         {
-            if(!string.IsNullOrEmpty(Request.QueryString["Id"]))
+            if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
                 int Identificador = int.Parse(Request.QueryString["Id"]);
                 Proveedore proveedor = this.proveedores.obtenProveedorSegunIdentificador(Identificador);
                 this.txtNombre.Text = proveedor.Nombre;
                 this.hdnIdentificador.Value = Identificador.ToString();
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if(!Page.IsPostBack)
+            {
+                this.cargarProveedorDeUrl();
             }
         }
 

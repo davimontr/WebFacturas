@@ -9,7 +9,20 @@ namespace slnPresentacion
         private IserviciosProveedores proveedores = new AccionesProveedores();
         private IserviciosProductos productos = new AccionesProductos();
 
-        protected void Page_Load(object sender, EventArgs e)
+        private void cargarProveedores()
+        {
+            try
+            {
+                this.ddlProveedor.DataSource = this.proveedores.obtenerTodos();
+                this.ddlProveedor.DataBind();
+            }
+            catch (Exception ex)
+            {
+                this.lblMensaje.Text = ex.Message;
+            }
+        }
+
+        private void cargarProductoDeUrl()
         {
             if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
@@ -23,14 +36,14 @@ namespace slnPresentacion
                 this.ddlProveedor.SelectedValue = producto.IdProveedor.ToString();
                 this.hdnIdentificador.Value = Identificador.ToString();
             }
-            try
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if(!Page.IsPostBack)
             {
-                this.ddlProveedor.DataSource = this.proveedores.obtenerTodos();
-                this.ddlProveedor.DataBind();
-            }
-            catch (Exception ex)
-            {
-                this.lblMensaje.Text = ex.Message;
+                this.cargarProductoDeUrl();
+                this.cargarProveedores();
             }
         }
 
