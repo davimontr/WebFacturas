@@ -33,7 +33,8 @@ namespace slnPresentacion
                 this.ddlCliente.DataSource = this.clientes.obtenerTodos();
                 this.ddlCliente.DataBind();
 
-                this.ddlProducto.DataSource = this.productos.obtenerTodos();
+                Page.Session["productos"] = this.productos.obtenerTodos();
+                this.ddlProducto.DataSource = Page.Session["productos"];
                 this.ddlProducto.DataBind();
             }
             catch (Exception ex)
@@ -86,7 +87,9 @@ namespace slnPresentacion
 
         protected void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
-            Producto producto = this.productos.obtenProductoSegunIdentificador(int.Parse(this.ddlProducto.SelectedValue));
+
+            
+            Producto producto = ((List<Producto>)Page.Session["productos"]).Find(p => p.Id == int.Parse(this.ddlProducto.SelectedValue)); ;
 
             LineaArticulo linea = new LineaArticulo {
                 Producto = producto,
