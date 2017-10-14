@@ -1,6 +1,7 @@
 ﻿using System;
 using slnLogica;
 using slnDatos;
+using System.Collections.Generic;
 
 namespace slnPresentacion
 {
@@ -45,8 +46,8 @@ namespace slnPresentacion
         {
             if (!Page.IsPostBack)
             {
-                this.cargarClienteProductos();
                 this.cargarFacturaDeUrl();
+                this.cargarClienteProductos();
             }
         }
 
@@ -85,7 +86,18 @@ namespace slnPresentacion
 
         protected void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
+            Producto producto = this.productos.obtenProductoSegunIdentificador(int.Parse(this.ddlProducto.SelectedValue));
 
+            LineaArticulo linea = new LineaArticulo {
+                Producto = producto,
+                Cantidad = int.Parse(this.txtCantidad.Text),
+            };
+
+            List<LineaArticulo> lineas = new List<LineaArticulo>();
+            lineas.Add(linea);
+
+            this.gvLineaArticulos.DataSource = lineas;
+            this.gvLineaArticulos.DataBind();
         }
 
         protected void gvLineaArticulos_RowDeleting(object sender, System.Web.UI.WebControls.GridViewDeleteEventArgs e)

@@ -86,8 +86,9 @@
                             <ItemStyle CssClass="d-none" />
                             <HeaderStyle CssClass="d-none" />
                         </asp:BoundField>
-                        <asp:CommandField ShowEditButton="True" />
-                        <asp:CommandField ShowDeleteButton="True" />
+                        <asp:CommandField DeleteText="Borrar" ShowDeleteButton="True" >
+                            <ControlStyle CssClass="btn btn-danger btn-sm" />
+                        </asp:CommandField>
                     </Columns>
                 </asp:GridView>
             </div>
