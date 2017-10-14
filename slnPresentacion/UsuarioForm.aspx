@@ -16,7 +16,7 @@
     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="La clave es obligatoria." ControlToValidate="txtClave" ForeColor="Red"></asp:RequiredFieldValidator>
     <br />
     <label for="contenido_ddRoles">Rol</label><br />
-    <asp:DropDownList ID="ddlRoles" runat="server" ViewStateMode="Disabled" DataTextField="Nombre" DataValueField="Id"></asp:DropDownList>
+    <asp:DropDownList ID="ddlRoles" runat="server" DataTextField="Nombre" DataValueField="Id"></asp:DropDownList>
     <br />
     <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />
     <br />

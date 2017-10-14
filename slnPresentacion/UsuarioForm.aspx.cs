@@ -9,7 +9,20 @@ namespace slnPresentacion
         private IServiciosRoles roles = new AccionesRoles();
         private IServiciosUsuarios usuarios = new AccionesUsuarios();
 
-        protected void Page_Load(object sender, EventArgs e)
+        private void cargarRoles()
+        {
+            try
+            {
+                this.ddlRoles.DataSource = this.roles.obtenerTodos();
+                this.ddlRoles.DataBind();
+            }
+            catch (Exception ex)
+            {
+                this.lblMensaje.Text = ex.Message;
+            }
+        }
+
+        private void cargarUsuarioDeUrl()
         {
             if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
@@ -20,14 +33,14 @@ namespace slnPresentacion
                 this.ddlRoles.SelectedValue = usuario.IdRol.ToString();
                 this.hdnIdentificador.Value = Identificador.ToString();
             }
-            try
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
             {
-                this.ddlRoles.DataSource = this.roles.obtenerTodos();
-                this.ddlRoles.DataBind();
-            }
-            catch (Exception ex)
-            {
-                this.lblMensaje.Text = ex.Message;
+                this.cargarUsuarioDeUrl();
+                this.cargarRoles();
             }
         }
 
@@ -42,7 +55,7 @@ namespace slnPresentacion
                 }
                 else
                 {
-                    this.usuarios.actualizaUsuario(int.Parse(Identificador),this.txtEmail.Text, this.txtClave.Text, int.Parse(this.ddlRoles.SelectedValue));
+                    this.usuarios.actualizaUsuario(int.Parse(Identificador), this.txtEmail.Text, this.txtClave.Text, int.Parse(this.ddlRoles.SelectedValue));
                 }
                 Page.Session.Add("mensaje", "Usuario salvado!");
                 Response.Redirect("~/Usuarios.aspx");
