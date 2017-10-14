@@ -8,7 +8,7 @@ namespace slnPresentacion
     {
         private IserviciosClientes clientes = new AccionesClientes();
 
-        protected void Page_Load(object sender, EventArgs e)
+        private void cargarClientePorUrl()
         {
             if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
@@ -17,6 +17,14 @@ namespace slnPresentacion
                 this.txtCedula.Text = cliente.Cedula;
                 this.txtNombre.Text = cliente.NombreCompleto;
                 this.hdnIdentificador.Value = Identificador.ToString();
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
+            {
+                this.cargarClientePorUrl();
             }
         }
 
