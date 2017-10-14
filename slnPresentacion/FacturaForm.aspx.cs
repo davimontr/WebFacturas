@@ -10,7 +10,7 @@ namespace slnPresentacion
         private IserviciosProductos productos = new AccionesProductos();
         private IserviciosClientes clientes = new AccionesClientes();
 
-        protected void Page_Load(object sender, EventArgs e)
+        private void cargarFacturaDeUrl()
         {
             if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
@@ -23,6 +23,10 @@ namespace slnPresentacion
                 this.txtDescuento.Text = factura.Descuento.ToString();
                 this.hdnIdentificador.Value = Identificador.ToString();
             }
+        }
+
+        private void cargarClienteProductos()
+        {
             try
             {
                 this.ddlCliente.DataSource = this.clientes.obtenerTodos();
@@ -34,6 +38,15 @@ namespace slnPresentacion
             catch (Exception ex)
             {
                 this.lblMensaje.Text = ex.Message;
+            }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!Page.IsPostBack)
+            {
+                this.cargarClienteProductos();
+                this.cargarFacturaDeUrl();
             }
         }
 
