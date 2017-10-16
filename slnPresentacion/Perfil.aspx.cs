@@ -1,10 +1,11 @@
 ﻿using System;
 using slnLogica;
 using slnDatos;
+using System.Web.UI;
 
 namespace slnPresentacion
 {
-    public partial class Perfil : System.Web.UI.Page
+    public partial class Perfil : Page
     {
         private IServiciosRoles roles = new AccionesRoles();
         private IServiciosUsuarios usuarios = new AccionesUsuarios();
@@ -25,8 +26,13 @@ namespace slnPresentacion
         private void cargarUsuarioSesion()
         {
             Usuario sesion = (Usuario)Page.Session["sesion"];
+            if(sesion == null)
+            {
+                return;
+            }
             this.txtEmail.Text = sesion.Email;
             this.txtClave.Attributes["value"] = sesion.Clave;
+            this.ddlRoles.SelectedValue = sesion.IdRol.ToString();
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -44,7 +50,8 @@ namespace slnPresentacion
                 Usuario sesion = (Usuario)Page.Session["sesion"];
                 this.usuarios.actualizaUsuario(sesion.Id, this.txtEmail.Text, this.txtClave.Text, int.Parse(this.ddlRoles.SelectedValue));
                 new SesionMensajes(Page).crearAviso("Perfil salvado.");
-                Response.Redirect("~/Dasboard.aspx");
+                Page.Session["sesion"] = this.usuarios.obtenUsuarioSegunIdentificador(sesion.Id);
+                Response.Redirect("~/Dashboard.aspx");
             }
             catch (Exception ex)
             {

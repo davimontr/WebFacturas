@@ -4,7 +4,7 @@ using System.Web.UI;
 
 namespace slnPresentacion
 {
-    public partial class Usuarios : System.Web.UI.Page
+    public partial class Usuarios : Page
     {
         private IServiciosUsuarios usuarios = new AccionesUsuarios();
 
