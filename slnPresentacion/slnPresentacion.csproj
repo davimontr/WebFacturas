@@ -94,6 +94,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CajaCierreForm.aspx" />
     <Content Include="ClienteForm.aspx" />
     <Content Include="Clientes.aspx" />
     <Content Include="controles\MensajeSession.ascx" />
@@ -133,6 +134,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CajaCierreForm.aspx.cs">
+      <DependentUpon>CajaCierreForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CajaCierreForm.aspx.designer.cs">
+      <DependentUpon>CajaCierreForm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ClienteForm.aspx.cs">
       <DependentUpon>ClienteForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
