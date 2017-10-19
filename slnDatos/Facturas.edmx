@@ -13,6 +13,13 @@
           <Property Name="Cedula" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="NombreCompleto" Type="nvarchar" MaxLength="225" Nullable="false" />
         </EntityType>
+        <EntityType Name="Departamentos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="225" Nullable="false" />
+        </EntityType>
         <EntityType Name="Facturas">
           <Key>
             <PropertyRef Name="Id" />
@@ -21,7 +28,16 @@
           <Property Name="Factura" Type="nvarchar" MaxLength="225" Nullable="false" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
           <Property Name="IdCliente" Type="int" Nullable="false" />
-          <Property Name="Descuento" Type="int" />
+          <Property Name="IdFormaPago" Type="int" Nullable="false" />
+          <Property Name="Total" Type="int" Nullable="false" />
+          <Property Name="IdTipoMoneda" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FormaPago">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="LineaArticulo">
           <Key>
@@ -31,6 +47,7 @@
           <Property Name="IdProducto" Type="int" Nullable="false" />
           <Property Name="Cantidad" Type="int" Nullable="false" />
           <Property Name="IdFactura" Type="int" Nullable="false" />
+          <Property Name="Precio" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
@@ -43,6 +60,8 @@
           <Property Name="Impuesto" Type="int" Nullable="false" />
           <Property Name="Existencia" Type="int" Nullable="false" />
           <Property Name="IdProveedor" Type="int" Nullable="false" />
+          <Property Name="IdDepartamento" Type="int" Nullable="false" />
+          <Property Name="Gravado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Proveedores">
           <Key>
@@ -58,6 +77,14 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="TipoMoneda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TipoCampo" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="Id" />
@@ -67,7 +94,43 @@
           <Property Name="Clave" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IdRol" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Articulos_Facturas">
+        <Association Name="FK_Facturas_Clientes">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_FormaPago">
+          <End Role="FormaPago" Type="Self.FormaPago" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormaPago">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdFormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_TipoMoneda">
+          <End Role="TipoMoneda" Type="Self.TipoMoneda" Multiplicity="1" />
+          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMoneda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Facturas">
+              <PropertyRef Name="IdTipoMoneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaArticulo_Facturas">
           <End Role="Facturas" Type="Self.Facturas" Multiplicity="1" />
           <End Role="LineaArticulo" Type="Self.LineaArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -79,7 +142,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Articulos_Productos">
+        <Association Name="FK_LineaArticulo_Productos">
           <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
           <End Role="LineaArticulo" Type="Self.LineaArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -91,15 +154,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Facturas_Clientes">
-          <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
-          <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
+        <Association Name="FK_Productos_Departamentos">
+          <End Role="Departamentos" Type="Self.Departamentos" Multiplicity="1" />
+          <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Clientes">
+            <Principal Role="Departamentos">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Facturas">
-              <PropertyRef Name="IdCliente" />
+            <Dependent Role="Productos">
+              <PropertyRef Name="IdDepartamento" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -129,23 +192,38 @@
         </Association>
         <EntityContainer Name="FacturacionModelStoreContainer">
           <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departamentos" EntityType="Self.Departamentos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Facturas" EntityType="Self.Facturas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FormaPago" EntityType="Self.FormaPago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LineaArticulo" EntityType="Self.LineaArticulo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoMoneda" EntityType="Self.TipoMoneda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Articulos_Facturas" Association="Self.FK_Articulos_Facturas">
-            <End Role="Facturas" EntitySet="Facturas" />
-            <End Role="LineaArticulo" EntitySet="LineaArticulo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Articulos_Productos" Association="Self.FK_Articulos_Productos">
-            <End Role="Productos" EntitySet="Productos" />
-            <End Role="LineaArticulo" EntitySet="LineaArticulo" />
-          </AssociationSet>
           <AssociationSet Name="FK_Facturas_Clientes" Association="Self.FK_Facturas_Clientes">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_FormaPago" Association="Self.FK_Facturas_FormaPago">
+            <End Role="FormaPago" EntitySet="FormaPago" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_TipoMoneda" Association="Self.FK_Facturas_TipoMoneda">
+            <End Role="TipoMoneda" EntitySet="TipoMoneda" />
+            <End Role="Facturas" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaArticulo_Facturas" Association="Self.FK_LineaArticulo_Facturas">
+            <End Role="Facturas" EntitySet="Facturas" />
+            <End Role="LineaArticulo" EntitySet="LineaArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaArticulo_Productos" Association="Self.FK_LineaArticulo_Productos">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="LineaArticulo" EntitySet="LineaArticulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Departamentos" Association="Self.FK_Productos_Departamentos">
+            <End Role="Departamentos" EntitySet="Departamentos" />
+            <End Role="Productos" EntitySet="Productos" />
           </AssociationSet>
           <AssociationSet Name="FK_Productos_Proveedores" Association="Self.FK_Productos_Proveedores">
             <End Role="Proveedores" EntitySet="Proveedores" />
@@ -162,21 +240,36 @@
       <Schema Namespace="FacturacionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="FacturacionEntidades" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clientes" EntityType="FacturacionModel.Cliente" />
+          <EntitySet Name="Departamentos" EntityType="FacturacionModel.Departamento" />
           <EntitySet Name="Facturas" EntityType="FacturacionModel.Factura" />
+          <EntitySet Name="FormaPagoes" EntityType="FacturacionModel.FormaPago" />
           <EntitySet Name="LineaArticuloes" EntityType="FacturacionModel.LineaArticulo" />
           <EntitySet Name="Productos" EntityType="FacturacionModel.Producto" />
           <EntitySet Name="Proveedores" EntityType="FacturacionModel.Proveedore" />
           <EntitySet Name="Roles" EntityType="FacturacionModel.Role" />
+          <EntitySet Name="TipoMonedas" EntityType="FacturacionModel.TipoMoneda" />
           <EntitySet Name="Usuarios" EntityType="FacturacionModel.Usuario" />
           <AssociationSet Name="FK_Facturas_Clientes" Association="FacturacionModel.FK_Facturas_Clientes">
             <End Role="Cliente" EntitySet="Clientes" />
             <End Role="Factura" EntitySet="Facturas" />
           </AssociationSet>
-          <AssociationSet Name="FK_Articulos_Facturas" Association="FacturacionModel.FK_Articulos_Facturas">
+          <AssociationSet Name="FK_Productos_Departamentos" Association="FacturacionModel.FK_Productos_Departamentos">
+            <End Role="Departamento" EntitySet="Departamentos" />
+            <End Role="Producto" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_FormaPago" Association="FacturacionModel.FK_Facturas_FormaPago">
+            <End Role="FormaPago" EntitySet="FormaPagoes" />
+            <End Role="Factura" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Facturas_TipoMoneda" Association="FacturacionModel.FK_Facturas_TipoMoneda">
+            <End Role="TipoMoneda" EntitySet="TipoMonedas" />
+            <End Role="Factura" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LineaArticulo_Facturas" Association="FacturacionModel.FK_LineaArticulo_Facturas">
             <End Role="Factura" EntitySet="Facturas" />
             <End Role="LineaArticulo" EntitySet="LineaArticuloes" />
           </AssociationSet>
-          <AssociationSet Name="FK_Articulos_Productos" Association="FacturacionModel.FK_Articulos_Productos">
+          <AssociationSet Name="FK_LineaArticulo_Productos" Association="FacturacionModel.FK_LineaArticulo_Productos">
             <End Role="Producto" EntitySet="Productos" />
             <End Role="LineaArticulo" EntitySet="LineaArticuloes" />
           </AssociationSet>
@@ -198,6 +291,14 @@
           <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Facturas" Relationship="FacturacionModel.FK_Facturas_Clientes" FromRole="Cliente" ToRole="Factura" />
         </EntityType>
+        <EntityType Name="Departamento">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Productos" Relationship="FacturacionModel.FK_Productos_Departamentos" FromRole="Departamento" ToRole="Producto" />
+        </EntityType>
         <EntityType Name="Factura">
           <Key>
             <PropertyRef Name="Id" />
@@ -206,9 +307,21 @@
           <Property Name="Factura1" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdCliente" Type="Int32" Nullable="false" />
-          <Property Name="Descuento" Type="Int32" />
+          <Property Name="IdFormaPago" Type="Int32" Nullable="false" />
+          <Property Name="Total" Type="Int32" Nullable="false" />
+          <Property Name="IdTipoMoneda" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cliente" Relationship="FacturacionModel.FK_Facturas_Clientes" FromRole="Factura" ToRole="Cliente" />
-          <NavigationProperty Name="LineaArticuloes" Relationship="FacturacionModel.FK_Articulos_Facturas" FromRole="Factura" ToRole="LineaArticulo" />
+          <NavigationProperty Name="FormaPago" Relationship="FacturacionModel.FK_Facturas_FormaPago" FromRole="Factura" ToRole="FormaPago" />
+          <NavigationProperty Name="TipoMoneda" Relationship="FacturacionModel.FK_Facturas_TipoMoneda" FromRole="Factura" ToRole="TipoMoneda" />
+          <NavigationProperty Name="LineaArticuloes" Relationship="FacturacionModel.FK_LineaArticulo_Facturas" FromRole="Factura" ToRole="LineaArticulo" />
+        </EntityType>
+        <EntityType Name="FormaPago">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Facturas" Relationship="FacturacionModel.FK_Facturas_FormaPago" FromRole="FormaPago" ToRole="Factura" />
         </EntityType>
         <EntityType Name="LineaArticulo">
           <Key>
@@ -218,8 +331,9 @@
           <Property Name="IdProducto" Type="Int32" Nullable="false" />
           <Property Name="Cantidad" Type="Int32" Nullable="false" />
           <Property Name="IdFactura" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Factura" Relationship="FacturacionModel.FK_Articulos_Facturas" FromRole="LineaArticulo" ToRole="Factura" />
-          <NavigationProperty Name="Producto" Relationship="FacturacionModel.FK_Articulos_Productos" FromRole="LineaArticulo" ToRole="Producto" />
+          <Property Name="Precio" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Factura" Relationship="FacturacionModel.FK_LineaArticulo_Facturas" FromRole="LineaArticulo" ToRole="Factura" />
+          <NavigationProperty Name="Producto" Relationship="FacturacionModel.FK_LineaArticulo_Productos" FromRole="LineaArticulo" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -232,7 +346,10 @@
           <Property Name="Impuesto" Type="Int32" Nullable="false" />
           <Property Name="Existencia" Type="Int32" Nullable="false" />
           <Property Name="IdProveedor" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="LineaArticuloes" Relationship="FacturacionModel.FK_Articulos_Productos" FromRole="Producto" ToRole="LineaArticulo" />
+          <Property Name="IdDepartamento" Type="Int32" Nullable="false" />
+          <Property Name="Gravado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Departamento" Relationship="FacturacionModel.FK_Productos_Departamentos" FromRole="Producto" ToRole="Departamento" />
+          <NavigationProperty Name="LineaArticuloes" Relationship="FacturacionModel.FK_LineaArticulo_Productos" FromRole="Producto" ToRole="LineaArticulo" />
           <NavigationProperty Name="Proveedore" Relationship="FacturacionModel.FK_Productos_Proveedores" FromRole="Producto" ToRole="Proveedore" />
         </EntityType>
         <EntityType Name="Proveedore">
@@ -250,6 +367,15 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Usuarios" Relationship="FacturacionModel.FK_Usuarios_Roles" FromRole="Role" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="TipoMoneda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TipoCampo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Facturas" Relationship="FacturacionModel.FK_Facturas_TipoMoneda" FromRole="TipoMoneda" ToRole="Factura" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -273,7 +399,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Articulos_Facturas">
+        <Association Name="FK_Productos_Departamentos">
+          <End Type="FacturacionModel.Departamento" Role="Departamento" Multiplicity="1" />
+          <End Type="FacturacionModel.Producto" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departamento">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="IdDepartamento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_FormaPago">
+          <End Type="FacturacionModel.FormaPago" Role="FormaPago" Multiplicity="1" />
+          <End Type="FacturacionModel.Factura" Role="Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormaPago">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="IdFormaPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Facturas_TipoMoneda">
+          <End Type="FacturacionModel.TipoMoneda" Role="TipoMoneda" Multiplicity="1" />
+          <End Type="FacturacionModel.Factura" Role="Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoMoneda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="IdTipoMoneda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LineaArticulo_Facturas">
           <End Type="FacturacionModel.Factura" Role="Factura" Multiplicity="1" />
           <End Type="FacturacionModel.LineaArticulo" Role="LineaArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -285,7 +447,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Articulos_Productos">
+        <Association Name="FK_LineaArticulo_Productos">
           <End Type="FacturacionModel.Producto" Role="Producto" Multiplicity="1" />
           <End Type="FacturacionModel.LineaArticulo" Role="LineaArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -336,10 +498,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Departamentos">
+            <EntityTypeMapping TypeName="FacturacionModel.Departamento">
+              <MappingFragment StoreEntitySet="Departamentos">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Facturas">
             <EntityTypeMapping TypeName="FacturacionModel.Factura">
               <MappingFragment StoreEntitySet="Facturas">
-                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="IdTipoMoneda" ColumnName="IdTipoMoneda" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IdFormaPago" ColumnName="IdFormaPago" />
                 <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Factura1" ColumnName="Factura" />
@@ -347,9 +519,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="FormaPagoes">
+            <EntityTypeMapping TypeName="FacturacionModel.FormaPago">
+              <MappingFragment StoreEntitySet="FormaPago">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="LineaArticuloes">
             <EntityTypeMapping TypeName="FacturacionModel.LineaArticulo">
               <MappingFragment StoreEntitySet="LineaArticulo">
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
                 <ScalarProperty Name="IdFactura" ColumnName="IdFactura" />
                 <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
@@ -360,6 +541,8 @@
           <EntitySetMapping Name="Productos">
             <EntityTypeMapping TypeName="FacturacionModel.Producto">
               <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="Gravado" ColumnName="Gravado" />
+                <ScalarProperty Name="IdDepartamento" ColumnName="IdDepartamento" />
                 <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
                 <ScalarProperty Name="Existencia" ColumnName="Existencia" />
                 <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
@@ -381,6 +564,15 @@
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="FacturacionModel.Role">
               <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoMonedas">
+            <EntityTypeMapping TypeName="FacturacionModel.TipoMoneda">
+              <MappingFragment StoreEntitySet="TipoMoneda">
+                <ScalarProperty Name="TipoCampo" ColumnName="TipoCampo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

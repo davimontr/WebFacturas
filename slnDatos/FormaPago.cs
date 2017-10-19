@@ -15,40 +15,24 @@ namespace slnDatos
 using System;
     using System.Collections.Generic;
     
-public partial class Factura
+public partial class FormaPago
 {
 
-    public Factura()
+    public FormaPago()
     {
 
-        this.LineaArticuloes = new HashSet<LineaArticulo>();
+        this.Facturas = new HashSet<Factura>();
 
     }
 
 
     public int Id { get; set; }
 
-    public string Factura1 { get; set; }
-
-    public System.DateTime Fecha { get; set; }
-
-    public int IdCliente { get; set; }
-
-    public int IdFormaPago { get; set; }
-
-    public int Total { get; set; }
-
-    public int IdTipoMoneda { get; set; }
+    public string Nombre { get; set; }
 
 
 
-    public virtual Cliente Cliente { get; set; }
-
-    public virtual FormaPago FormaPago { get; set; }
-
-    public virtual TipoMoneda TipoMoneda { get; set; }
-
-    public virtual ICollection<LineaArticulo> LineaArticuloes { get; set; }
+    public virtual ICollection<Factura> Facturas { get; set; }
 
 }
 

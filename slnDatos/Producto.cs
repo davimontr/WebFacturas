@@ -40,7 +40,13 @@ public partial class Producto
 
     public int IdProveedor { get; set; }
 
+    public int IdDepartamento { get; set; }
 
+    public bool Gravado { get; set; }
+
+
+
+    public virtual Departamento Departamento { get; set; }
 
     public virtual ICollection<LineaArticulo> LineaArticuloes { get; set; }
 

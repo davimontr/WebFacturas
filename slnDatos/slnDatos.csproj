@@ -50,6 +50,9 @@
     <Compile Include="Cliente.cs">
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>
+    <Compile Include="Departamento.cs">
+      <DependentUpon>Facturas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Factura.cs">
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>
@@ -68,6 +71,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Facturas.edmx</DependentUpon>
     </Compile>
+    <Compile Include="FormaPago.cs">
+      <DependentUpon>Facturas.tt</DependentUpon>
+    </Compile>
     <Compile Include="LineaArticulo.cs">
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>
@@ -79,6 +85,9 @@
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
+      <DependentUpon>Facturas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoMoneda.cs">
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs">
