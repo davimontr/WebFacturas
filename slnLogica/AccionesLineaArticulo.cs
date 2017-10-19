@@ -10,11 +10,10 @@ namespace slnLogica
     public interface IserviciosLineaArticulo
     {
         List<LineaArticulo> obtenerTodos();
-        void incluirLineaArticulo(int idproducto, int cant, int idfact);
+        void incluirLineaArticulo(Producto Producto, int Cantidad, int IdFactura);
         void actualizaLineaArticulos(int Id, int idproducto, int cant, int idfact);
         void eliminarLineaArticulo(int id);
-
-
+        List<LineaArticulo> obtenerTodosPorIdFactura(int IdFactura);
     }
 
     public   class AccionesLineaArticulo : AccionesEntidades, IserviciosLineaArticulo
@@ -23,14 +22,27 @@ namespace slnLogica
         public List<LineaArticulo> obtenerTodos()
         {
             return this.contexto.LineaArticuloes.ToList();
-
         }
 
         // metodo de agregar
-
-        public void incluirLineaArticulo(int idproducto, int cant,int idfact)
+        public void incluirLineaArticulo(Producto Producto, int Cantidad, int IdFactura)
         {
-            this.contexto.LineaArticuloes.Add(new LineaArticulo { IdProducto = idproducto, Cantidad = cant,IdFactura=idfact });
+            int impuesto = 0;
+            if (Producto.Gravado)
+            {
+                impuesto = Producto.Costo * (Producto.Impuesto / 100);
+            }
+            int utilidad = Producto.Costo * (Producto.Utilidad / 100);
+
+            LineaArticulo linea = new LineaArticulo
+            {
+                Producto = Producto,
+                Cantidad = Cantidad,
+                IdFactura = IdFactura,
+                Precio = (Producto.Costo + impuesto + utilidad) * Cantidad
+            };
+
+            this.contexto.LineaArticuloes.Add(linea);
             this.contexto.SaveChanges();
 
         }
@@ -44,8 +56,7 @@ namespace slnLogica
             artic.IdFactura = idfact;
             this.contexto.SaveChanges();
         }
-
-
+        
         //metodo eliminar
         public void eliminarLineaArticulo(int id)
         {
@@ -54,12 +65,14 @@ namespace slnLogica
 
         }
 
-        
         public LineaArticulo obtenLineaArticuloSegunIdentificador(int Id)
         {
-            return this.contexto.LineaArticuloes.FirstOrDefault(u => u.Id == Id);
+            return this.contexto.LineaArticuloes.FirstOrDefault(ln => ln.Id == Id);
         }
 
-
+        public List<LineaArticulo> obtenerTodosPorIdFactura(int IdFactura)
+        {
+            return this.contexto.LineaArticuloes.Where(ln => ln.IdFactura == IdFactura).ToList();
+        }
     }
 }

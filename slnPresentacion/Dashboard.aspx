@@ -31,6 +31,9 @@
             <asp:BoundField DataField="Factura1" HeaderText="Factura" />
             <asp:BoundField DataField="Fecha" HeaderText="Fecha"  DataFormatString="{0:dd/MM/yyyy}" />
             <asp:BoundField DataField="Cliente.NombreCompleto" HeaderText="Cliente" />
+            <asp:BoundField DataField="FormaPago.Nombre" HeaderText="Forma Pago" />
+            <asp:BoundField DataField="TipoMoneda.Nombre" HeaderText="Tipo Moneda" />
+            <asp:BoundField DataField="Total" HeaderText="Total" />
             <asp:CommandField EditText="Editar" ShowEditButton="true">
                 <ControlStyle CssClass="btn btn-primary active" />
             </asp:CommandField>

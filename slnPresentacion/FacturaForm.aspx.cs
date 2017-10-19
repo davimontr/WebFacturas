@@ -12,6 +12,7 @@ namespace slnPresentacion
         private IserviciosClientes clientes = new AccionesClientes();
         private IServiciosTipoMoneda tipoMonedas = new AccionesTipoMoneda();
         private IServiciosFormaPago formaPagos = new AccionesFormaPago();
+        private IserviciosLineaArticulo lineaArticulos = new AccionesLineaArticulo();
 
         private void cargarFacturaDeUrl()
         {
@@ -92,7 +93,7 @@ namespace slnPresentacion
             }
         }
 
-        protected void btnSalvar_Click(object sender, EventArgs e)
+        protected void btnSalvar_Click(object sender, EventArgs e, bool redireccionar = true)
         {
             try
             {
@@ -120,8 +121,18 @@ namespace slnPresentacion
                         int.Parse(this.ddlTipoMoneda.SelectedValue)
                    );
                 }
-                new SesionMensajes(Page).crearAviso("Factura salvada.");
-                Response.Redirect("~/Dashboard.aspx");
+
+                if (redireccionar)
+                {
+                    new SesionMensajes(Page).crearAviso("Factura salvada.");
+                    Response.Redirect("~/Dashboard.aspx");
+                }
+                else if(string.IsNullOrEmpty(this.hdnIdentificador.Value))
+                {
+                    Factura factura = this.facturas.obtenFacturaSegunFactura(this.txtFactura.Text);
+                    this.txtFactura.Enabled = false;
+                    this.hdnIdentificador.Value = factura.Id.ToString();
+                }
             }
             catch (Exception ex)
             {
@@ -132,18 +143,14 @@ namespace slnPresentacion
         protected void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
 
-            
-            Producto producto = ((List<Producto>)Page.Session["productos"]).Find(p => p.Id == int.Parse(this.ddlProducto.SelectedValue)); ;
+            this.btnSalvar_Click(sender, e, false);
 
-            LineaArticulo linea = new LineaArticulo {
-                Producto = producto,
-                Cantidad = int.Parse(this.txtCantidad.Text),
-            };
+            Producto producto = ((List<Producto>)Page.Session["productos"]).Find(p => p.Id == int.Parse(this.ddlProducto.SelectedValue));
+            int IdFactura = int.Parse(this.hdnIdentificador.Value);
 
-            List<LineaArticulo> lineas = new List<LineaArticulo>();
-            lineas.Add(linea);
+            this.lineaArticulos.incluirLineaArticulo(producto, int.Parse(this.txtCantidad.Text), IdFactura);
 
-            this.gvLineaArticulos.DataSource = lineas;
+            this.gvLineaArticulos.DataSource = this.lineaArticulos.obtenerTodosPorIdFactura(IdFactura);
             this.gvLineaArticulos.DataBind();
         }
 

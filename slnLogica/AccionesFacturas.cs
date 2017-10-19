@@ -14,7 +14,7 @@ namespace slnLogica
         Factura obtenFacturaSegunIdentificador(int Id);
         void actualizaFactura(int Id, string factura, DateTime fecha, int idcliente, int IdFormaPago, int Total, int IdTipoMoneda);
         void eliminarFactura(int id);
-
+        Factura obtenFacturaSegunFactura(string Factura);
     }
 
     public class AccionesFacturas : AccionesEntidades, IserviciosFacturas
@@ -66,5 +66,9 @@ namespace slnLogica
             this.contexto.SaveChanges();
         }
 
+        public Factura obtenFacturaSegunFactura(string Factura)
+        {
+            return this.contexto.Facturas.FirstOrDefault(u => u.Factura1.Equals(Factura));
+        }
     }
 }
