@@ -12,20 +12,11 @@ namespace slnLogica
     {
         //definimos el metodo
         List<Role> obtenerTodos();
-
-
     }
 
 
-    public class AccionesRoles : IServiciosRoles
+    public class AccionesRoles : AccionesEntidades, IServiciosRoles
     {
-
-        private FacturacionEntidades contexto;
-        //constructor de la clase de acciones roles
-        public AccionesRoles()
-        {
-            this.contexto = new FacturacionEntidades();
-        }
 
         //se hacen los metodos
         public List<Role> obtenerTodos()
@@ -33,9 +24,5 @@ namespace slnLogica
             return this.contexto.Roles.ToList();
 
         }
-
-
-
-
     }
 }

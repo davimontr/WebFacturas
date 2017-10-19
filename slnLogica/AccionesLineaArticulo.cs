@@ -17,15 +17,8 @@ namespace slnLogica
 
     }
 
-    public   class AcccionesLineaArticulo:IserviciosLineaArticulo
+    public   class AccionesLineaArticulo : AccionesEntidades, IserviciosLineaArticulo
     {
-
-        private FacturacionEntidades contexto;
-      
-        public AcccionesLineaArticulo()
-        {
-            this.contexto = new FacturacionEntidades();
-        }
 
         public List<LineaArticulo> obtenerTodos()
         {

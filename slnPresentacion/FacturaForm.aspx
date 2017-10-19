@@ -31,13 +31,20 @@
                     <WeekendDayStyle BackColor="#FFFFCC" />
                 </asp:Calendar>
             </div>
-            <div class="col-sm-6 col-md-6">
+            <div class="col-sm-4 col-md-4">
                 <label for="contenido_ddlCliente">Cliente</label><br />
                 <asp:DropDownList ID="ddlCliente" runat="server" DataValueField="Id" DataTextField="NombreCompleto"></asp:DropDownList>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Cliente es obligatorio." ControlToValidate="ddlCliente" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
-            <div class="col-sm-6 col-md-6">
-
+            <div class="col-sm-4 col-md-4">
+                <label for="contenido_ddlFormaPago">Forma de pago</label><br />
+                <asp:DropDownList ID="ddlFormaPago" runat="server" DataValueField="Id" DataTextField="Nombre"></asp:DropDownList>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Forma de pago es obligatorio." ControlToValidate="ddlFormaPago" ForeColor="Red"></asp:RequiredFieldValidator>
+            </div>
+            <div class="col-sm-4 col-md-4">
+                <label for="contenido_ddlTipoMoneda">Tipo de moneda</label><br />
+                <asp:DropDownList ID="ddlTipoMoneda" runat="server" DataValueField="Id" DataTextField="Nombre"></asp:DropDownList>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Tipo de moneda es obligatorio." ControlToValidate="ddlTipoMoneda" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
         </div>
     </div>

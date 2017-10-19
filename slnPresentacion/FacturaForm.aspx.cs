@@ -10,6 +10,8 @@ namespace slnPresentacion
         private IserviciosFacturas facturas = new AccionesFacturas();
         private IserviciosProductos productos = new AccionesProductos();
         private IserviciosClientes clientes = new AccionesClientes();
+        private IServiciosTipoMoneda tipoMonedas = new AccionesTipoMoneda();
+        private IServiciosFormaPago formaPagos = new AccionesFormaPago();
 
         private void cargarFacturaDeUrl()
         {
@@ -25,16 +27,52 @@ namespace slnPresentacion
             }
         }
 
-        private void cargarClienteProductos()
+        private void cargarProductos()
+        {
+            try
+            {
+                Page.Session["productos"] = this.productos.obtenerTodos();
+                this.ddlProducto.DataSource = Page.Session["productos"];
+                this.ddlProducto.DataBind();
+            }
+            catch (Exception ex)
+            {
+                this.lblMensaje.Text = ex.Message;
+            }
+        }
+
+        private void cargarClientes()
         {
             try
             {
                 this.ddlCliente.DataSource = this.clientes.obtenerTodos();
                 this.ddlCliente.DataBind();
+            }
+            catch (Exception ex)
+            {
+                this.lblMensaje.Text = ex.Message;
+            }
+        }
 
-                Page.Session["productos"] = this.productos.obtenerTodos();
-                this.ddlProducto.DataSource = Page.Session["productos"];
-                this.ddlProducto.DataBind();
+        private void cargarTipoMoneda()
+        {
+            try
+            {
+                this.ddlTipoMoneda.DataSource = this.tipoMonedas.obtenerTodos();
+                this.ddlTipoMoneda.DataBind();
+            }
+            catch (Exception ex)
+            {
+                this.lblMensaje.Text = ex.Message;
+            }
+        }
+
+        private void cargarFormaPago()
+        {
+            try
+            {
+                this.ddlFormaPago.DataSource = this.formaPagos.obtenerTodos();
+                this.ddlFormaPago.DataBind();
             }
             catch (Exception ex)
             {
@@ -47,7 +85,10 @@ namespace slnPresentacion
             if (!Page.IsPostBack)
             {
                 this.cargarFacturaDeUrl();
-                this.cargarClienteProductos();
+                this.cargarProductos();
+                this.cargarClientes();
+                this.cargarTipoMoneda();
+                this.cargarFormaPago();
             }
         }
 

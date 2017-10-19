@@ -16,14 +16,8 @@ namespace slnLogica
         void eliminarProducto(int id);
     }
 
-    public class AccionesProductos : IserviciosProductos
+    public class AccionesProductos : AccionesEntidades, IserviciosProductos
     {
-        private FacturacionEntidades contexto;
-        //constructor de la clase de acciones roles
-        public AccionesProductos()
-        {
-            this.contexto = new FacturacionEntidades();
-        }
 
         public List<Producto> obtenerTodos()
         {

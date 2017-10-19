@@ -17,14 +17,8 @@ namespace slnLogica
 
     }
 
-    public class AccionesFacturas : IserviciosFacturas
+    public class AccionesFacturas : AccionesEntidades, IserviciosFacturas
     {
-        private FacturacionEntidades contexto;
-        //constructor de la clase de acciones roles
-        public AccionesFacturas()
-        {
-            this.contexto = new FacturacionEntidades();
-        }
 
         public List<Factura> obtenerTodos()
         {

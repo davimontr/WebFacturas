@@ -20,14 +20,8 @@ namespace slnLogica
  
     }
 
-    public class AccionesUsuarios : IServiciosUsuarios
+    public class AccionesUsuarios : AccionesEntidades, IServiciosUsuarios
     {
-        private FacturacionEntidades contexto;
-
-        public AccionesUsuarios()
-        {
-            this.contexto = new FacturacionEntidades();
-        }
 
       //inicio de session
         public bool iniciarSession( string correo, string clave, out Usuario  usuariOutput)

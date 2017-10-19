@@ -18,14 +18,8 @@ namespace slnLogica
     void incluirCliente(string cedula, string nombreCompleto);
 }
 
-    public class AccionesClientes : IserviciosClientes 
+    public class AccionesClientes : AccionesEntidades, IserviciosClientes 
     {
-        private FacturacionEntidades contexto;
-        //constructor de la clase de acciones roles
-        public AccionesClientes()
-        {
-            this.contexto = new FacturacionEntidades();
-        }
 
         public List<Cliente> obtenerTodos()
         {

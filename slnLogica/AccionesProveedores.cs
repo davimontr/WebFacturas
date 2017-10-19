@@ -16,14 +16,8 @@ namespace slnLogica
         Proveedore obtenProveedorSegunIdentificador(int Id);
     }
 
-    public class AccionesProveedores : IserviciosProveedores
+    public class AccionesProveedores : AccionesEntidades, IserviciosProveedores
     {
-        private FacturacionEntidades contexto;
-        //constructor de la clase de acciones roles
-        public AccionesProveedores()
-        {
-            this.contexto = new FacturacionEntidades();
-        }
 
         public List<Proveedore> obtenerTodos()
         {
