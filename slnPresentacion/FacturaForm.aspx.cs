@@ -21,7 +21,6 @@ namespace slnPresentacion
                 this.cldFecha.SelectedDate = factura.Fecha.Date;
                 this.cldFecha.VisibleDate = factura.Fecha.Date;
                 this.ddlCliente.SelectedValue = factura.IdCliente.ToString();
-                this.txtDescuento.Text = factura.Descuento.ToString();
                 this.hdnIdentificador.Value = Identificador.ToString();
             }
         }
@@ -63,7 +62,7 @@ namespace slnPresentacion
                     this.txtFactura.Text,
                     this.cldFecha.SelectedDate,
                     Int32.Parse(this.ddlCliente.SelectedValue),
-                    Int32.Parse(this.txtDescuento.Text)
+                    0
                 );
                 }
                 else
@@ -73,7 +72,7 @@ namespace slnPresentacion
                         this.txtFactura.Text,
                         this.cldFecha.SelectedDate,
                         Int32.Parse(this.ddlCliente.SelectedValue),
-                        Int32.Parse(this.txtDescuento.Text)
+                        0
                    );
                 }
                 new SesionMensajes(Page).crearAviso("Factura salvada.");

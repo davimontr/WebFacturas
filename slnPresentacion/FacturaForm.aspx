@@ -37,9 +37,7 @@
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Cliente es obligatorio." ControlToValidate="ddlCliente" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
             <div class="col-sm-6 col-md-6">
-                <label for="contenido_txtDescuento">Descuento</label><br />
-                <asp:TextBox ID="txtDescuento" runat="server" TextMode="Number"></asp:TextBox>
-                <asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Descuento puede ser desde 0 al 100" ControlToValidate="txtDescuento" ForeColor="Red" MinimumValue="0" MaximumValue="100"></asp:RangeValidator>
+
             </div>
         </div>
     </div>

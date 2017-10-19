@@ -37,7 +37,7 @@ namespace slnLogica
         // metodo agregar
         public void incluirFactura(string fact, DateTime fecha, int idCliente, int descu)
         {
-            this.contexto.Facturas.Add(new Factura { Factura1 = fact, Fecha = fecha, IdCliente = idCliente, Descuento = descu });
+            this.contexto.Facturas.Add(new Factura { Factura1 = fact, Fecha = fecha, IdCliente = idCliente });
             this.contexto.SaveChanges();
 
         }
@@ -55,7 +55,6 @@ namespace slnLogica
             fact.Factura1 = factura;
             fact.Fecha = fecha;
             fact.IdCliente = idcliente;
-            fact.Descuento = desc;
             this.contexto.SaveChanges();
         }
 
