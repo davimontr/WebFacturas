@@ -34,15 +34,13 @@ namespace slnLogica
             }
             int utilidad = Producto.Costo * (Producto.Utilidad / 100);
 
-            LineaArticulo linea = new LineaArticulo
+            this.contexto.LineaArticuloes.Add(new LineaArticulo
             {
-                Producto = Producto,
+                IdProducto = Producto.Id,
                 Cantidad = Cantidad,
                 IdFactura = IdFactura,
                 Precio = (Producto.Costo + impuesto + utilidad) * Cantidad
-            };
-
-            this.contexto.LineaArticuloes.Add(linea);
+            });
             this.contexto.SaveChanges();
 
         }

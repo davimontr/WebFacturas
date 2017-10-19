@@ -104,7 +104,8 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4 col-md-6">
-                <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label>
+                <h4>Total:&nbsp;</h4>
+                <asp:Label ID="lblTotal" runat="server" Text="0" Font-Bold="True"></asp:Label>
             </div>
             <div class="col-sm-8 col-md-6">
                 <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />

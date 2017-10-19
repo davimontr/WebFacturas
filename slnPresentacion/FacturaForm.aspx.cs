@@ -13,6 +13,7 @@ namespace slnPresentacion
         private IServiciosTipoMoneda tipoMonedas = new AccionesTipoMoneda();
         private IServiciosFormaPago formaPagos = new AccionesFormaPago();
         private IserviciosLineaArticulo lineaArticulos = new AccionesLineaArticulo();
+        private bool redireccionar = true;
 
         private void cargarFacturaDeUrl()
         {
@@ -21,9 +22,13 @@ namespace slnPresentacion
                 int Identificador = int.Parse(Request.QueryString["Id"]);
                 Factura factura = this.facturas.obtenFacturaSegunIdentificador(Identificador);
                 this.txtFactura.Text = factura.Factura1.ToString();
+                this.txtFactura.Enabled = false;
                 this.cldFecha.SelectedDate = factura.Fecha.Date;
                 this.cldFecha.VisibleDate = factura.Fecha.Date;
                 this.ddlCliente.SelectedValue = factura.IdCliente.ToString();
+                this.ddlFormaPago.SelectedValue = factura.IdFormaPago.ToString();
+                this.lblTotal.Text = factura.Total.ToString();
+                this.ddlTipoMoneda.SelectedValue = factura.IdTipoMoneda.ToString();
                 this.hdnIdentificador.Value = Identificador.ToString();
             }
         }
@@ -32,8 +37,7 @@ namespace slnPresentacion
         {
             try
             {
-                Page.Session["productos"] = this.productos.obtenerTodos();
-                this.ddlProducto.DataSource = Page.Session["productos"];
+                this.ddlProducto.DataSource = this.productos.obtenerTodos();
                 this.ddlProducto.DataBind();
             }
             catch (Exception ex)
@@ -81,10 +85,18 @@ namespace slnPresentacion
             }
         }
 
+        private void defineFechaPredeterminada()
+        {
+            DateTime today = DateTime.Today;
+            this.cldFecha.TodaysDate = today;
+            this.cldFecha.SelectedDate = this.cldFecha.TodaysDate;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
+                this.defineFechaPredeterminada();
                 this.cargarFacturaDeUrl();
                 this.cargarProductos();
                 this.cargarClientes();
@@ -93,7 +105,7 @@ namespace slnPresentacion
             }
         }
 
-        protected void btnSalvar_Click(object sender, EventArgs e, bool redireccionar = true)
+        protected void btnSalvar_Click(object sender, EventArgs e)
         {
             try
             {
@@ -122,7 +134,7 @@ namespace slnPresentacion
                    );
                 }
 
-                if (redireccionar)
+                if (this.redireccionar)
                 {
                     new SesionMensajes(Page).crearAviso("Factura salvada.");
                     Response.Redirect("~/Dashboard.aspx");
@@ -142,12 +154,13 @@ namespace slnPresentacion
 
         protected void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
+            this.redireccionar = false;
+            this.btnSalvar_Click(sender, e);
+            this.redireccionar = true;
 
-            this.btnSalvar_Click(sender, e, false);
-
-            Producto producto = ((List<Producto>)Page.Session["productos"]).Find(p => p.Id == int.Parse(this.ddlProducto.SelectedValue));
             int IdFactura = int.Parse(this.hdnIdentificador.Value);
-
+            Producto producto = this.productos.obtenProductoSegunIdentificador(int.Parse(this.ddlProducto.SelectedValue));
+            
             this.lineaArticulos.incluirLineaArticulo(producto, int.Parse(this.txtCantidad.Text), IdFactura);
 
             this.gvLineaArticulos.DataSource = this.lineaArticulos.obtenerTodosPorIdFactura(IdFactura);
