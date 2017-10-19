@@ -26,6 +26,8 @@ public partial class LineaArticulo
 
     public int IdFactura { get; set; }
 
+    public int Precio { get; set; }
+
 
 
     public virtual Factura Factura { get; set; }
