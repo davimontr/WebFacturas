@@ -100,11 +100,13 @@ namespace slnPresentacion
                 if (String.IsNullOrEmpty(Identificador))
                 {
                     this.facturas.incluirFactura(
-                    this.txtFactura.Text,
-                    this.cldFecha.SelectedDate,
-                    Int32.Parse(this.ddlCliente.SelectedValue),
-                    0
-                );
+                        this.txtFactura.Text,
+                        this.cldFecha.SelectedDate,
+                        int.Parse(this.ddlCliente.SelectedValue),
+                        int.Parse(this.ddlFormaPago.SelectedValue),
+                        int.Parse(this.lblTotal.Text),
+                        int.Parse(this.ddlTipoMoneda.SelectedValue)
+                    );
                 }
                 else
                 {
@@ -112,8 +114,10 @@ namespace slnPresentacion
                         int.Parse(Identificador),
                         this.txtFactura.Text,
                         this.cldFecha.SelectedDate,
-                        Int32.Parse(this.ddlCliente.SelectedValue),
-                        0
+                        int.Parse(this.ddlCliente.SelectedValue),
+                        int.Parse(this.ddlFormaPago.SelectedValue),
+                        int.Parse(this.lblTotal.Text),
+                        int.Parse(this.ddlTipoMoneda.SelectedValue)
                    );
                 }
                 new SesionMensajes(Page).crearAviso("Factura salvada.");

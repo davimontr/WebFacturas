@@ -10,9 +10,9 @@ namespace slnLogica
     public interface IserviciosFacturas
     {
         List<Factura> obtenerTodos();
-        void incluirFactura(string fact, DateTime fecha, int idCliente, int descu);
+        void incluirFactura(string fact, DateTime fecha, int idCliente, int IdFormaPago, int Total, int IdTipoMoneda);
         Factura obtenFacturaSegunIdentificador(int Id);
-        void actualizaFactura(int Id, string factura, DateTime fecha, int idcliente, int desc);
+        void actualizaFactura(int Id, string factura, DateTime fecha, int idcliente, int IdFormaPago, int Total, int IdTipoMoneda);
         void eliminarFactura(int id);
 
     }
@@ -26,14 +26,18 @@ namespace slnLogica
 
         }
 
-
-
         // metodo agregar
-        public void incluirFactura(string fact, DateTime fecha, int idCliente, int descu)
+        public void incluirFactura(string fact, DateTime fecha, int idCliente, int IdFormaPago, int Total, int IdTipoMoneda)
         {
-            this.contexto.Facturas.Add(new Factura { Factura1 = fact, Fecha = fecha, IdCliente = idCliente });
+            this.contexto.Facturas.Add(new Factura {
+                Factura1 = fact,
+                Fecha = fecha,
+                IdCliente = idCliente,
+                IdFormaPago = IdFormaPago,
+                Total = Total,
+                IdTipoMoneda = IdTipoMoneda
+            });
             this.contexto.SaveChanges();
-
         }
 
         public Factura obtenFacturaSegunIdentificador(int Id)
@@ -42,13 +46,15 @@ namespace slnLogica
         }
 
         // Metodo de modifcar factura
-
-        public void actualizaFactura(int Id, string factura, DateTime fecha, int idcliente, int desc)
+        public void actualizaFactura(int Id, string factura, DateTime fecha, int idcliente, int IdFormaPago, int Total, int IdTipoMoneda)
         {
             Factura fact = this.obtenFacturaSegunIdentificador(Id);
             fact.Factura1 = factura;
             fact.Fecha = fecha;
             fact.IdCliente = idcliente;
+            fact.IdFormaPago = IdFormaPago;
+            fact.Total = Total;
+            fact.IdTipoMoneda = IdTipoMoneda;
             this.contexto.SaveChanges();
         }
 
@@ -58,11 +64,7 @@ namespace slnLogica
             Factura fac = this.obtenFacturaSegunIdentificador(id);
             this.contexto.Facturas.Remove(fac);
             this.contexto.SaveChanges();
-
         }
-
-
-
 
     }
 }
