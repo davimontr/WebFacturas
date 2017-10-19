@@ -42,9 +42,9 @@ public partial class Producto
 
 
 
-    public virtual Proveedore Proveedore { get; set; }
-
     public virtual ICollection<LineaArticulo> LineaArticuloes { get; set; }
+
+    public virtual Proveedore Proveedore { get; set; }
 
 }
 

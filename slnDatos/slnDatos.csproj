@@ -81,9 +81,6 @@
     <Compile Include="Role.cs">
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>Facturas.tt</DependentUpon>
-    </Compile>
     <Compile Include="Usuario.cs">
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>

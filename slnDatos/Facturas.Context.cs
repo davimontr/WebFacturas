@@ -36,6 +36,8 @@ public partial class FacturacionEntidades : DbContext
 
     public DbSet<Factura> Facturas { get; set; }
 
+    public DbSet<LineaArticulo> LineaArticuloes { get; set; }
+
     public DbSet<Producto> Productos { get; set; }
 
     public DbSet<Proveedore> Proveedores { get; set; }
@@ -43,10 +45,6 @@ public partial class FacturacionEntidades : DbContext
     public DbSet<Role> Roles { get; set; }
 
     public DbSet<Usuario> Usuarios { get; set; }
-
-    public DbSet<LineaArticulo> LineaArticuloes { get; set; }
-
-    public DbSet<sysdiagram> sysdiagrams { get; set; }
 
 }
 

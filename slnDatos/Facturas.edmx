@@ -58,16 +58,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <EntityType Name="Usuarios">
           <Key>
             <PropertyRef Name="Id" />
@@ -144,7 +134,6 @@
           <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Articulos_Facturas" Association="Self.FK_Articulos_Facturas">
             <End Role="Facturas" EntitySet="Facturas" />
@@ -171,133 +160,56 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FacturacionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FacturacionEntidades" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="FacturacionModel.Cliente" />
+          <EntitySet Name="Facturas" EntityType="FacturacionModel.Factura" />
+          <EntitySet Name="LineaArticuloes" EntityType="FacturacionModel.LineaArticulo" />
+          <EntitySet Name="Productos" EntityType="FacturacionModel.Producto" />
+          <EntitySet Name="Proveedores" EntityType="FacturacionModel.Proveedore" />
+          <EntitySet Name="Roles" EntityType="FacturacionModel.Role" />
+          <EntitySet Name="Usuarios" EntityType="FacturacionModel.Usuario" />
+          <AssociationSet Name="FK_Facturas_Clientes" Association="FacturacionModel.FK_Facturas_Clientes">
+            <End Role="Cliente" EntitySet="Clientes" />
+            <End Role="Factura" EntitySet="Facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulos_Facturas" Association="FacturacionModel.FK_Articulos_Facturas">
+            <End Role="Factura" EntitySet="Facturas" />
+            <End Role="LineaArticulo" EntitySet="LineaArticuloes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulos_Productos" Association="FacturacionModel.FK_Articulos_Productos">
+            <End Role="Producto" EntitySet="Productos" />
+            <End Role="LineaArticulo" EntitySet="LineaArticuloes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Productos_Proveedores" Association="FacturacionModel.FK_Productos_Proveedores">
+            <End Role="Proveedore" EntitySet="Proveedores" />
+            <End Role="Producto" EntitySet="Productos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuarios_Roles" Association="FacturacionModel.FK_Usuarios_Roles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Usuario" EntitySet="Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Cedula" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NombreCompleto" Type="String" MaxLength="225" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Facturas" Relationship="Self.FK_Facturas_Clientes" FromRole="Clientes" ToRole="Facturas" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cedula" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NombreCompleto" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Facturas" Relationship="FacturacionModel.FK_Facturas_Clientes" FromRole="Cliente" ToRole="Factura" />
         </EntityType>
         <EntityType Name="Factura">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Factura1" Type="String" MaxLength="225" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Factura1" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdCliente" Type="Int32" Nullable="false" />
           <Property Name="Descuento" Type="Int32" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_Facturas_Clientes" FromRole="Facturas" ToRole="Clientes" />
-          <NavigationProperty Name="LineaArticuloes" Relationship="FacturacionModel.FK_Articulos_Facturas1" FromRole="Factura" ToRole="LineaArticulo" />
+          <NavigationProperty Name="Cliente" Relationship="FacturacionModel.FK_Facturas_Clientes" FromRole="Factura" ToRole="Cliente" />
+          <NavigationProperty Name="LineaArticuloes" Relationship="FacturacionModel.FK_Articulos_Facturas" FromRole="Factura" ToRole="LineaArticulo" />
         </EntityType>
-        <EntityType Name="Producto">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Producto1" Type="String" MaxLength="225" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Costo" Type="Int32" Nullable="false" />
-          <Property Name="Utilidad" Type="Int32" Nullable="false" />
-          <Property Name="Impuesto" Type="Int32" Nullable="false" />
-          <Property Name="Existencia" Type="Int32" Nullable="false" />
-          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Proveedore" Relationship="Self.FK_Productos_Proveedores" FromRole="Productos" ToRole="Proveedores" />
-          <NavigationProperty Name="LineaArticuloes" Relationship="FacturacionModel.FK_Articulos_Productos1" FromRole="Producto" ToRole="LineaArticulo" />
-        </EntityType>
-        <EntityType Name="Proveedore">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="225" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Proveedores" FromRole="Proveedores" ToRole="Productos" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Usuarios" Relationship="Self.FK_Usuarios_Roles" FromRole="Roles" ToRole="Usuarios" />
-        </EntityType>
-        <EntityType Name="Usuario">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Clave" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IdRol" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Role" Relationship="Self.FK_Usuarios_Roles" FromRole="Usuarios" ToRole="Roles" />
-        </EntityType>
-        <Association Name="FK_Facturas_Clientes">
-          <End Role="Clientes" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="Facturas" Type="Self.Factura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clientes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Facturas">
-              <PropertyRef Name="IdCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Productos_Proveedores">
-          <End Role="Proveedores" Type="Self.Proveedore" Multiplicity="1" />
-          <End Role="Productos" Type="Self.Producto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proveedores">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Productos">
-              <PropertyRef Name="IdProveedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Usuarios_Roles">
-          <End Role="Roles" Type="Self.Role" Multiplicity="1" />
-          <End Role="Usuarios" Type="Self.Usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Usuarios">
-              <PropertyRef Name="IdRol" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="FacturacionEntidades" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Clientes" EntityType="Self.Cliente" />
-          <EntitySet Name="Facturas" EntityType="Self.Factura" />
-          <EntitySet Name="Productos" EntityType="Self.Producto" />
-          <EntitySet Name="Proveedores" EntityType="Self.Proveedore" />
-          <EntitySet Name="Roles" EntityType="Self.Role" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuario" />
-          <AssociationSet Name="FK_Facturas_Clientes" Association="Self.FK_Facturas_Clientes">
-            <End Role="Clientes" EntitySet="Clientes" />
-            <End Role="Facturas" EntitySet="Facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Productos_Proveedores" Association="Self.FK_Productos_Proveedores">
-            <End Role="Proveedores" EntitySet="Proveedores" />
-            <End Role="Productos" EntitySet="Productos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Usuarios_Roles" Association="Self.FK_Usuarios_Roles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Usuarios" EntitySet="Usuarios" />
-          </AssociationSet>
-          <EntitySet Name="LineaArticuloes" EntityType="FacturacionModel.LineaArticulo" />
-          <EntitySet Name="sysdiagrams" EntityType="FacturacionModel.sysdiagram" />
-          <AssociationSet Name="FK_Articulos_Facturas1" Association="FacturacionModel.FK_Articulos_Facturas1">
-            <End Role="Factura" EntitySet="Facturas" />
-            <End Role="LineaArticulo" EntitySet="LineaArticuloes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Articulos_Productos1" Association="FacturacionModel.FK_Articulos_Productos1">
-            <End Role="Producto" EntitySet="Productos" />
-            <End Role="LineaArticulo" EntitySet="LineaArticuloes" />
-          </AssociationSet>
-        </EntityContainer>
         <EntityType Name="LineaArticulo">
           <Key>
             <PropertyRef Name="Id" />
@@ -306,20 +218,62 @@
           <Property Name="IdProducto" Type="Int32" Nullable="false" />
           <Property Name="Cantidad" Type="Int32" Nullable="false" />
           <Property Name="IdFactura" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Factura" Relationship="FacturacionModel.FK_Articulos_Facturas1" FromRole="LineaArticulo" ToRole="Factura" />
-          <NavigationProperty Name="Producto" Relationship="FacturacionModel.FK_Articulos_Productos1" FromRole="LineaArticulo" ToRole="Producto" />
+          <NavigationProperty Name="Factura" Relationship="FacturacionModel.FK_Articulos_Facturas" FromRole="LineaArticulo" ToRole="Factura" />
+          <NavigationProperty Name="Producto" Relationship="FacturacionModel.FK_Articulos_Productos" FromRole="LineaArticulo" ToRole="Producto" />
         </EntityType>
-        <EntityType Name="sysdiagram">
+        <EntityType Name="Producto">
           <Key>
-            <PropertyRef Name="diagram_id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Producto1" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="Costo" Type="Int32" Nullable="false" />
+          <Property Name="Utilidad" Type="Int32" Nullable="false" />
+          <Property Name="Impuesto" Type="Int32" Nullable="false" />
+          <Property Name="Existencia" Type="Int32" Nullable="false" />
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LineaArticuloes" Relationship="FacturacionModel.FK_Articulos_Productos" FromRole="Producto" ToRole="LineaArticulo" />
+          <NavigationProperty Name="Proveedore" Relationship="FacturacionModel.FK_Productos_Proveedores" FromRole="Producto" ToRole="Proveedore" />
         </EntityType>
-        <Association Name="FK_Articulos_Facturas1">
+        <EntityType Name="Proveedore">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Productos" Relationship="FacturacionModel.FK_Productos_Proveedores" FromRole="Proveedore" ToRole="Producto" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Usuarios" Relationship="FacturacionModel.FK_Usuarios_Roles" FromRole="Role" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Clave" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdRol" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="FacturacionModel.FK_Usuarios_Roles" FromRole="Usuario" ToRole="Role" />
+        </EntityType>
+        <Association Name="FK_Facturas_Clientes">
+          <End Type="FacturacionModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="FacturacionModel.Factura" Role="Factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Factura">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articulos_Facturas">
           <End Type="FacturacionModel.Factura" Role="Factura" Multiplicity="1" />
           <End Type="FacturacionModel.LineaArticulo" Role="LineaArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -331,7 +285,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Articulos_Productos1">
+        <Association Name="FK_Articulos_Productos">
           <End Type="FacturacionModel.Producto" Role="Producto" Multiplicity="1" />
           <End Type="FacturacionModel.LineaArticulo" Role="LineaArticulo" Multiplicity="*" />
           <ReferentialConstraint>
@@ -343,7 +297,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_Productos_Proveedores">
+          <End Type="FacturacionModel.Proveedore" Role="Proveedore" Multiplicity="1" />
+          <End Type="FacturacionModel.Producto" Role="Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedore">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Producto">
+              <PropertyRef Name="IdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Usuarios_Roles">
+          <End Type="FacturacionModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="FacturacionModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -352,59 +330,20 @@
           <EntitySetMapping Name="Clientes">
             <EntityTypeMapping TypeName="FacturacionModel.Cliente">
               <MappingFragment StoreEntitySet="Clientes">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="NombreCompleto" ColumnName="NombreCompleto" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Facturas">
             <EntityTypeMapping TypeName="FacturacionModel.Factura">
               <MappingFragment StoreEntitySet="Facturas">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Factura1" ColumnName="Factura" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
                 <ScalarProperty Name="Descuento" ColumnName="Descuento" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Productos">
-            <EntityTypeMapping TypeName="FacturacionModel.Producto">
-              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Factura1" ColumnName="Factura" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Producto1" ColumnName="Producto" />
-                <ScalarProperty Name="Costo" ColumnName="Costo" />
-                <ScalarProperty Name="Utilidad" ColumnName="Utilidad" />
-                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
-                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
-                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Proveedores">
-            <EntityTypeMapping TypeName="FacturacionModel.Proveedore">
-              <MappingFragment StoreEntitySet="Proveedores">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="FacturacionModel.Role">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="FacturacionModel.Usuario">
-              <MappingFragment StoreEntitySet="Usuarios">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Clave" ColumnName="Clave" />
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -418,14 +357,42 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="FacturacionModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="FacturacionModel.Producto">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="Utilidad" ColumnName="Utilidad" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="Producto1" ColumnName="Producto" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedores">
+            <EntityTypeMapping TypeName="FacturacionModel.Proveedore">
+              <MappingFragment StoreEntitySet="Proveedores">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="FacturacionModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="FacturacionModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
