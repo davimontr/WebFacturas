@@ -10,13 +10,13 @@ namespace slnLogica
 
 
     public interface IserviciosClientes
-{
-    List<Cliente> obtenerTodos();
-    void eliminarCliente(int id);
-    Cliente obtenClienteSegunIdentificador(int Id);
-    void actualizaCliente(int Id, string cedula, string nombreCompleto);
-    void incluirCliente(string cedula, string nombreCompleto);
-}
+    {
+        List<Cliente> obtenerTodos();
+        void eliminarCliente(int Id);
+        Cliente obtenClienteSegunIdentificador(int Id);
+        void actualizaCliente(int Id, string Cedula, string NombreCompleto);
+        void incluirCliente(string Cedula, string NombreCompleto);
+    }
 
     public class AccionesClientes : AccionesEntidades, IserviciosClientes 
     {
@@ -24,46 +24,38 @@ namespace slnLogica
         public List<Cliente> obtenerTodos()
         {
             return this.contexto.Clientes.ToList();
-
         }
 
         // metodo de agregar
-
-        public void incluirCliente(string cedula, string nombreCompleto)
+        public void incluirCliente(string Cedula, string NombreCompleto)
         {
-            this.contexto.Clientes.Add(new Cliente { Cedula = cedula, NombreCompleto = nombreCompleto});
+            this.contexto.Clientes.Add(new Cliente { Cedula = Cedula, NombreCompleto = NombreCompleto});
             this.contexto.SaveChanges();
-
         }
 
         //actualiza 
-        public void actualizaCliente(int Id, string cedula, string nombreCompleto)
+        public void actualizaCliente(int Id, string Cedula, string NombreCompleto)
         {
-            Cliente client = this.obtenClienteSegunIdentificador(Id);
-            client.Cedula = cedula;
-            client.NombreCompleto = nombreCompleto;
+            Cliente cliente = this.obtenClienteSegunIdentificador(Id);
+            cliente.Cedula = Cedula;
+            cliente.NombreCompleto = NombreCompleto;
             this.contexto.SaveChanges();
         }
 
 
         //metodo eliminar
-        public void eliminarCliente(int id)
+        public void eliminarCliente(int Id)
         {
-            Cliente clie = this.obtenClienteSegunIdentificador(id);
-            this.contexto.Clientes.Remove(clie);
+            Cliente cliente = this.obtenClienteSegunIdentificador(Id);
+            this.contexto.Clientes.Remove(cliente);
             this.contexto.SaveChanges();
-
         }
 
         // obtener por id
         public Cliente obtenClienteSegunIdentificador(int Id)
         {
-            return this.contexto.Clientes.FirstOrDefault(u => u.Id == Id);
+            return this.contexto.Clientes.FirstOrDefault(c => c.Id == Id);
         }
-
-
-
-
-
+        
     }
 }

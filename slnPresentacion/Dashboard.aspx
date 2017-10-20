@@ -28,7 +28,7 @@
                 <ItemStyle CssClass="d-none" />
                 <HeaderStyle CssClass="d-none" />
             </asp:BoundField>
-            <asp:BoundField DataField="Factura1" HeaderText="Factura" />
+            <asp:BoundField DataField="Numero" HeaderText="Numero" />
             <asp:BoundField DataField="Fecha" HeaderText="Fecha"  DataFormatString="{0:dd/MM/yyyy}" />
             <asp:BoundField DataField="Cliente.NombreCompleto" HeaderText="Cliente" />
             <asp:BoundField DataField="FormaPago.Nombre" HeaderText="Forma Pago" />

@@ -25,12 +25,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Factura" Type="nvarchar" MaxLength="225" Nullable="false" />
+          <Property Name="Numero" Type="nvarchar" MaxLength="225" Nullable="false" />
           <Property Name="Fecha" Type="datetime" Nullable="false" />
           <Property Name="IdCliente" Type="int" Nullable="false" />
           <Property Name="IdFormaPago" Type="int" Nullable="false" />
-          <Property Name="Total" Type="int" Nullable="false" />
           <Property Name="IdTipoMoneda" Type="int" Nullable="false" />
+          <Property Name="Total" Type="numeric" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="FormaPago">
           <Key>
@@ -47,14 +47,14 @@
           <Property Name="IdProducto" Type="int" Nullable="false" />
           <Property Name="Cantidad" Type="int" Nullable="false" />
           <Property Name="IdFactura" Type="int" Nullable="false" />
-          <Property Name="Precio" Type="int" Nullable="false" />
+          <Property Name="Precio" Type="numeric" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Productos">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Producto" Type="nvarchar" MaxLength="225" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="225" Nullable="false" />
           <Property Name="Costo" Type="int" Nullable="false" />
           <Property Name="Utilidad" Type="int" Nullable="false" />
           <Property Name="Impuesto" Type="int" Nullable="false" />
@@ -83,7 +83,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="TipoCampo" Type="int" Nullable="false" />
+          <Property Name="TipoCambio" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -245,7 +245,7 @@
           <EntitySet Name="FormaPagoes" EntityType="FacturacionModel.FormaPago" />
           <EntitySet Name="LineaArticuloes" EntityType="FacturacionModel.LineaArticulo" />
           <EntitySet Name="Productos" EntityType="FacturacionModel.Producto" />
-          <EntitySet Name="Proveedores" EntityType="FacturacionModel.Proveedore" />
+          <EntitySet Name="Proveedors" EntityType="FacturacionModel.Proveedor" />
           <EntitySet Name="Roles" EntityType="FacturacionModel.Role" />
           <EntitySet Name="TipoMonedas" EntityType="FacturacionModel.TipoMoneda" />
           <EntitySet Name="Usuarios" EntityType="FacturacionModel.Usuario" />
@@ -274,7 +274,7 @@
             <End Role="LineaArticulo" EntitySet="LineaArticuloes" />
           </AssociationSet>
           <AssociationSet Name="FK_Productos_Proveedores" Association="FacturacionModel.FK_Productos_Proveedores">
-            <End Role="Proveedore" EntitySet="Proveedores" />
+            <End Role="Proveedore" EntitySet="Proveedors" />
             <End Role="Producto" EntitySet="Productos" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuarios_Roles" Association="FacturacionModel.FK_Usuarios_Roles">
@@ -304,12 +304,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Factura1" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="Numero" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IdCliente" Type="Int32" Nullable="false" />
           <Property Name="IdFormaPago" Type="Int32" Nullable="false" />
-          <Property Name="Total" Type="Int32" Nullable="false" />
           <Property Name="IdTipoMoneda" Type="Int32" Nullable="false" />
+          <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <NavigationProperty Name="Cliente" Relationship="FacturacionModel.FK_Facturas_Clientes" FromRole="Factura" ToRole="Cliente" />
           <NavigationProperty Name="FormaPago" Relationship="FacturacionModel.FK_Facturas_FormaPago" FromRole="Factura" ToRole="FormaPago" />
           <NavigationProperty Name="TipoMoneda" Relationship="FacturacionModel.FK_Facturas_TipoMoneda" FromRole="Factura" ToRole="TipoMoneda" />
@@ -331,7 +331,7 @@
           <Property Name="IdProducto" Type="Int32" Nullable="false" />
           <Property Name="Cantidad" Type="Int32" Nullable="false" />
           <Property Name="IdFactura" Type="Int32" Nullable="false" />
-          <Property Name="Precio" Type="Int32" Nullable="false" />
+          <Property Name="Precio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <NavigationProperty Name="Factura" Relationship="FacturacionModel.FK_LineaArticulo_Facturas" FromRole="LineaArticulo" ToRole="Factura" />
           <NavigationProperty Name="Producto" Relationship="FacturacionModel.FK_LineaArticulo_Productos" FromRole="LineaArticulo" ToRole="Producto" />
         </EntityType>
@@ -340,7 +340,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Producto1" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
           <Property Name="Costo" Type="Int32" Nullable="false" />
           <Property Name="Utilidad" Type="Int32" Nullable="false" />
           <Property Name="Impuesto" Type="Int32" Nullable="false" />
@@ -352,7 +352,7 @@
           <NavigationProperty Name="LineaArticuloes" Relationship="FacturacionModel.FK_LineaArticulo_Productos" FromRole="Producto" ToRole="LineaArticulo" />
           <NavigationProperty Name="Proveedore" Relationship="FacturacionModel.FK_Productos_Proveedores" FromRole="Producto" ToRole="Proveedore" />
         </EntityType>
-        <EntityType Name="Proveedore">
+        <EntityType Name="Proveedor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -374,7 +374,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TipoCampo" Type="Int32" Nullable="false" />
+          <Property Name="TipoCambio" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Facturas" Relationship="FacturacionModel.FK_Facturas_TipoMoneda" FromRole="TipoMoneda" ToRole="Factura" />
         </EntityType>
         <EntityType Name="Usuario">
@@ -460,7 +460,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Productos_Proveedores">
-          <End Type="FacturacionModel.Proveedore" Role="Proveedore" Multiplicity="1" />
+          <End Type="FacturacionModel.Proveedor" Role="Proveedore" Multiplicity="1" />
           <End Type="FacturacionModel.Producto" Role="Producto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Proveedore">
@@ -509,12 +509,12 @@
           <EntitySetMapping Name="Facturas">
             <EntityTypeMapping TypeName="FacturacionModel.Factura">
               <MappingFragment StoreEntitySet="Facturas">
-                <ScalarProperty Name="IdTipoMoneda" ColumnName="IdTipoMoneda" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IdTipoMoneda" ColumnName="IdTipoMoneda" />
                 <ScalarProperty Name="IdFormaPago" ColumnName="IdFormaPago" />
                 <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Factura1" ColumnName="Factura" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -548,13 +548,13 @@
                 <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
                 <ScalarProperty Name="Utilidad" ColumnName="Utilidad" />
                 <ScalarProperty Name="Costo" ColumnName="Costo" />
-                <ScalarProperty Name="Producto1" ColumnName="Producto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Proveedores">
-            <EntityTypeMapping TypeName="FacturacionModel.Proveedore">
+          <EntitySetMapping Name="Proveedors">
+            <EntityTypeMapping TypeName="FacturacionModel.Proveedor">
               <MappingFragment StoreEntitySet="Proveedores">
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -572,7 +572,7 @@
           <EntitySetMapping Name="TipoMonedas">
             <EntityTypeMapping TypeName="FacturacionModel.TipoMoneda">
               <MappingFragment StoreEntitySet="TipoMoneda">
-                <ScalarProperty Name="TipoCampo" ColumnName="TipoCampo" />
+                <ScalarProperty Name="TipoCambio" ColumnName="TipoCambio" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

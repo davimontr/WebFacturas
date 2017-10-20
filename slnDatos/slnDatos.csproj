@@ -81,7 +81,7 @@
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Proveedore.cs">
+    <Compile Include="Proveedor.cs">
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">

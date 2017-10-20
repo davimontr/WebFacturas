@@ -21,7 +21,7 @@ namespace slnPresentacion
             {
                 int Identificador = int.Parse(Request.QueryString["Id"]);
                 Factura factura = this.facturas.obtenFacturaSegunIdentificador(Identificador);
-                this.txtFactura.Text = factura.Factura1.ToString();
+                this.txtFactura.Text = factura.Numero.ToString();
                 this.txtFactura.Enabled = false;
                 this.cldFecha.SelectedDate = factura.Fecha.Date;
                 this.cldFecha.VisibleDate = factura.Fecha.Date;
@@ -141,7 +141,7 @@ namespace slnPresentacion
                 }
                 else if(string.IsNullOrEmpty(this.hdnIdentificador.Value))
                 {
-                    Factura factura = this.facturas.obtenFacturaSegunFactura(this.txtFactura.Text);
+                    Factura factura = this.facturas.obtenFacturaSegunNumero(this.txtFactura.Text);
                     this.txtFactura.Enabled = false;
                     this.hdnIdentificador.Value = factura.Id.ToString();
                 }

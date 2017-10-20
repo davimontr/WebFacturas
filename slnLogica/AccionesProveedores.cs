@@ -9,55 +9,50 @@ namespace slnLogica
 {
     public interface IserviciosProveedores
     {
-        List<Proveedore> obtenerTodos();
-        void incluirProveedor(string nombre);
-        void actualizaProveedor(int Id, string nombre);
-        void eliminarProveedor(int id);
-        Proveedore obtenProveedorSegunIdentificador(int Id);
+        List<Proveedor> obtenerTodos();
+        void incluirProveedor(string Nombre);
+        void actualizaProveedor(int Id, string Nombre);
+        void eliminarProveedor(int Id);
+        Proveedor obtenProveedorSegunIdentificador(int Id);
     }
 
     public class AccionesProveedores : AccionesEntidades, IserviciosProveedores
     {
 
-        public List<Proveedore> obtenerTodos()
+        public List<Proveedor> obtenerTodos()
         {
-            return this.contexto.Proveedores.ToList();
-
+            return this.contexto.Proveedors.ToList();
         }
 
         // se agrega el proveedor
-        public void incluirProveedor(string nombre)
+        public void incluirProveedor(string Nombre)
         {
-            this.contexto.Proveedores.Add(new Proveedore { Nombre = nombre });
+            this.contexto.Proveedors.Add(new Proveedor {
+                Nombre = Nombre
+            });
             this.contexto.SaveChanges();
-
         }
 
-        public Proveedore obtenProveedorSegunIdentificador(int Id)
+        public Proveedor obtenProveedorSegunIdentificador(int Id)
         {
-            return this.contexto.Proveedores.FirstOrDefault(u => u.Id == Id);
+            return this.contexto.Proveedors.FirstOrDefault(p => p.Id == Id);
         }
 
         //actualiza el proveedor
-        public void actualizaProveedor(int Id, string nombre)
+        public void actualizaProveedor(int Id, string Nombre)
         {
-            Proveedore proveed = this.obtenProveedorSegunIdentificador(Id);
-            proveed.Nombre = nombre;
+            Proveedor proveed = this.obtenProveedorSegunIdentificador(Id);
+            proveed.Nombre = Nombre;
             this.contexto.SaveChanges();
         }
  
-
         //metodo eliminar
-        public void eliminarProveedor(int id)
+        public void eliminarProveedor(int Id)
         {
-            Proveedore usu = this.obtenProveedorSegunIdentificador(id);
-            this.contexto.Proveedores.Remove(usu);
+            Proveedor proveedor = this.obtenProveedorSegunIdentificador(Id);
+            this.contexto.Proveedors.Remove(proveedor);
             this.contexto.SaveChanges();
-
         }
-
-
-
 
     }
 }

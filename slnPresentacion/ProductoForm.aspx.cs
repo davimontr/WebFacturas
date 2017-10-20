@@ -28,7 +28,7 @@ namespace slnPresentacion
             {
                 int Identificador = int.Parse(Request.QueryString["Id"]);
                 Producto producto = this.productos.obtenProductoSegunIdentificador(Identificador);
-                this.txtProducto.Text = producto.Producto1;
+                this.txtProducto.Text = producto.Nombre;
                 this.txtCosto.Text = producto.Costo.ToString();
                 this.txtUtilidad.Text = producto.Utilidad.ToString();
                 this.txtImpuesto.Text = producto.Impuesto.ToString();

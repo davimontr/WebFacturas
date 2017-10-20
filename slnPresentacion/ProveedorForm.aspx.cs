@@ -13,7 +13,7 @@ namespace slnPresentacion
             if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
                 int Identificador = int.Parse(Request.QueryString["Id"]);
-                Proveedore proveedor = this.proveedores.obtenProveedorSegunIdentificador(Identificador);
+                Proveedor proveedor = this.proveedores.obtenProveedorSegunIdentificador(Identificador);
                 this.txtNombre.Text = proveedor.Nombre;
                 this.hdnIdentificador.Value = Identificador.ToString();
             }

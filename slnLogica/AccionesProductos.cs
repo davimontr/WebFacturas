@@ -11,9 +11,9 @@ namespace slnLogica
     {
         List<Producto> obtenerTodos();
         Producto obtenProductoSegunIdentificador(int Id);
-        void  incluirProducto(string product, int costo, int utilidad, int imp, int stock, int idProvee);
-        void actualizaProducto(int Id, string product, int costo, int utilidad, int imp, int stock, int idProvee);
-        void eliminarProducto(int id);
+        void  incluirProducto(string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor);
+        void actualizaProducto(int Id, string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor);
+        void eliminarProducto(int Id);
     }
 
     public class AccionesProductos : AccionesEntidades, IserviciosProductos
@@ -25,39 +25,44 @@ namespace slnLogica
 
         }
 
-
         // metodo agregar
-        public void incluirProducto(string product, int costo, int utilidad, int imp, int stock, int idProvee)
+        public void incluirProducto(string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor)
         {
-            this.contexto.Productos.Add(new Producto { Producto1 = product, Costo = costo, Utilidad = utilidad, Impuesto = imp, Existencia = stock, IdProveedor = idProvee });
+            this.contexto.Productos.Add(new Producto {
+                Nombre= Nombre,
+                Costo = Costo,
+                Utilidad = Utilidad,
+                Impuesto = Impuesto,
+                Existencia = Existencia,
+                IdProveedor = IdProveedor
+            });
             this.contexto.SaveChanges();
-
         }
 
         public Producto obtenProductoSegunIdentificador(int Id)
         {
-            return this.contexto.Productos.FirstOrDefault(u => u.Id == Id);
+            return this.contexto.Productos.FirstOrDefault(p => p.Id == Id);
         }
 
         //actualiza 
-        public void actualizaProducto(int Id, string product, int costo, int utilidad, int imp, int stock, int idProvee)
+        public void actualizaProducto(int Id, string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor)
         {
-            Producto produc = this.obtenProductoSegunIdentificador(Id);
-            produc.Producto1 = product;
-            produc.Costo = costo;
-            produc.Utilidad = utilidad;
-            produc.Impuesto = imp;
-            produc.Existencia = stock;
-            produc.IdProveedor = idProvee;
+            Producto producto = this.obtenProductoSegunIdentificador(Id);
+            producto.Nombre = Nombre;
+            producto.Costo = Costo;
+            producto.Utilidad = Utilidad;
+            producto.Impuesto = Impuesto;
+            producto.Existencia = Existencia;
+            producto.IdProveedor = IdProveedor;
             this.contexto.SaveChanges();
         }
 
 
         //metodo eliminar
-        public void eliminarProducto(int id)
+        public void eliminarProducto(int Id)
         {
-            Producto prd = this.obtenProductoSegunIdentificador(id);
-            this.contexto.Productos.Remove(prd);
+            Producto producto = this.obtenProductoSegunIdentificador(Id);
+            this.contexto.Productos.Remove(producto);
             this.contexto.SaveChanges();
 
         }

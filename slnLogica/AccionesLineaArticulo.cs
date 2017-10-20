@@ -11,8 +11,8 @@ namespace slnLogica
     {
         List<LineaArticulo> obtenerTodos();
         void incluirLineaArticulo(Producto Producto, int Cantidad, int IdFactura);
-        void actualizaLineaArticulos(int Id, int idproducto, int cant, int idfact);
-        void eliminarLineaArticulo(int id);
+        void actualizaLineaArticulos(int Id, int IdProducto, int Cantidad, int IdFactura);
+        void eliminarLineaArticulo(int Id);
         List<LineaArticulo> obtenerTodosPorIdFactura(int IdFactura);
     }
 
@@ -27,12 +27,12 @@ namespace slnLogica
         // metodo de agregar
         public void incluirLineaArticulo(Producto Producto, int Cantidad, int IdFactura)
         {
-            int impuesto = 0;
+            decimal impuesto = 0;
             if (Producto.Gravado)
             {
                 impuesto = Producto.Costo * (Producto.Impuesto / 100);
             }
-            int utilidad = Producto.Costo * (Producto.Utilidad / 100);
+            decimal utilidad = Producto.Costo * (Producto.Utilidad / 100);
 
             this.contexto.LineaArticuloes.Add(new LineaArticulo
             {
@@ -42,24 +42,23 @@ namespace slnLogica
                 Precio = (Producto.Costo + impuesto + utilidad) * Cantidad
             });
             this.contexto.SaveChanges();
-
         }
 
         //actualiza articulos 
-        public void actualizaLineaArticulos(int Id,int idproducto, int cant, int idfact)
+        public void actualizaLineaArticulos(int Id,int IdProducto, int Cantidad, int IdFactura)
         {
-            LineaArticulo artic = this.obtenLineaArticuloSegunIdentificador(Id);
-            artic.IdProducto = idproducto;
-            artic.Cantidad = cant;
-            artic.IdFactura = idfact;
+            LineaArticulo linea = this.obtenLineaArticuloSegunIdentificador(Id);
+            linea.IdProducto = IdProducto;
+            linea.Cantidad = Cantidad;
+            linea.IdFactura = IdFactura;
             this.contexto.SaveChanges();
         }
         
         //metodo eliminar
-        public void eliminarLineaArticulo(int id)
+        public void eliminarLineaArticulo(int Id)
         {
-            LineaArticulo art = this.obtenLineaArticuloSegunIdentificador(id);
-            this.contexto.LineaArticuloes.Remove(art);
+            LineaArticulo linea = this.obtenLineaArticuloSegunIdentificador(Id);
+            this.contexto.LineaArticuloes.Remove(linea);
 
         }
 

@@ -10,11 +10,11 @@ namespace slnLogica
     public interface IserviciosFacturas
     {
         List<Factura> obtenerTodos();
-        void incluirFactura(string fact, DateTime fecha, int idCliente, int IdFormaPago, int Total, int IdTipoMoneda);
+        void incluirFactura(string Numero, DateTime Fecha, int IdCliente, int IdFormaPago, int IdTipoMoneda, decimal Total);
         Factura obtenFacturaSegunIdentificador(int Id);
-        void actualizaFactura(int Id, string factura, DateTime fecha, int idcliente, int IdFormaPago, int Total, int IdTipoMoneda);
-        void eliminarFactura(int id);
-        Factura obtenFacturaSegunFactura(string Factura);
+        void actualizaFactura(int Id, string Numero, DateTime Fecha, int Idcliente, int IdFormaPago, int IdTipoMoneda, decimal Total);
+        void eliminarFactura(int Id);
+        Factura obtenFacturaSegunNumero(string Numero);
     }
 
     public class AccionesFacturas : AccionesEntidades, IserviciosFacturas
@@ -27,48 +27,48 @@ namespace slnLogica
         }
 
         // metodo agregar
-        public void incluirFactura(string fact, DateTime fecha, int idCliente, int IdFormaPago, int Total, int IdTipoMoneda)
+        public void incluirFactura(string Numero, DateTime Fecha, int IdCliente, int IdFormaPago, int IdTipoMoneda, decimal Total)
         {
             this.contexto.Facturas.Add(new Factura {
-                Factura1 = fact,
-                Fecha = fecha,
-                IdCliente = idCliente,
+                Numero = Numero,
+                Fecha = Fecha,
+                IdCliente = IdCliente,
                 IdFormaPago = IdFormaPago,
-                Total = Total,
-                IdTipoMoneda = IdTipoMoneda
+                IdTipoMoneda = IdTipoMoneda,
+                Total = Total
             });
             this.contexto.SaveChanges();
         }
 
         public Factura obtenFacturaSegunIdentificador(int Id)
         {
-            return this.contexto.Facturas.FirstOrDefault(u => u.Id == Id);
+            return this.contexto.Facturas.FirstOrDefault(f => f.Id == Id);
         }
 
         // Metodo de modifcar factura
-        public void actualizaFactura(int Id, string factura, DateTime fecha, int idcliente, int IdFormaPago, int Total, int IdTipoMoneda)
+        public void actualizaFactura(int Id, string Numero, DateTime Fecha, int Idcliente, int IdFormaPago, int IdTipoMoneda, decimal Total)
         {
-            Factura fact = this.obtenFacturaSegunIdentificador(Id);
-            fact.Factura1 = factura;
-            fact.Fecha = fecha;
-            fact.IdCliente = idcliente;
-            fact.IdFormaPago = IdFormaPago;
-            fact.Total = Total;
-            fact.IdTipoMoneda = IdTipoMoneda;
+            Factura factura = this.obtenFacturaSegunIdentificador(Id);
+            factura.Numero = Numero;
+            factura.Fecha = Fecha;
+            factura.IdCliente = Idcliente;
+            factura.IdFormaPago = IdFormaPago;
+            factura.IdTipoMoneda = IdTipoMoneda;
+            factura.Total = Total;
             this.contexto.SaveChanges();
         }
 
         //metodo eliminar
-        public void eliminarFactura(int id)
+        public void eliminarFactura(int Id)
         {
-            Factura fac = this.obtenFacturaSegunIdentificador(id);
-            this.contexto.Facturas.Remove(fac);
+            Factura factura = this.obtenFacturaSegunIdentificador(Id);
+            this.contexto.Facturas.Remove(factura);
             this.contexto.SaveChanges();
         }
 
-        public Factura obtenFacturaSegunFactura(string Factura)
+        public Factura obtenFacturaSegunNumero(string Numero)
         {
-            return this.contexto.Facturas.FirstOrDefault(u => u.Factura1.Equals(Factura));
+            return this.contexto.Facturas.FirstOrDefault(f => f.Numero.Equals(Numero));
         }
     }
 }
