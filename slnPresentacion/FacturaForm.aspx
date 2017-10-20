@@ -58,7 +58,7 @@
             </div>
             <div class="col-sm-4 col-md-4">
                 <label for="contenido_ddlProducto">Producto</label><br />
-                <asp:DropDownList ID="ddlProducto" runat="server" DataValueField="Id" DataTextField="Producto1"></asp:DropDownList>
+                <asp:DropDownList ID="ddlProducto" runat="server" DataValueField="Id" DataTextField="Nombre"></asp:DropDownList>
             </div>
             <div class="col-sm-4 col-md-4">
                 <label for="contenido_txtCantidad">Cantidad</label><br />
@@ -85,7 +85,7 @@
                             <ItemStyle CssClass="d-none" />
                             <HeaderStyle CssClass="d-none" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Producto.Producto1" HeaderText="Producto" />
+                        <asp:BoundField DataField="Producto.Nombre" HeaderText="Producto" />
                         <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
                         <asp:BoundField DataField="IdFactura" HeaderText="IdFactura">
                             <ItemStyle CssClass="d-none" />

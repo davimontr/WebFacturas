@@ -28,7 +28,7 @@
                 <ItemStyle CssClass="d-none" />
                 <HeaderStyle CssClass="d-none" />
             </asp:BoundField>
-            <asp:BoundField DataField="Producto1" HeaderText="Producto" />
+            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
             <asp:BoundField DataField="Costo" HeaderText="Costo" />
             <asp:BoundField DataField="Utilidad" HeaderText="Utilidad" />
             <asp:BoundField DataField="Impuesto" HeaderText="Impuesto" />
