@@ -84,6 +84,7 @@ namespace slnLogica
         {
             LineaArticulo linea = this.obtenLineaArticuloSegunIdentificador(Id);
             this.contexto.LineaArticuloes.Remove(linea);
+            this.contexto.SaveChanges();
         }
 
         public LineaArticulo obtenLineaArticuloSegunIdentificador(int Id)
