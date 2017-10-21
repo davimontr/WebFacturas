@@ -131,8 +131,13 @@ namespace slnPresentacion
                         this.cldFecha.SelectedDate,
                         int.Parse(this.ddlCliente.SelectedValue),
                         int.Parse(this.ddlFormaPago.SelectedValue),
+<<<<<<< Updated upstream
                         int.Parse(this.ddlTipoMoneda.SelectedValue),
                         0
+=======
+                        //int.Parse(this.lblTotal.Text),
+                        int.Parse(this.ddlTipoMoneda.SelectedValue)
+>>>>>>> Stashed changes
                     );
                 }
                 else
@@ -143,8 +148,13 @@ namespace slnPresentacion
                         this.cldFecha.SelectedDate,
                         int.Parse(this.ddlCliente.SelectedValue),
                         int.Parse(this.ddlFormaPago.SelectedValue),
+<<<<<<< Updated upstream
                         int.Parse(this.ddlTipoMoneda.SelectedValue),
                         0
+=======
+                        //int.Parse(this.lblTotal.Text),
+                        int.Parse(this.ddlTipoMoneda.SelectedValue)
+>>>>>>> Stashed changes
                    );
                 }
 
