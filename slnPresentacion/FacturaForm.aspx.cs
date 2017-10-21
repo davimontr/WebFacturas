@@ -132,7 +132,7 @@ namespace slnPresentacion
                         int.Parse(this.ddlCliente.SelectedValue),
                         int.Parse(this.ddlFormaPago.SelectedValue),
                         int.Parse(this.ddlTipoMoneda.SelectedValue),
-                        int.Parse(this.lblTotal.Text)
+                        0
                     );
                 }
                 else
