@@ -76,7 +76,7 @@
                     AutoGenerateColumns="False"
                     DataKeyNames="Id">
                     <Columns>
-                         <asp:BoundField DataField="Id" HeaderText="Id">
+                        <asp:BoundField DataField="Id" HeaderText="Id">
                             <ItemStyle CssClass="d-none" />
                             <HeaderStyle CssClass="d-none" />
                         </asp:BoundField>
