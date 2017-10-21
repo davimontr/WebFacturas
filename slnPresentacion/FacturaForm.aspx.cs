@@ -185,7 +185,7 @@ namespace slnPresentacion
             try
             { 
                 this.lineaArticulos.eliminarLineaArticulo((int)e.Keys["Id"]);
-                this.cargarLineaArticulos((int)e.Keys["IdFactura"]);
+                this.cargarLineaArticulos(int.Parse(e.Values["IdFactura"].ToString()));
             }
             catch (Exception ex)
             {
