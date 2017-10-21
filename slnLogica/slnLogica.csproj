@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccionesDepartamentos.cs" />
     <Compile Include="AccionesEntidades.cs" />
     <Compile Include="AccionesLineaArticulo.cs" />
     <Compile Include="AccionesClientes.cs" />
