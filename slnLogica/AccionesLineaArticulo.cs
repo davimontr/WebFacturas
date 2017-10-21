@@ -42,7 +42,7 @@ namespace slnLogica
         {
             return this.contexto.LineaArticuloes
                 .Where(ln => ln.IdProducto == IdProducto && ln.IdFactura == IdFactura)
-                .FirstOrDefault()
+                .FirstOrDefault();
         }
 
         // metodo de agregar
