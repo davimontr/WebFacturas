@@ -73,7 +73,6 @@
                     EmptyDataText="No Existen Lineas de articulos en la factura" 
                     CssClass="table table-striped"
                     OnRowDeleting="gvLineaArticulos_RowDeleting"
-                    OnRowEditing="gvLineaArticulos_RowEditing"
                     AutoGenerateColumns="False"
                     DataKeyNames="Id">
                     <Columns>
