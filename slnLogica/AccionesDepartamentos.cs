@@ -69,7 +69,7 @@ namespace slnLogica
         }
 
 
-        public Departamento obtenDepartamentoSegunIdentificador(int Id)
+        public Departamento obtenerDepartamentoSegunID(int Id)
         {
             return this.contexto.Departamentos.FirstOrDefault(c => c.Id == Id);
         }
