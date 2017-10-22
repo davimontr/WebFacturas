@@ -23,12 +23,6 @@ namespace slnLogica
 
     public class AccionesDepartamentos : AccionesEntidades, IServiciosDepartamentos
     {
-        private FacturacionEntidades contexto;
-
-        public AccionesDepartamentos()
-        {
-            this.contexto = new FacturacionEntidades();
-        }
 
         public List<Departamento> obtenerDepartamento()
         {
@@ -48,7 +42,7 @@ namespace slnLogica
         //actualiza articulos 
         public void actualizaDepartamento(int id, string nombre)
         {
-            Departamento depa = this.obtenLineaDepartamentoSegunIdentificador(id);
+            Departamento depa = this.obtenDepartamentoSegunIdentificador(id);
             depa.Nombre = nombre;
             this.contexto.SaveChanges();
         }
@@ -57,19 +51,12 @@ namespace slnLogica
         //metodo eliminar
         public void eliminarDepartamento(int id)
         {
-            Departamento dep = this.obtenLineaDepartamentoSegunIdentificador(id);
+            Departamento dep = this.obtenDepartamentoSegunIdentificador(id);
             this.contexto.Departamentos.Remove(dep);
 
         }
 
-
-        public Departamento obtenLineaDepartamentoSegunIdentificador(int Id)
-        {
-            return this.contexto.Departamentos.FirstOrDefault(u => u.Id == Id);
-        }
-
-
-        public Departamento obtenerDepartamentoSegunID(int Id)
+        public Departamento obtenDepartamentoSegunIdentificador(int Id)
         {
             return this.contexto.Departamentos.FirstOrDefault(c => c.Id == Id);
         }
