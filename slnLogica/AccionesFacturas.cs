@@ -10,15 +10,18 @@ namespace slnLogica
     public interface IserviciosFacturas
     {
         List<Factura> obtenerTodos();
-        void incluirFactura(string Numero, DateTime Fecha, int IdCliente, int IdFormaPago, int IdTipoMoneda, decimal Total);
+        void incluirFactura(string Numero, DateTime Fecha, int IdCliente, int IdFormaPago, int IdTipoMoneda);
         Factura obtenFacturaSegunIdentificador(int Id);
-        void actualizaFactura(int Id, string Numero, DateTime Fecha, int Idcliente, int IdFormaPago, int IdTipoMoneda, decimal Total);
+        void actualizaFactura(int Id, string Numero, DateTime Fecha, int Idcliente, int IdFormaPago, int IdTipoMoneda);
         void eliminarFactura(int Id);
         Factura obtenFacturaSegunNumero(string Numero);
+        
     }
 
     public class AccionesFacturas : AccionesEntidades, IserviciosFacturas
     {
+        private IserviciosLineaArticulo Linea = new AccionesLineaArticulo();
+
 
         public List<Factura> obtenerTodos()
         {
@@ -27,7 +30,7 @@ namespace slnLogica
         }
 
         // metodo agregar
-        public void incluirFactura(string Numero, DateTime Fecha, int IdCliente, int IdFormaPago, int IdTipoMoneda, decimal Total)
+        public void incluirFactura(string Numero, DateTime Fecha, int IdCliente, int IdFormaPago, int IdTipoMoneda)
         {
             this.contexto.Facturas.Add(new Factura {
                 Numero = Numero,
@@ -35,7 +38,7 @@ namespace slnLogica
                 IdCliente = IdCliente,
                 IdFormaPago = IdFormaPago,
                 IdTipoMoneda = IdTipoMoneda,
-                Total = Total
+                //Total = Total
             });
             this.contexto.SaveChanges();
         }
@@ -46,15 +49,24 @@ namespace slnLogica
         }
 
         // Metodo de modifcar factura
-        public void actualizaFactura(int Id, string Numero, DateTime Fecha, int Idcliente, int IdFormaPago, int IdTipoMoneda, decimal Total)
+        public void actualizaFactura(int Id, string Numero, DateTime Fecha, int Idcliente, int IdFormaPago, int IdTipoMoneda )
         {
+            decimal total=0;
+            decimal sumatoria = 0;
+            var lista = this.Linea.obtenerTodosPorIdFactura(Id);
+            foreach (LineaArticulo precio in lista)
+            {
+                precio.Precio = total;
+                sumatoria = total;
+            }
+
             Factura factura = this.obtenFacturaSegunIdentificador(Id);
             factura.Numero = Numero;
             factura.Fecha = Fecha;
             factura.IdCliente = Idcliente;
             factura.IdFormaPago = IdFormaPago;
             factura.IdTipoMoneda = IdTipoMoneda;
-            factura.Total = Total;
+            factura.Total = sumatoria+total;
             this.contexto.SaveChanges();
         }
 

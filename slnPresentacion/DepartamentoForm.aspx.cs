@@ -14,9 +14,7 @@ namespace slnPresentacion
 
     public partial class DepartamentoForm : System.Web.UI.Page
     {
-        private IServiciosDepartamentos departamentos = new AccionesDepartamentos();
-
-
+        private IServiciosDepartamentos departamento = new AccionesDepartamentos();
 
 
         private void cargarDepartamentoXID()
@@ -24,8 +22,8 @@ namespace slnPresentacion
             if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
                 int Identificador = int.Parse(Request.QueryString["Id"]);
-                Departamento departa = this.departamentos.obtenerDepartamentoSegunID(Identificador);
-                this.txtNombre.Text = cliente.NombreCompleto;
+                Departamento departa = this.departamento.obtenDepartamentoSegunIdentificador(Identificador);
+                this.txtNombre.Text = departamento;
                 this.hdnIdentificador.Value = Identificador.ToString();
             }
         }
@@ -46,11 +44,11 @@ namespace slnPresentacion
                 string Identificador = this.hdnIdentificador.Value;
                 if (String.IsNullOrEmpty(Identificador))
                 {
-                    this.departamentos.incluirDepartamento(this.txtNombre.Text);
+                    this.departamento.incluirDepartamento(this.txtNombre.Text);
                 }
                 else
                 {
-                    this.departamentos.actualizaDepartamento(int.Parse(Identificador), this.txtNombre.Text);
+                    this.departamento.actualizaDepartamento(int.Parse(Identificador), this.txtNombre.Text);
                 }
                 new SesionMensajes(Page).crearAviso("Departamento salvado.");
                 Response.Redirect("~/Departamento.aspx");

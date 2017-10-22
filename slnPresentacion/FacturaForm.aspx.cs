@@ -30,6 +30,20 @@ namespace slnPresentacion
                 this.lblTotal.Text = factura.Total.ToString();
                 this.ddlTipoMoneda.SelectedValue = factura.IdTipoMoneda.ToString();
                 this.hdnIdentificador.Value = Identificador.ToString();
+                this.cargarLineaArticulos(Identificador);
+            }
+        }
+
+        private void cargarLineaArticulos(int IdFactura)
+        {
+            try
+            {
+                this.gvLineaArticulos.DataSource = this.lineaArticulos.obtenerTodosPorIdFactura(IdFactura);
+                this.gvLineaArticulos.DataBind();
+            }
+            catch (Exception ex)
+            {
+                this.lblMensaje.Text = ex.Message;
             }
         }
 
@@ -98,8 +112,8 @@ namespace slnPresentacion
             {
                 this.defineFechaPredeterminada();
                 this.cargarFacturaDeUrl();
-                this.cargarProductos();
                 this.cargarClientes();
+                this.cargarProductos();
                 this.cargarTipoMoneda();
                 this.cargarFormaPago();
             }
@@ -117,7 +131,6 @@ namespace slnPresentacion
                         this.cldFecha.SelectedDate,
                         int.Parse(this.ddlCliente.SelectedValue),
                         int.Parse(this.ddlFormaPago.SelectedValue),
-                        int.Parse(this.lblTotal.Text),
                         int.Parse(this.ddlTipoMoneda.SelectedValue)
                     );
                 }
@@ -129,7 +142,6 @@ namespace slnPresentacion
                         this.cldFecha.SelectedDate,
                         int.Parse(this.ddlCliente.SelectedValue),
                         int.Parse(this.ddlFormaPago.SelectedValue),
-                        int.Parse(this.lblTotal.Text),
                         int.Parse(this.ddlTipoMoneda.SelectedValue)
                    );
                 }
@@ -163,18 +175,20 @@ namespace slnPresentacion
             
             this.lineaArticulos.incluirLineaArticulo(producto, int.Parse(this.txtCantidad.Text), IdFactura);
 
-            this.gvLineaArticulos.DataSource = this.lineaArticulos.obtenerTodosPorIdFactura(IdFactura);
-            this.gvLineaArticulos.DataBind();
+            this.cargarLineaArticulos(IdFactura);
         }
 
         protected void gvLineaArticulos_RowDeleting(object sender, System.Web.UI.WebControls.GridViewDeleteEventArgs e)
         {
-
-        }
-
-        protected void gvLineaArticulos_RowEditing(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
-        {
-
+            try
+            { 
+                this.lineaArticulos.eliminarLineaArticulo((int)e.Keys["Id"]);
+                this.cargarLineaArticulos(int.Parse(e.Values["IdFactura"].ToString()));
+            }
+            catch (Exception ex)
+            {
+                this.lblMensaje.Text = ex.Message;
+            }
         }
     }
 }

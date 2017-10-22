@@ -15,7 +15,7 @@ namespace slnLogica
         void incluirDepartamento(string nombre);
         void actualizaDepartamento(int id, string nombre);
         void eliminarDepartamento(int id);
-        Departamento obtenerDepartamentoSegunID(int Id);
+        Departamento obtenDepartamentoSegunIdentificador(int Id);
 
 
     }
@@ -69,7 +69,7 @@ namespace slnLogica
         }
 
 
-        public Departamento obtenDepartamentoSegunIdentificador(int Id)
+        public Departamento obtenerDepartamentoSegunID(int Id)
         {
             return this.contexto.Departamentos.FirstOrDefault(c => c.Id == Id);
         }
