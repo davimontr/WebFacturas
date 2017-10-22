@@ -15,7 +15,7 @@ namespace slnLogica
         void incluirDepartamento(string nombre);
         void actualizaDepartamento(int id, string nombre);
         void eliminarDepartamento(int id);
-        Departamento obtenerDepartamentoSegunID(int Id);
+        Departamento obtenDepartamentoSegunIdentificador(int Id);
 
 
     }
