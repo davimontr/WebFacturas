@@ -22,8 +22,7 @@ namespace slnPresentacion
             if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
                 int Identificador = int.Parse(Request.QueryString["Id"]);
-                Departamento departa = this.departamento.obtenDepartamentoSegunIdentificador(Identificador);
-                this.txtNombre.Text = departamento;
+                slnDatos.Departamento departa = this.departamento.obtenerDepartamentoSegunID(Identificador);
                 this.hdnIdentificador.Value = Identificador.ToString();
             }
         }
@@ -51,7 +50,7 @@ namespace slnPresentacion
                     this.departamento.actualizaDepartamento(int.Parse(Identificador), this.txtNombre.Text);
                 }
                 new SesionMensajes(Page).crearAviso("Departamento salvado.");
-                Response.Redirect("~/Departamento.aspx");
+                Response.Redirect("~/Departamentos.aspx");
             }
             catch (Exception ex)
             {

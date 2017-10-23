@@ -30,7 +30,8 @@ namespace WebFacturas
                 "~/Dashboard.aspx",
                 "~/Clientes.aspx",
                 "~/Productos.aspx",
-                "~/Proveedores.aspx"
+                "~/Proveedores.aspx",
+                "~/Departamentos.aspx"
             };
             if(paginas.Contains(ruta))
             {

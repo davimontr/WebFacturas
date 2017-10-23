@@ -75,7 +75,7 @@ namespace slnLogica
         public void eliminarUsuario(int id)
         {
             Usuario usu = this.obtenUsuarioSegunIdentificador(id);
-            this.contexto.Usuarios.Remove(usu);
+            //this.contexto.Usuarios.Remove(usu);
             this.contexto.SaveChanges();
 
         }

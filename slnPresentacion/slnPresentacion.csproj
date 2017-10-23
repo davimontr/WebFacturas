@@ -99,7 +99,7 @@
     <Content Include="Clientes.aspx" />
     <Content Include="controles\MensajeSession.ascx" />
     <Content Include="controles\MenuInterno.ascx" />
-    <Content Include="Departamento.aspx" />
+    <Content Include="Departamentos.aspx" />
     <Content Include="DepartamentoForm.aspx" />
     <Content Include="FacturaForm.aspx" />
     <Content Include="packages.config" />
@@ -185,12 +185,12 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Departamento.aspx.cs">
-      <DependentUpon>Departamento.aspx</DependentUpon>
+    <Compile Include="Departamentos.aspx.cs">
+      <DependentUpon>Departamentos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Departamento.aspx.designer.cs">
-      <DependentUpon>Departamento.aspx</DependentUpon>
+    <Compile Include="Departamentos.aspx.designer.cs">
+      <DependentUpon>Departamentos.aspx</DependentUpon>
     </Compile>
     <Compile Include="DepartamentoForm.aspx.cs">
       <DependentUpon>DepartamentoForm.aspx</DependentUpon>

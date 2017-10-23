@@ -15,7 +15,7 @@ namespace slnLogica
         void incluirDepartamento(string nombre);
         void actualizaDepartamento(int id, string nombre);
         void eliminarDepartamento(int id);
-        Departamento obtenDepartamentoSegunIdentificador(int Id);
+        Departamento obtenerDepartamentoSegunID(int Id);
 
 
     }
@@ -48,7 +48,7 @@ namespace slnLogica
         //actualiza articulos 
         public void actualizaDepartamento(int id, string nombre)
         {
-            Departamento depa = this.obtenLineaDepartamentoSegunIdentificador(id);
+            Departamento depa = this.obtenerDepartamentoSegunID(id);
             depa.Nombre = nombre;
             this.contexto.SaveChanges();
         }
@@ -57,16 +57,16 @@ namespace slnLogica
         //metodo eliminar
         public void eliminarDepartamento(int id)
         {
-            Departamento dep = this.obtenLineaDepartamentoSegunIdentificador(id);
+            Departamento dep = this.obtenerDepartamentoSegunID(id);
             this.contexto.Departamentos.Remove(dep);
 
         }
 
 
-        public Departamento obtenLineaDepartamentoSegunIdentificador(int Id)
-        {
-            return this.contexto.Departamentos.FirstOrDefault(u => u.Id == Id);
-        }
+        //public Departamento obtenLineaDepartamentoSegunIdentificador(int Id)
+        //{
+        //    return this.contexto.Departamentos.FirstOrDefault(u => u.Id == Id);
+        //}
 
 
         public Departamento obtenerDepartamentoSegunID(int Id)

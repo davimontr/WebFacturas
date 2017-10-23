@@ -51,6 +51,7 @@
                                 <a class="dropdown-item" href="Clientes.aspx">Clientes</a>
                                 <a class="dropdown-item" href="Productos.aspx">Productos</a>
                                 <a class="dropdown-item" href="Proveedores.aspx">Proveedores</a>
+                                <a class="dropdown-item" href="Departamentos.aspx">Departamentos</a>
                             </div>
                         </li>
                     </ul>
