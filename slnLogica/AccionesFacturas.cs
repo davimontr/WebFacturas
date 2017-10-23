@@ -51,13 +51,13 @@ namespace slnLogica
         // Metodo de modifcar factura
         public void actualizaFactura(int Id, string Numero, DateTime Fecha, int Idcliente, int IdFormaPago, int IdTipoMoneda )
         {
-            decimal total=0;
-            decimal sumatoria = 0;
-            var lista = this.Linea.obtenerTodosPorIdFactura(Id);
-            foreach (LineaArticulo precio in lista)
+             decimal total=0;
+            List<LineaArticulo> lineas = this.Linea.obtenerTodosPorIdFactura(Id);
+            foreach (LineaArticulo Linea in lineas )
             {
-                precio.Precio = total;
-                sumatoria = total;
+           
+             total = total + Linea.Precio;
+             
             }
 
             Factura factura = this.obtenFacturaSegunIdentificador(Id);
@@ -66,7 +66,7 @@ namespace slnLogica
             factura.IdCliente = Idcliente;
             factura.IdFormaPago = IdFormaPago;
             factura.IdTipoMoneda = IdTipoMoneda;
-            factura.Total = sumatoria+total;
+            factura.Total=total;
             this.contexto.SaveChanges();
         }
 

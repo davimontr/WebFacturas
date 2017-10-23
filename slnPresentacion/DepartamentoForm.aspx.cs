@@ -22,7 +22,11 @@ namespace slnPresentacion
             if (!string.IsNullOrEmpty(Request.QueryString["Id"]))
             {
                 int Identificador = int.Parse(Request.QueryString["Id"]);
+
+            
                 slnDatos.Departamento departa = this.departamento.obtenerDepartamentoSegunID(Identificador);
+
+
                 this.hdnIdentificador.Value = Identificador.ToString();
             }
         }
