@@ -27,7 +27,7 @@ namespace slnPresentacion
                 this.cldFecha.VisibleDate = factura.Fecha.Date;
                 this.ddlCliente.SelectedValue = factura.IdCliente.ToString();
                 this.ddlFormaPago.SelectedValue = factura.IdFormaPago.ToString();
-                this.lblTotal.Text = factura.Total.ToString();
+                this.txtTotal.Text = factura.Total.ToString();
                 this.ddlTipoMoneda.SelectedValue = factura.IdTipoMoneda.ToString();
                 this.hdnIdentificador.Value = Identificador.ToString();
                 this.cargarLineaArticulos(Identificador);
@@ -106,6 +106,13 @@ namespace slnPresentacion
             this.cldFecha.SelectedDate = this.cldFecha.TodaysDate;
         }
 
+        private void invocarSalvarFactura(object sender, EventArgs e)
+        {
+            this.redireccionar = false;
+            this.btnSalvar_Click(sender, e);
+            this.redireccionar = true;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -166,16 +173,17 @@ namespace slnPresentacion
 
         protected void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
-            this.redireccionar = false;
-            this.btnSalvar_Click(sender, e);
-            this.redireccionar = true;
+            this.invocarSalvarFactura(sender, e);
 
             int IdFactura = int.Parse(this.hdnIdentificador.Value);
             Producto producto = this.productos.obtenProductoSegunIdentificador(int.Parse(this.ddlProducto.SelectedValue));
             
             this.lineaArticulos.incluirLineaArticulo(producto, int.Parse(this.txtCantidad.Text), IdFactura);
 
+            this.invocarSalvarFactura(sender, e);
             this.cargarLineaArticulos(IdFactura);
+            Factura factura = this.facturas.obtenFacturaSegunIdentificador(IdFactura);
+            this.txtTotal.Text = factura.Total.ToString();
         }
 
         protected void gvLineaArticulos_RowDeleting(object sender, System.Web.UI.WebControls.GridViewDeleteEventArgs e)
