@@ -94,7 +94,7 @@ namespace slnLogica
 
         public List<LineaArticulo> obtenerTodosPorIdFactura(int IdFactura)
         {
-            return this.contexto.LineaArticuloes.Where(ln => ln.IdFactura == IdFactura).ToList();
+            return this.contexto.LineaArticuloes.Include("Producto").Where(ln => ln.IdFactura == IdFactura).ToList();
         }
     }
 }
