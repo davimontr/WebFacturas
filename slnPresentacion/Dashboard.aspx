@@ -43,4 +43,6 @@
         </Columns>
     </asp:GridView>
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
-</asp:Content>
+    <br />
+    <a class="w3-button w3-large w3-circle w3-xlarge w3-ripple w3-teal" href="CierreCajaForm.aspx" style="z-index: 0">+</a>
+    </asp:Content>

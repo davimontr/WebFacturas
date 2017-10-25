@@ -6,8 +6,8 @@ using System.Collections.Generic;
 namespace slnPresentacion
 {
     public partial class FacturaForm : System.Web.UI.Page
-    {
-        private IserviciosFacturas facturas = new AccionesFacturas();
+    { private IserviciosFacturas facturas = new AccionesFacturas();
+       
         private IserviciosProductos productos = new AccionesProductos();
         private IserviciosClientes clientes = new AccionesClientes();
         private IServiciosTipoMoneda tipoMonedas = new AccionesTipoMoneda();
