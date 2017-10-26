@@ -129,6 +129,7 @@
     <Content Include="recursos\js\bootstrap.min.js" />
     <Content Include="recursos\js\ie10-viewport-bug-workaround.js" />
     <Content Include="recursos\js\popper.min.js" />
+    <Content Include="Reportes\ReporteProductoDepartamento.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="UsuarioForm.aspx" />
@@ -256,6 +257,13 @@
     <Compile Include="ProveedorForm.aspx.designer.cs">
       <DependentUpon>ProveedorForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\ReporteProductoDepartamento.aspx.cs">
+      <DependentUpon>ReporteProductoDepartamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes\ReporteProductoDepartamento.aspx.designer.cs">
+      <DependentUpon>ReporteProductoDepartamento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SesionMensajes.cs" />
     <Compile Include="UsuarioForm.aspx.cs">
       <DependentUpon>UsuarioForm.aspx</DependentUpon>
@@ -282,6 +290,7 @@
       <Name>slnLogica</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

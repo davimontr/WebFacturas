@@ -38,6 +38,15 @@
     <asp:DropDownList ID="ddlProveedor" runat="server" DataValueField="Id" DataTextField="Nombre"></asp:DropDownList>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="El proveedor del producto es obligatorio." ControlToValidate="ddlProveedor" ForeColor="Red"></asp:RequiredFieldValidator>
     <br />
+    <label for ="contenido_ddlDepartamento">Departamento</label><br />
+    <asp:DropDownList ID="ddlDepartamento" runat="server" DataValueField="ID" DataTextField="Nombre"></asp:DropDownList>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="El departamento del producto es obligatorio." ControlToValidate="ddlProveedor" ForeColor="Red"></asp:RequiredFieldValidator>
+    <br />
+    <label for="contenido_checkboxGravado">Gravado</label><br />
+    <asp:CheckBox ID="checkboxGravado" runat="server" AutoPostBack="true"/>
+     <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="El departamento del producto es obligatorio." ControlToValidate="ddlProveedor" ForeColor="Red"></asp:RequiredFieldValidator>
+    <br />
+
     <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />
     <br />
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>

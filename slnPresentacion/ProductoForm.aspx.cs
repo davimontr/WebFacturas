@@ -8,6 +8,8 @@ namespace slnPresentacion
     {
         private IserviciosProveedores proveedores = new AccionesProveedores();
         private IserviciosProductos productos = new AccionesProductos();
+        private IServiciosDepartamentos departamentos = new AccionesDepartamentos();
+
 
         private void cargarProveedores()
         {
@@ -35,8 +37,24 @@ namespace slnPresentacion
                 this.txtExistencia.Text = producto.Existencia.ToString();
                 this.ddlProveedor.SelectedValue = producto.IdProveedor.ToString();
                 this.hdnIdentificador.Value = Identificador.ToString();
+                this.ddlDepartamento.SelectedValue = producto.Departamento.ToString();
+                this.checkboxGravado.AutoPostBack = producto.Gravado;
             }
         }
+
+        private void cargarDepartamentos()
+        {
+            try
+            {
+                this.ddlDepartamento.DataSource = this.departamentos.obtenerDepartamento();
+                this.ddlDepartamento.DataBind();
+            }
+            catch (Exception ex)
+            {
+                this.lblMensaje.Text = ex.Message;
+            }
+        }
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,6 +62,7 @@ namespace slnPresentacion
             {
                 this.cargarProductoDeUrl();
                 this.cargarProveedores();
+                this.cargarDepartamentos();
             }
         }
 
@@ -60,7 +79,12 @@ namespace slnPresentacion
                         Int32.Parse(this.txtUtilidad.Text),
                         Int32.Parse(this.txtImpuesto.Text),
                         Int32.Parse(this.txtExistencia.Text),
-                        Int32.Parse(this.ddlProveedor.SelectedValue)
+                        Int32.Parse(this.ddlProveedor.SelectedValue),
+                         Int32.Parse(this.ddlDepartamento.SelectedValue),
+                         this.checkboxGravado.Checked 
+
+
+
                     );
                 }
                 else
@@ -72,7 +96,9 @@ namespace slnPresentacion
                         Int32.Parse(this.txtUtilidad.Text),
                         Int32.Parse(this.txtImpuesto.Text),
                         Int32.Parse(this.txtExistencia.Text),
-                        Int32.Parse(this.ddlProveedor.SelectedValue)
+                        Int32.Parse(this.ddlProveedor.SelectedValue),
+                        Int32.Parse(this.ddlDepartamento.SelectedValue),
+                        this.checkboxGravado.Checked
                     );
                 }
                 new SesionMensajes(Page).crearAviso("Producto salvado.");

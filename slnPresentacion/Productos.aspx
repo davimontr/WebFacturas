@@ -34,6 +34,9 @@
             <asp:BoundField DataField="Impuesto" HeaderText="Impuesto" />
             <asp:BoundField DataField="Existencia" HeaderText="Existencia" />
             <asp:BoundField DataField="Proveedore.Nombre" HeaderText="Proveedor" />
+            <asp:BoundField DataField="Departamento.Nombre" HeaderText ="Departamento" />
+            <asp:BoundField DataField="Gravado" HeaderText="Gravado" />
+
             <asp:CommandField EditText="Editar" ShowEditButton="true">
                 <ControlStyle CssClass="btn btn-primary active" />
             </asp:CommandField>

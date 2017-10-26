@@ -11,8 +11,8 @@ namespace slnLogica
     {
         List<Producto> obtenerTodos();
         Producto obtenProductoSegunIdentificador(int Id);
-        void  incluirProducto(string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor);
-        void actualizaProducto(int Id, string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor);
+        void  incluirProducto(string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor, int IdDepartamento, bool Gravado);
+        void actualizaProducto(int Id, string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor, int IdDepartamento, bool Gravado);
         void eliminarProducto(int Id);
     }
 
@@ -26,15 +26,20 @@ namespace slnLogica
         }
 
         // metodo agregar
-        public void incluirProducto(string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor)
+        public void incluirProducto(string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor, int IdDepartamento, bool Gravado)
         {
             this.contexto.Productos.Add(new Producto {
-                Nombre= Nombre,
+                Nombre = Nombre,
                 Costo = Costo,
                 Utilidad = Utilidad,
                 Impuesto = Impuesto,
                 Existencia = Existencia,
-                IdProveedor = IdProveedor
+                IdProveedor = IdProveedor,
+                IdDepartamento = IdDepartamento,
+                Gravado = Gravado
+                
+                
+                
             });
             this.contexto.SaveChanges();
         }
@@ -45,7 +50,7 @@ namespace slnLogica
         }
 
         //actualiza 
-        public void actualizaProducto(int Id, string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor)
+        public void actualizaProducto(int Id, string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor, int IdDepartamento, bool Gravado)
         {
             Producto producto = this.obtenProductoSegunIdentificador(Id);
             producto.Nombre = Nombre;
@@ -54,6 +59,8 @@ namespace slnLogica
             producto.Impuesto = Impuesto;
             producto.Existencia = Existencia;
             producto.IdProveedor = IdProveedor;
+            producto.IdDepartamento = IdDepartamento;
+            producto.Gravado = Gravado;
             this.contexto.SaveChanges();
         }
 
