@@ -34,7 +34,7 @@
             <asp:BoundField DataField="FormaPago.Nombre" HeaderText="Forma Pago" />
             <asp:BoundField DataField="TipoMoneda.Nombre" HeaderText="Tipo Moneda" />
             <asp:BoundField DataField="Total" HeaderText="Total" />
-            <asp:CommandField EditText="Editar" ShowEditButton="true">
+            <asp:CommandField EditText="Ver" ShowEditButton="true">
                 <ControlStyle CssClass="btn btn-primary active" />
             </asp:CommandField>
             <asp:CommandField DeleteText="Borrar" ShowDeleteButton="True">

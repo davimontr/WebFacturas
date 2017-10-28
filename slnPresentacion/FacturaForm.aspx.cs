@@ -2,12 +2,13 @@
 using slnLogica;
 using slnDatos;
 using System.Collections.Generic;
+using System.Web.UI.WebControls;
 
 namespace slnPresentacion
 {
     public partial class FacturaForm : System.Web.UI.Page
-    { private IserviciosFacturas facturas = new AccionesFacturas();
-       
+    {
+        private IserviciosFacturas facturas = new AccionesFacturas();
         private IserviciosProductos productos = new AccionesProductos();
         private IserviciosClientes clientes = new AccionesClientes();
         private IServiciosTipoMoneda tipoMonedas = new AccionesTipoMoneda();
@@ -23,14 +24,26 @@ namespace slnPresentacion
                 Factura factura = this.facturas.obtenFacturaSegunIdentificador(Identificador);
                 this.txtFactura.Text = factura.Numero.ToString();
                 this.txtFactura.Enabled = false;
-                this.cldFecha.SelectedDate = factura.Fecha.Date;
-                this.cldFecha.VisibleDate = factura.Fecha.Date;
+                this.txtFecha.Text = factura.Fecha.Date.ToString("yyyy-MM-dd");
                 this.ddlCliente.SelectedValue = factura.IdCliente.ToString();
+                this.ddlCliente.Enabled = false;
                 this.ddlFormaPago.SelectedValue = factura.IdFormaPago.ToString();
+                this.ddlFormaPago.Enabled = false;
                 this.txtTotal.Text = factura.Total.ToString();
                 this.ddlTipoMoneda.SelectedValue = factura.IdTipoMoneda.ToString();
+                this.ddlTipoMoneda.Enabled = false;
                 this.hdnIdentificador.Value = Identificador.ToString();
                 this.cargarLineaArticulos(Identificador);
+                this.pnlLineaAgregar.Visible = false;
+                foreach (GridViewRow fila in this.gvLineaArticulos.Rows)
+                {
+                    fila.Enabled = false;
+                }
+                this.btnSalvar.Text = "Volver";
+            }
+            else
+            {
+                this.cargarProductos();
             }
         }
 
@@ -101,9 +114,7 @@ namespace slnPresentacion
 
         private void defineFechaPredeterminada()
         {
-            DateTime today = DateTime.Today;
-            this.cldFecha.TodaysDate = today;
-            this.cldFecha.SelectedDate = this.cldFecha.TodaysDate;
+            this.txtFecha.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
         private void invocarSalvarFactura(object sender, EventArgs e)
@@ -118,11 +129,10 @@ namespace slnPresentacion
             if (!Page.IsPostBack)
             {
                 this.defineFechaPredeterminada();
-                this.cargarFacturaDeUrl();
                 this.cargarClientes();
-                this.cargarProductos();
                 this.cargarTipoMoneda();
                 this.cargarFormaPago();
+                this.cargarFacturaDeUrl();
             }
         }
 
@@ -135,7 +145,7 @@ namespace slnPresentacion
                 {
                     this.facturas.incluirFactura(
                         this.txtFactura.Text,
-                        this.cldFecha.SelectedDate,
+                        DateTime.Parse(this.txtFecha.Text),
                         int.Parse(this.ddlCliente.SelectedValue),
                         int.Parse(this.ddlFormaPago.SelectedValue),
                         int.Parse(this.ddlTipoMoneda.SelectedValue)
@@ -146,7 +156,7 @@ namespace slnPresentacion
                     this.facturas.actualizaFactura(
                         int.Parse(Identificador),
                         this.txtFactura.Text,
-                        this.cldFecha.SelectedDate,
+                        DateTime.Parse(this.txtFecha.Text),
                         int.Parse(this.ddlCliente.SelectedValue),
                         int.Parse(this.ddlFormaPago.SelectedValue),
                         int.Parse(this.ddlTipoMoneda.SelectedValue)
@@ -158,7 +168,7 @@ namespace slnPresentacion
                     new SesionMensajes(Page).crearAviso("Factura salvada.");
                     Response.Redirect("~/Dashboard.aspx");
                 }
-                else if(string.IsNullOrEmpty(this.hdnIdentificador.Value))
+                else if (string.IsNullOrEmpty(this.hdnIdentificador.Value))
                 {
                     Factura factura = this.facturas.obtenFacturaSegunNumero(this.txtFactura.Text);
                     this.txtFactura.Enabled = false;
@@ -177,7 +187,7 @@ namespace slnPresentacion
 
             int IdFactura = int.Parse(this.hdnIdentificador.Value);
             Producto producto = this.productos.obtenProductoSegunIdentificador(int.Parse(this.ddlProducto.SelectedValue));
-            
+
             this.lineaArticulos.incluirLineaArticulo(producto, int.Parse(this.txtCantidad.Text), IdFactura);
 
             this.invocarSalvarFactura(sender, e);
@@ -189,7 +199,7 @@ namespace slnPresentacion
         protected void gvLineaArticulos_RowDeleting(object sender, System.Web.UI.WebControls.GridViewDeleteEventArgs e)
         {
             try
-            { 
+            {
                 this.lineaArticulos.eliminarLineaArticulo((int)e.Keys["Id"]);
                 this.cargarLineaArticulos(int.Parse(e.Values["IdFactura"].ToString()));
             }

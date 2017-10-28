@@ -60,12 +60,12 @@
         ControlToValidate="txtImpuesto" ForeColor="Red"
         Display="Dynamic"/>
     <asp:CompareValidator ID="CompareValidator3" runat="server"
-        ControlToValidate="txtUtilidad" ForeColor="Red"
+        ControlToValidate="txtImpuesto" ForeColor="Red"
         ErrorMessage="N&uacute;mero debe ser un entero."
         Operator="DataTypeCheck" Type="Integer"
         Display="Dynamic"/>
     <asp:CompareValidator runat="server"
-        ControlToValidate="txtUtilidad" ForeColor="Red"
+        ControlToValidate="txtImpuesto" ForeColor="Red"
         ErrorMessage="Debe ser mayor a uno."
         Operator="GreaterThanEqual"
         ValueToCompare ="1" Type="Integer"
@@ -78,12 +78,12 @@
         ControlToValidate="txtExistencia" ForeColor="Red"
         Display="Dynamic"/>
     <asp:CompareValidator ID="CompareValidator4" runat="server"
-        ControlToValidate="txtUtilidad" ForeColor="Red"
+        ControlToValidate="txtExistencia" ForeColor="Red"
         ErrorMessage="N&uacute;mero debe ser un entero."
         Operator="DataTypeCheck" Type="Integer"
         Display="Dynamic"/>
     <asp:CompareValidator runat="server"
-        ControlToValidate="txtUtilidad" ForeColor="Red"
+        ControlToValidate="txtExistencia" ForeColor="Red"
         ErrorMessage="Debe ser mayor a uno."
         Operator="GreaterThanEqual"
         ValueToCompare ="1" Type="Integer"
@@ -97,12 +97,9 @@
     <asp:DropDownList ID="ddlDepartamento" runat="server" DataValueField="ID" DataTextField="Nombre"></asp:DropDownList>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
         ErrorMessage="El departamento del producto es obligatorio." 
-        ControlToValidate="ddlProveedor" ForeColor="Red"/><br />
+        ControlToValidate="ddlDepartamento" ForeColor="Red"/><br />
     <label for="contenido_checkboxGravado">Gravado</label><br />
-    <asp:CheckBox ID="checkboxGravado" runat="server" AutoPostBack="true"/>
-     <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" 
-         ErrorMessage="El departamento del producto es obligatorio." 
-         ControlToValidate="ddlProveedor" ForeColor="Red"/><br />
+    <asp:CheckBox ID="checkboxGravado" runat="server" AutoPostBack="true"/><br />
     <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />
     <br />
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>

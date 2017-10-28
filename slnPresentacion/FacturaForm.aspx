@@ -20,16 +20,7 @@
             </div>
             <div class="col-sm-6 col-md-6">
                 <label for="contenido_txtFecha">Fecha</label><br />
-                <asp:Calendar ID="cldFecha" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px">
-                    <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-                    <NextPrevStyle VerticalAlign="Bottom" />
-                    <OtherMonthDayStyle ForeColor="#808080" />
-                    <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-                    <SelectorStyle BackColor="#CCCCCC" />
-                    <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                    <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                    <WeekendDayStyle BackColor="#FFFFCC" />
-                </asp:Calendar>
+                <asp:TextBox ID="txtFecha" runat="server" Enabled="false" TextMode="Date"></asp:TextBox>
             </div>
             <div class="col-sm-4 col-md-4">
                 <label for="contenido_ddlCliente">Cliente</label><br />
@@ -56,18 +47,22 @@
                     <h4>Lineas de Articulos</h4>
                 </div>
             </div>
-            <div class="col-sm-4 col-md-4">
-                <label for="contenido_ddlProducto">Producto</label><br />
-                <asp:DropDownList ID="ddlProducto" runat="server" DataValueField="Id" DataTextField="Nombre"></asp:DropDownList>
-            </div>
-            <div class="col-sm-4 col-md-4">
-                <label for="contenido_txtCantidad">Cantidad</label><br />
-                <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number"></asp:TextBox>
-                <%--<asp:RangeValidator ID="RangeValidator2" runat="server" ErrorMessage="Cantidad puede positiva desde 1" ControlToValidate="txtCantidad" ForeColor="Red" MinimumValue="1"></asp:RangeValidator>--%>
-            </div>
-            <div class="col-sm-4 col-md-4">
-                <asp:Button ID="btnAgregarArticulo" runat="server" CssClass="btn btn-secondary" Text="Agregar" OnClick="btnAgregarArticulo_Click" />
-            </div>
+            <asp:Panel ID="pnlLineaAgregar" runat="server" CssClass="col-sm-12 col-md-12">
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        <label for="contenido_ddlProducto">Producto</label><br />
+                        <asp:DropDownList ID="ddlProducto" runat="server" DataValueField="Id" DataTextField="Nombre"></asp:DropDownList>
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <label for="contenido_txtCantidad">Cantidad</label><br />
+                        <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number"
+                            ToolTip="La cantidad debe ser un n&uacute;mero entero positivo mayor a uno."></asp:TextBox>    
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                    <asp:Button ID="btnAgregarArticulo" runat="server" CssClass="btn btn-secondary" Text="Agregar" OnClick="btnAgregarArticulo_Click" />
+                </div>
+                </div>
+            </asp:Panel>
             <div class="col-sm-12 col-md-12">
                 <asp:GridView ID="gvLineaArticulos" runat="server" 
                     EmptyDataText="No Existen Lineas de articulos en la factura" 
