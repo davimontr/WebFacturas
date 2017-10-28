@@ -13,40 +13,96 @@
     </section>
     <label for="contenido_txtProducto">Producto</label><br />
     <asp:TextBox ID="txtProducto" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="El nombre del producto es obligatorio." ControlToValidate="txtProducto" ForeColor="Red"></asp:RequiredFieldValidator>
-    <br />
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
+        ErrorMessage="El nombre del producto es obligatorio." 
+        ControlToValidate="txtProducto" ForeColor="Red"/><br />
     <label for="contenido_txtCosto">Costo</label><br />
-    <asp:TextBox ID="txtCosto" runat="server" TextMode="Number"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="El costo del producto es obligatorio." ControlToValidate="txtCosto" ForeColor="Red"></asp:RequiredFieldValidator>
-    <br />
+    <asp:TextBox ID="txtCosto" runat="server" TextMode="Number"
+        ToolTip="El costo debe ser un n&uacute;mero positivo mayor a uno."></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+        ErrorMessage="El costo del producto es obligatorio." 
+        ControlToValidate="txtCosto" ForeColor="Red"
+        Display="Dynamic"/>
+    <asp:CompareValidator ID="CompareValidator2" runat="server"
+        ControlToValidate="txtCosto" ForeColor="Red"
+        ErrorMessage="N&uacute;mero debe ser un entero."
+        Operator="DataTypeCheck" Type="Integer"
+        Display="Dynamic"/>
+    <asp:CompareValidator runat="server"
+        ControlToValidate="txtCosto" ForeColor="Red"
+        ErrorMessage="Debe ser mayor a uno."
+        Operator="GreaterThanEqual"
+        ValueToCompare ="1" Type="Integer"
+        Display="Dynamic"/><br />
     <label for="contenido_txtUtilidad">Utilidad</label><br />
-    <asp:TextBox ID="txtUtilidad" runat="server" TextMode="Number"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="La Utilidad del producto es obligatorio." ControlToValidate="txtUtilidad" ForeColor="Red"></asp:RequiredFieldValidator>
-    <%--<asp:RangeValidator ID="RangeValidator1" runat="server" ErrorMessage="Utilidad es porcentual entero desde 1." ControlToValidate="txtUtilidad" MinimumValue="1"></asp:RangeValidator>--%>
-    <br />
+    <asp:TextBox ID="txtUtilidad" runat="server" TextMode="Number" 
+        ToolTip="La utilidad es porcentual y debe ser n&uacute;mero positivo mayor a uno."></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
+        ErrorMessage="La Utilidad del producto es obligatorio." 
+        ControlToValidate="txtUtilidad" ForeColor="Red"
+        Display="Dynamic"/>
+    <asp:CompareValidator ID="CompareValidator1" runat="server"
+        ControlToValidate="txtUtilidad" ForeColor="Red"
+        ErrorMessage="N&uacute;mero debe ser un entero."
+        Operator="DataTypeCheck" Type="Integer"
+        Display="Dynamic"/>
+    <asp:CompareValidator runat="server"
+        ControlToValidate="txtUtilidad" ForeColor="Red"
+        ErrorMessage="Debe ser mayor a uno."
+        Operator="GreaterThanEqual"
+        ValueToCompare ="1" Type="Integer"
+        Display="Dynamic"/><br />
     <label for="contenido_txtImpuesto">Impuesto</label><br />
-    <asp:TextBox ID="txtImpuesto" runat="server" TextMode="Number"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="El Impuesto del producto es obligatorio." ControlToValidate="txtImpuesto" ForeColor="Red"></asp:RequiredFieldValidator>
-    <%--<asp:RangeValidator ID="RangeValidator2" runat="server" ErrorMessage="Impuesto es porcentual entero desde 1 a 100." ControlToValidate="txtImpuesto" MinimumValue="1" MaximumValue="100"></asp:RangeValidator>--%>
-    <br />
+    <asp:TextBox ID="txtImpuesto" runat="server" TextMode="Number" 
+        ToolTip="El impuesto es porcentual y debe ser n&uacute;mero positivo mayor a uno."></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
+        ErrorMessage="El Impuesto del producto es obligatorio." 
+        ControlToValidate="txtImpuesto" ForeColor="Red"
+        Display="Dynamic"/>
+    <asp:CompareValidator ID="CompareValidator3" runat="server"
+        ControlToValidate="txtUtilidad" ForeColor="Red"
+        ErrorMessage="N&uacute;mero debe ser un entero."
+        Operator="DataTypeCheck" Type="Integer"
+        Display="Dynamic"/>
+    <asp:CompareValidator runat="server"
+        ControlToValidate="txtUtilidad" ForeColor="Red"
+        ErrorMessage="Debe ser mayor a uno."
+        Operator="GreaterThanEqual"
+        ValueToCompare ="1" Type="Integer"
+        Display="Dynamic"/><br />
     <label for="contenido_txtExistencia">Existencia</label><br />
-    <asp:TextBox ID="txtExistencia" runat="server" TextMode="Number"></asp:TextBox>
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="El Existencia del producto es obligatorio." ControlToValidate="txtExistencia" ForeColor="Red"></asp:RequiredFieldValidator>
-    <%--<asp:RangeValidator ID="RangeValidator3" runat="server" ErrorMessage="Existencia es entero desde 0." ControlToValidate="txtExistencia" MinimumValue="0"></asp:RangeValidator>--%>
-    <br />
+    <asp:TextBox ID="txtExistencia" runat="server" TextMode="Number"
+        ToolTip="La existencia debe ser n&uacute;mero positivo mayor a uno."></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" 
+        ErrorMessage="El Existencia del producto es obligatorio." 
+        ControlToValidate="txtExistencia" ForeColor="Red"
+        Display="Dynamic"/>
+    <asp:CompareValidator ID="CompareValidator4" runat="server"
+        ControlToValidate="txtUtilidad" ForeColor="Red"
+        ErrorMessage="N&uacute;mero debe ser un entero."
+        Operator="DataTypeCheck" Type="Integer"
+        Display="Dynamic"/>
+    <asp:CompareValidator runat="server"
+        ControlToValidate="txtUtilidad" ForeColor="Red"
+        ErrorMessage="Debe ser mayor a uno."
+        Operator="GreaterThanEqual"
+        ValueToCompare ="1" Type="Integer"
+        Display="Dynamic"/><br />
     <label for="contenido_ddlProveedor">Proveedor</label><br />
     <asp:DropDownList ID="ddlProveedor" runat="server" DataValueField="Id" DataTextField="Nombre"></asp:DropDownList>
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="El proveedor del producto es obligatorio." ControlToValidate="ddlProveedor" ForeColor="Red"></asp:RequiredFieldValidator>
-    <br />
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" 
+        ErrorMessage="El proveedor del producto es obligatorio." 
+        ControlToValidate="ddlProveedor" ForeColor="Red"/><br />
     <label for ="contenido_ddlDepartamento">Departamento</label><br />
     <asp:DropDownList ID="ddlDepartamento" runat="server" DataValueField="ID" DataTextField="Nombre"></asp:DropDownList>
-    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="El departamento del producto es obligatorio." ControlToValidate="ddlProveedor" ForeColor="Red"></asp:RequiredFieldValidator>
-    <br />
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" 
+        ErrorMessage="El departamento del producto es obligatorio." 
+        ControlToValidate="ddlProveedor" ForeColor="Red"/><br />
     <label for="contenido_checkboxGravado">Gravado</label><br />
     <asp:CheckBox ID="checkboxGravado" runat="server" AutoPostBack="true"/>
-     <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="El departamento del producto es obligatorio." ControlToValidate="ddlProveedor" ForeColor="Red"></asp:RequiredFieldValidator>
-    <br />
-
+     <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" 
+         ErrorMessage="El departamento del producto es obligatorio." 
+         ControlToValidate="ddlProveedor" ForeColor="Red"/><br />
     <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />
     <br />
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
