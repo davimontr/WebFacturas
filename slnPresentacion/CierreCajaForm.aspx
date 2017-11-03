@@ -5,11 +5,16 @@
     <ucMenu:MenuInterno ID="MenuInterno" runat="server" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="contenido" runat="server">
-    <h1>Ciere de Caja</h1>
+    <h1>Cierre de Caja</h1>
     <asp:Label ID="Label1" runat="server" Text="Buscar fecha"></asp:Label>
     <asp:Calendar ID="CalendarObtenerFecha" runat="server"></asp:Calendar>
     <br />
-    <asp:Button ID="btnGenerar" runat="server" Text="Generar" Height="38px" Width="108px" />
+    <asp:Button ID="btnGenerar" runat="server" Text="Generar" Height="38px" Width="108px" OnClick="btnGenerar_Click" />
+    <br />
+<h4>
+    Total de Facturas
+</h4>
+  <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label>
     <br />
     <br />
 <asp:GridView ID="dgCiereCaja" runat="server" Height="135px" Width="678px"></asp:GridView>
