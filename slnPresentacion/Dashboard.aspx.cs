@@ -1,6 +1,7 @@
 ﻿using System;
 using slnLogica;
 using System.Web.UI;
+using slnPresentacion;
 
 namespace WebFacturas
 {
@@ -44,6 +45,16 @@ namespace WebFacturas
         protected void gvFacturas_RowEditing(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
         {
             Response.Redirect("~/FacturaForm.aspx?Id=" + this.gvFacturas.Rows[e.NewEditIndex].Cells[0].Text);
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
+        }
+
+        protected void btnExportar_Click(object sender, EventArgs e)
+        {
+            new Exportador().enPDF(this.gvFacturas, Response);
         }
     }
 }

@@ -14,27 +14,27 @@ namespace slnPresentacion
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            cargarGrid();
-        }
-        private void cargarGrid()
-        {
-            try
+            if (!Page.IsPostBack)
             {
-                this.dgCiereCaja.DataSource = this.factura.obtenerTodos();
-                this.dgCiereCaja.DataBind();
-            }
-            catch (Exception ex)
-            {
-                this.lblMensaje.Text = ex.Message;
+
+
+                defineFechaPredeterminada();
             }
         }
+
 
         private void defineFechaPredeterminada()
         {
             DateTime today = DateTime.Today;
             this.CalendarObtenerFecha.TodaysDate = today;
             this.CalendarObtenerFecha.SelectedDate = this.CalendarObtenerFecha.TodaysDate;
-           
+
+        }
+
+        protected void btnGenerar_Click(object sender, EventArgs e)
+        {
+            this.lblTotal.Text = this.factura.reporteCierre(this.CalendarObtenerFecha.SelectedDate).ToString();
+
         }
     }
 }

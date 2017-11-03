@@ -15,6 +15,8 @@ namespace slnLogica
         void actualizaFactura(int Id, string Numero, DateTime Fecha, int Idcliente, int IdFormaPago, int IdTipoMoneda);
         void eliminarFactura(int Id);
         Factura obtenFacturaSegunNumero(string Numero);
+        decimal reporteCierre(DateTime fecha);
+      
         
     }
 
@@ -82,5 +84,21 @@ namespace slnLogica
         {
             return this.contexto.Facturas.FirstOrDefault(f => f.Numero.Equals(Numero));
         }
+
+
+        public decimal reporteCierre(DateTime fecha)
+        {
+            return (from f in contexto.Facturas
+                    where f.Fecha == fecha
+                    select f.Total
+                     ).Sum();
+               
+        }
+
+
+    
+
+
+
     }
 }
