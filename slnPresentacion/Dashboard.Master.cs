@@ -43,6 +43,7 @@ namespace WebFacturas
                 { "/Dashboard.aspx", "Inicio" },
                 { "/Usuarios.aspx", "Usuarios" },
                 { "/Perfil.aspx", "Perfil" },
+                {"/ReportesGenerales.aspx", "Reportes Generales" },
                 { "https://www.google.com/", "Ayuda" }
             };
 

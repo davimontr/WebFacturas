@@ -16,6 +16,8 @@ namespace slnLogica
         void actualizaDepartamento(int id, string nombre);
         void eliminarDepartamento(int id);
         Departamento obtenerDepartamentoSegunID(int Id);
+        //List<object> reportDepartamento();
+        List<object> reportDepartamento(int idDepa);
 
 
     }
@@ -29,6 +31,62 @@ namespace slnLogica
             return this.contexto.Departamentos.ToList();
 
         }
+
+
+        public List<object> reportTodosDepa()
+        {
+
+            return (from d in contexto.Departamentos
+                    join p in contexto.Productos on d.Id equals p.IdDepartamento
+                    where p.IdDepartamento == d.Id
+                    select new
+                    {
+                        Codigo = p.Id,
+                        Producto = p.Nombre,
+                        Departamento = d.Nombre
+                    }
+                    ).ToList().Cast<object>().ToList();
+
+        }
+
+
+        public List<object> reportDepartamento(int idDepa)
+        {
+            //return (from d in this.contexto.Departamentos where d.Id == 1 select d).ToList() ;
+
+            //return (from d in this.contexto.Departamentos join
+            //(from p in this.contexto.Productos );
+
+            //    this.contexto.Departamentos where d.Id == 1 select d).ToList();
+
+            // return   (SELECT Productos.Id AS Codigo, Productos.Nombre AS Producto, Departamentos.Nombre AS Departamento FROM Departamentos INNER JOIN Productos ON Departamentos.Id = Productos.IdDepartamento).ToList();
+
+            //return (FROM Departamentos INNER JOIN Productos ON Departamentos.Id = Productos.IdDepartamento is this.contexto.Departamentos SELECT Productos.Id AS Codigo, Productos.Nombre AS Producto, Departamentos.Nombre AS Departamento ).ToList();
+
+
+            //return (from d in contexto.Departamentos
+            //        join p in contexto.Productos on d.Id equals p.IdDepartamento
+            //        select new
+            //        {
+            //            Codigo = p.Id,
+            //            Produ = p.Nombre,
+            //            Depa = d.Nombre
+            //        }).ToList();
+
+
+            return  (from d in contexto.Departamentos
+                         join p in contexto.Productos on d.Id equals p.IdDepartamento
+                     where p.IdDepartamento == idDepa
+                         select new
+                         {
+                             Codigo = p.Id,
+                             Producto = p.Nombre,
+                             Departamento = d.Nombre
+                         }                         
+                         ).ToList().Cast<object>().ToList();
+        }
+
+
 
         // metodo de agregar
 
@@ -57,6 +115,8 @@ namespace slnLogica
             Departamento dep = this.obtenerDepartamentoSegunID(id);
 
             this.contexto.Departamentos.Remove(dep);
+            this.contexto.SaveChanges();
+
 
         }
 

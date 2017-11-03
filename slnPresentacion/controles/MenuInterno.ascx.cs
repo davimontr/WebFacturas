@@ -22,7 +22,7 @@ namespace slnPresentacion
                 { "/Productos.aspx", "Productos" },
                 { "/Proveedores.aspx", "Proveedores" },
                 { "/Departamentos.aspx", "Departamentos" },
-                { "/Reportes/ReporteProductoDepartamento.aspx", "Reporte Departamento"}
+               // { "ReporteProductoDepartamento.aspx", "Reporte Departamento"}
             };
 
             HTML.AppendFormat("<ul class=\"nav nav-pills flex-column\">");

@@ -20,30 +20,35 @@
         <div class="col-4 col-sm-4 placeholder">
                 <%-- href="DepartamentoForm.aspx" --%>
             <h4>Filtro</h4>
-            <span class="text-muted">Filtrar</span>
+
+            <h4>
+              
+                <asp:DropDownList ID="ddlDepartamento" runat="server" OnSelectedIndexChanged="ddlDepartamento_SelectedIndexChanged" AutoPostBack="True">
+
+                </asp:DropDownList>
+            </h4>
         </div>
-    </section>
-        EmptyDataText="No Existen Departamentos Registrados" 
-        CssClass="table table-striped" 
-        OnRowDeleting="gvReportProductosDepartamentos_RowDeleting" 
-        OnRowEditing="gvReportProductosDepartamentos_RowEditing"
-        AutoGenerateColumns="False"
-        DataKeyNames="Id">
-        <Columns>
-            <asp:BoundField DataField="Id" HeaderText="Id">
-                <ItemStyle CssClass="d-none" />
-                <HeaderStyle CssClass="d-none" />
-            </asp:BoundField>
-            <asp:BoundField DataField="Id" HeaderText="ID" />
-            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
-            <asp:CommandField EditText="Editar" ShowEditButton="true">
-                <ControlStyle CssClass="btn btn-primary active" />
-            </asp:CommandField>
-            <asp:CommandField DeleteText="Borrar" ShowDeleteButton="True">
-                <ControlStyle CssClass="btn btn-danger btn-sm" />
-            </asp:CommandField>
-        </Columns>
-    </asp:GridView>
+        
+    </section> 
+    
+    <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" Font-Size="Large" GridLines="Vertical"  >
+        <AlternatingRowStyle BackColor="#DCDCDC" />
+        <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+        <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
+        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+        <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+        <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+        <SortedAscendingHeaderStyle BackColor="#0000A9" />
+        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+        <SortedDescendingHeaderStyle BackColor="#000065" />
+        
+
+
+
+
+    </asp:GridView>   
+
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 </asp:Content>
 

@@ -129,7 +129,8 @@
     <Content Include="recursos\js\bootstrap.min.js" />
     <Content Include="recursos\js\ie10-viewport-bug-workaround.js" />
     <Content Include="recursos\js\popper.min.js" />
-    <Content Include="Reportes\ReporteProductoDepartamento.aspx" />
+    <Content Include="ReporteProductoDepartamento.aspx" />
+    <Content Include="ReportesGenerales.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="UsuarioForm.aspx" />
@@ -257,12 +258,19 @@
     <Compile Include="ProveedorForm.aspx.designer.cs">
       <DependentUpon>ProveedorForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\ReporteProductoDepartamento.aspx.cs">
+    <Compile Include="ReporteProductoDepartamento.aspx.cs">
       <DependentUpon>ReporteProductoDepartamento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Reportes\ReporteProductoDepartamento.aspx.designer.cs">
+    <Compile Include="ReporteProductoDepartamento.aspx.designer.cs">
       <DependentUpon>ReporteProductoDepartamento.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportesGenerales.aspx.cs">
+      <DependentUpon>ReportesGenerales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportesGenerales.aspx.designer.cs">
+      <DependentUpon>ReportesGenerales.aspx</DependentUpon>
     </Compile>
     <Compile Include="SesionMensajes.cs" />
     <Compile Include="UsuarioForm.aspx.cs">
