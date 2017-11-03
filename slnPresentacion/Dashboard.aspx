@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dashboard.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="WebFacturas.Dashboard" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dashboard.Master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="WebFacturas.Dashboard" EnableEventValidation="false" %>
 
 <%@ Register Src="~/controles/MenuInterno.ascx" TagName="MenuInterno" TagPrefix="ucMenu" %>
 <asp:Content ID="Content2" ContentPlaceHolderID="menuInterno" runat="server">
@@ -44,5 +44,5 @@
     </asp:GridView>
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
     <br />
-
+    <asp:Button ID="btnExportar" runat="server" Text="Exportar PDF" OnClick="btnExportar_Click" CssClass="btn-dark"/>
     </asp:Content>
