@@ -43,6 +43,14 @@
         </Columns>
     </asp:GridView>
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
-    <br />
-    <asp:Button ID="btnExportar" runat="server" Text="Exportar PDF" OnClick="btnExportar_Click" CssClass="btn-dark"/>
+   <div class="container-fluid">
+       <div class="row">
+           <div class="col">
+                <asp:Button ID="btnPdf" runat="server" Text="Exportar PDF" CssClass="btn-dark" OnClick="btnPdf_Click"/>
+           </div>
+           <div class="col">
+                <asp:Button ID="btnExcel" runat="server" Text="Exportar Excel" CssClass="btn-dark" OnClick="btnExcel_Click"/>
+           </div>
+       </div>
+   </div>
     </asp:Content>

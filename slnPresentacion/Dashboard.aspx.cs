@@ -52,9 +52,14 @@ namespace WebFacturas
             /* Verifies that the control is rendered */
         }
 
-        protected void btnExportar_Click(object sender, EventArgs e)
+        protected void btnPdf_Click(object sender, EventArgs e)
         {
             new Exportador().enPDF(this.gvFacturas, Response);
+        }
+
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

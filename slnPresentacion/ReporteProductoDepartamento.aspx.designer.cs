@@ -13,15 +13,6 @@ namespace slnPresentacion.Reportes {
     public partial class ReporteProductoDepartamento {
         
         /// <summary>
-        /// MenuInterno control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::slnPresentacion.MenuInterno MenuInterno;
-        
-        /// <summary>
         /// ddlDepartamento control.
         /// </summary>
         /// <remarks>
