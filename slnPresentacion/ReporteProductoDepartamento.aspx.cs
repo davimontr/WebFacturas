@@ -22,9 +22,9 @@ namespace slnPresentacion.Reportes
         {
             try
             {
-                 
-
-                this.ddlDepartamento.DataSource = this.departamentos.obtenerDepartamento();
+                var listaDepartamentos = this.departamentos.obtenerDepartamento();
+                listaDepartamentos.Insert(0, new slnDatos.Departamento { Id = 0, Nombre = "Todos" });
+                this.ddlDepartamento.DataSource = listaDepartamentos;
                 this.ddlDepartamento.DataTextField = "Nombre";
                 this.ddlDepartamento.DataValueField = "Id";
                 // this.ddlDepartamento.SelectedValue = Convert.ToString(valor);
@@ -72,7 +72,7 @@ namespace slnPresentacion.Reportes
 
 //                GridView1.DataSource = new AccionesDepartamentos().reportDepartamento(Int32.Parse(this.ddlDepartamento.SelectedValue));
 
-                GridView1.DataSource = new AccionesDepartamentos().reportTodosDepa();
+                GridView1.DataSource = this.departamentos.reportTodosDepa();
 
 
                 GridView1.DataBind();
@@ -89,11 +89,15 @@ namespace slnPresentacion.Reportes
 
             try
             {
-
-
-                GridView1.DataSource = new AccionesDepartamentos().reportDepartamento(Int32.Parse(this.ddlDepartamento.SelectedValue));
-
-
+                int IdDepartamento = int.Parse(this.ddlDepartamento.SelectedValue);
+                if (0 == IdDepartamento)
+                {
+                    cargarGrid();
+                }
+                else
+                {
+                    GridView1.DataSource = this.departamentos.reportDepartamento(IdDepartamento);
+                }
                 GridView1.DataBind();
 
             }

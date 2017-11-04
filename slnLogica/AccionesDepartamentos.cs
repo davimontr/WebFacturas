@@ -16,7 +16,7 @@ namespace slnLogica
         void actualizaDepartamento(int id, string nombre);
         void eliminarDepartamento(int id);
         Departamento obtenerDepartamentoSegunID(int Id);
-        //List<object> reportDepartamento();
+        List<object> reportTodosDepa();
         List<object> reportDepartamento(int idDepa);
 
 
