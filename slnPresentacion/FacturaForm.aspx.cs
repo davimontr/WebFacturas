@@ -39,7 +39,7 @@ namespace slnPresentacion
                 {
                     fila.Enabled = false;
                 }
-                this.btnSalvar.Text = "Volver";
+                this.btnSalvar.Visible = false;
             }
             else
             {
