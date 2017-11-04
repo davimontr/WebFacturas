@@ -31,7 +31,15 @@
         
     </section> 
     
-    <asp:GridView ID="GridView1" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" Font-Size="Large" GridLines="Vertical"  >
+    <asp:GridView ID="GridView1" runat="server" 
+        EmptyDataText="No Existen Productos En Dado Departameto" 
+        BackColor="White" 
+        BorderColor="#999999" 
+        BorderStyle="None" 
+        BorderWidth="1px" 
+        CellPadding="3" 
+        Font-Size="Large" 
+        GridLines="Vertical">
         <AlternatingRowStyle BackColor="#DCDCDC" />
         <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
         <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
