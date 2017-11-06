@@ -3,6 +3,7 @@ using slnLogica;
 using slnDatos;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
+using System.Web.UI;
 
 namespace slnPresentacion
 {
@@ -138,6 +139,18 @@ namespace slnPresentacion
 
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
+            if(this.gvLineaArticulos.Rows.Count == 0 && "btnAgregarArticulo" != ((Button)sender).ID)
+            {
+                ScriptManager.RegisterStartupScript(
+                    this, 
+                    GetType(), 
+                    "Alerta", 
+                    "alert('Debe agregar al menos UNA linea de articulo.');", 
+                    true
+                );
+                return;
+            }
+
             try
             {
                 string Identificador = this.hdnIdentificador.Value;
@@ -183,6 +196,17 @@ namespace slnPresentacion
 
         protected void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(this.txtCantidad.Text))
+            {
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    GetType(),
+                    "Alerta",
+                    "alert('Debe agregar una cantidad minima de un articulo.');",
+                    true
+                );
+                return;
+            }
             this.invocarSalvarFactura(sender, e);
 
             int IdFactura = int.Parse(this.hdnIdentificador.Value);
@@ -207,6 +231,34 @@ namespace slnPresentacion
             {
                 this.lblMensaje.Text = ex.Message;
             }
+        }
+
+        protected void ddlFormaPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ("Contado" == this.ddlFormaPago.SelectedItem.Text)
+            {
+                this.pnlPago.Visible = true;
+                this.ddlTipoMoneda.Enabled = true;
+            }
+            else
+            {
+                this.ddlTipoMoneda.SelectedValue = "1";
+                this.ddlTipoMoneda.Enabled = false;
+                this.txtPagado.Text = string.Empty;
+                this.pnlPago.Visible = false;
+                this.ddlTipoMoneda_SelectedIndexChanged(sender, e);
+            }
+        }
+
+        protected void ddlTipoMoneda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool mostrar = false;
+            if ("Colones" != this.ddlTipoMoneda.SelectedItem.Text)
+            {
+                mostrar = true;
+            }
+            this.pnlCambio.Visible = mostrar;
+            this.pnlConvertido.Visible = mostrar;
         }
     }
 }

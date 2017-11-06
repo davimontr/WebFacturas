@@ -47,6 +47,17 @@
                         <label for="contenido_txtCantidad">Cantidad</label><br />
                         <asp:TextBox ID="txtCantidad" runat="server" TextMode="Number"
                             ToolTip="La cantidad debe ser un n&uacute;mero entero positivo mayor a uno."></asp:TextBox>
+                        <asp:CompareValidator ID="CompareValidator1" runat="server"
+                            ControlToValidate="txtCantidad" ForeColor="Red"
+                            ErrorMessage="Debe ser un n&uacute;mero entero."
+                            Operator="DataTypeCheck" Type="Integer"
+                            Display="Dynamic" />
+                        <asp:CompareValidator runat="server"
+                            ControlToValidate="txtCantidad" ForeColor="Red"
+                            ErrorMessage="Debe ser mayor a uno."
+                            Operator="GreaterThanEqual"
+                            ValueToCompare="1" Type="Integer"
+                            Display="Dynamic" />
                     </div>
                     <div class="col-sm-4 col-md-4">
                         <asp:Button ID="btnAgregarArticulo" runat="server" CssClass="btn btn-secondary" Text="Agregar" OnClick="btnAgregarArticulo_Click" />
@@ -96,35 +107,46 @@
                 <div class="row">
                     <div class="col">
                         <label for="contenido_ddlFormaPago">Forma de pago</label><br />
-                        <asp:DropDownList ID="ddlFormaPago" runat="server" DataValueField="Id" DataTextField="Nombre"></asp:DropDownList>
+                        <asp:DropDownList AutoPostBack="true" ID="ddlFormaPago" runat="server" DataValueField="Id" DataTextField="Nombre" OnSelectedIndexChanged="ddlFormaPago_SelectedIndexChanged"></asp:DropDownList>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Forma de pago es obligatorio." ControlToValidate="ddlFormaPago" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
                     <div class="col">
-                        <h4>Total:&nbsp;</h4>
+                        <h6>Total:&nbsp;</h6>
                         <asp:TextBox ID="txtTotal" runat="server" Enabled="False"></asp:TextBox>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <label for="contenido_ddlTipoMoneda">Tipo de moneda</label><br />
-                        <asp:DropDownList ID="ddlTipoMoneda" runat="server" DataValueField="Id" DataTextField="Nombre"></asp:DropDownList>
+                        <asp:DropDownList AutoPostBack="true" ID="ddlTipoMoneda" runat="server" DataValueField="Id" DataTextField="Nombre" OnSelectedIndexChanged="ddlTipoMoneda_SelectedIndexChanged"></asp:DropDownList>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Tipo de moneda es obligatorio." ControlToValidate="ddlTipoMoneda" ForeColor="Red"></asp:RequiredFieldValidator>
                     </div>
-                    <div class="col">
-                        <h4>Tipo cambio:</h4>
+                    <asp:Panel ID="pnlCambio" runat="server" CssClass="col" Visible="false">
+                        <h6>Tipo cambio:</h6>
                         <asp:TextBox ID="txtCambio" runat="server" Enabled="False"></asp:TextBox>
-                    </div>
-                    <div class="col">
-                        <h4>Pago recibido:</h4>
-                        <asp:TextBox ID="txtPagado" runat="server"></asp:TextBox>
-                    </div>
-                    <div class="col">
-                        <h4>Pago en Colones:</h4>
-                        <asp:TextBox ID="txtConvertido" runat="server"  Enabled="False"></asp:TextBox>
-                    </div>
+                    </asp:Panel>
+                    <asp:Panel ID="pnlPago" runat="server" CssClass="col">
+                        <h6>Pago recibido:</h6>
+                        <asp:TextBox ID="txtPagado" runat="server"  TextMode="Number"
+                            ToolTip="El pago debe ser un n&uacute;mero positivo mayor a uno."></asp:TextBox>
+                        <asp:CompareValidator runat="server"
+                            ControlToValidate="txtPagado" ForeColor="Red"
+                            ErrorMessage="Debe ser mayor a uno."
+                            Operator="GreaterThanEqual"
+                            ValueToCompare="1" Type="Double"
+                            Display="Dynamic" />
+                    </asp:Panel>
+                    <asp:Panel ID="pnlConvertido" runat="server" CssClass="col" Visible="false">
+                        <h6>Pago en Colones:</h6>
+                        <asp:TextBox ID="txtConvertido" runat="server" Enabled="False"></asp:TextBox>
+                    </asp:Panel>
                 </div>
                 <div class="row">
                     <div class="col">
+                    </div>
+                    <div class="col">
+                    </div>
+                    <div class="col align-self-end text-center">
                         <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Pagar" OnClick="btnSalvar_Click" />
                     </div>
                 </div>

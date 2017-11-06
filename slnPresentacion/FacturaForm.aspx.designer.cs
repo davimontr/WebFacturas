@@ -103,6 +103,15 @@ namespace slnPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtCantidad;
         
         /// <summary>
+        /// CompareValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
+        
+        /// <summary>
         /// btnAgregarArticulo control.
         /// </summary>
         /// <remarks>
@@ -166,6 +175,15 @@ namespace slnPresentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
+        /// pnlCambio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCambio;
+        
+        /// <summary>
         /// txtCambio control.
         /// </summary>
         /// <remarks>
@@ -175,6 +193,15 @@ namespace slnPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtCambio;
         
         /// <summary>
+        /// pnlPago control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPago;
+        
+        /// <summary>
         /// txtPagado control.
         /// </summary>
         /// <remarks>
@@ -182,6 +209,15 @@ namespace slnPresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPagado;
+        
+        /// <summary>
+        /// pnlConvertido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlConvertido;
         
         /// <summary>
         /// txtConvertido control.
