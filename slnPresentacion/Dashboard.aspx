@@ -33,7 +33,7 @@
             <asp:BoundField DataField="Cliente.NombreCompleto" HeaderText="Cliente" />
             <asp:BoundField DataField="FormaPago.Nombre" HeaderText="Forma Pago" />
             <asp:BoundField DataField="TipoMoneda.Nombre" HeaderText="Tipo Moneda" />
-            <asp:BoundField DataField="Total" HeaderText="Total" />
+            <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:n}" />
             <asp:CommandField EditText="Ver" ShowEditButton="true">
                 <ControlStyle CssClass="btn btn-primary active" />
             </asp:CommandField>

@@ -128,12 +128,12 @@
                     <asp:Panel ID="pnlPago" runat="server" CssClass="col">
                         <h6>Pago recibido:</h6>
                         <asp:TextBox ID="txtPagado" runat="server"  TextMode="Number"
-                            ToolTip="El pago debe ser un n&uacute;mero positivo mayor a uno."></asp:TextBox>
+                            ToolTip="El pago debe ser un n&uacute;mero positivo mayor a uno. (Puede incluir decimales utilizando la coma. Ej: 1,00)"></asp:TextBox>
                         <asp:CompareValidator runat="server"
                             ControlToValidate="txtPagado" ForeColor="Red"
                             ErrorMessage="Debe ser mayor a uno."
                             Operator="GreaterThanEqual"
-                            ValueToCompare="1" Type="Double"
+                            ValueToCompare="1"
                             Display="Dynamic" />
                     </asp:Panel>
                     <asp:Panel ID="pnlConvertido" runat="server" CssClass="col" Visible="false">
