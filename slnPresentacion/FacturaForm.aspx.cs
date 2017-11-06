@@ -4,6 +4,7 @@ using slnDatos;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using System.Web.UI;
+using System.Globalization;
 
 namespace slnPresentacion
 {
@@ -252,13 +253,29 @@ namespace slnPresentacion
 
         protected void ddlTipoMoneda_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             bool mostrar = false;
             if ("Colones" != this.ddlTipoMoneda.SelectedItem.Text)
             {
                 mostrar = true;
+                this.txtCambio.Text = this.tipoMonedas.
+                    obtenerTipoCambioDeMonedaPorId(int.Parse(this.ddlTipoMoneda.SelectedValue))
+                    .ToString();
+                this.txtPagado_TextChanged(sender, e);
             }
             this.pnlCambio.Visible = mostrar;
             this.pnlConvertido.Visible = mostrar;
+        }
+
+        protected void txtPagado_TextChanged(object sender, EventArgs e)
+        {
+            if(string.IsNullOrEmpty(this.txtPagado.Text) || string.IsNullOrEmpty(this.txtCambio.Text))
+            {
+                return;
+            }
+            decimal pagado = Convert.ToDecimal(this.txtPagado.Text, CultureInfo.InvariantCulture);
+            decimal cambio = Convert.ToDecimal(this.txtCambio.Text, CultureInfo.InvariantCulture);
+            this.txtConvertido.Text = (cambio * pagado).ToString("n");
         }
     }
 }
