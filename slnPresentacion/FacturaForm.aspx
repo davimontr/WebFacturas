@@ -11,7 +11,12 @@
         <div class="col-10 col-sm-10 placeholder">
         </div>
     </section>
-    <div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col text-center">
+                <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
+            </div>
+        </div>
         <div class="row">
             <div class="col">
                 <label for="contenido_txtFactura">Factura</label><br />
@@ -70,7 +75,7 @@
                     CssClass="table table-striped"
                     OnRowDeleting="gvLineaArticulos_RowDeleting"
                     AutoGenerateColumns="False"
-                    DataKeyNames="Id">
+                    DataKeyNames="Id" OnDataBound="gvLineaArticulos_DataBound">
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="Id">
                             <ItemStyle CssClass="d-none" />
@@ -98,8 +103,7 @@
     <hr />
     <p>
         <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            Detalle pago
-        </button>
+            Detalle pago</button>
     </p>
     <div class="collapse show" id="collapseExample">
         <div class="card card-body">
@@ -112,7 +116,7 @@
                     </div>
                     <div class="col">
                         <h6>Total:&nbsp;</h6>
-                        <asp:TextBox ID="txtTotal" runat="server" Enabled="False"></asp:TextBox>
+                        <asp:Label ID="lblTotal" runat="server"></asp:Label>
                     </div>
                 </div>
                 <div class="row">
@@ -123,10 +127,11 @@
                     </div>
                     <asp:Panel ID="pnlCambio" runat="server" CssClass="col" Visible="false">
                         <h6>Tipo cambio:</h6>
-                        <asp:TextBox ID="txtCambio" runat="server" Enabled="False"></asp:TextBox>
+                        <asp:Label ID="lblCambio" runat="server"></asp:Label>
                     </asp:Panel>
                     <asp:Panel ID="pnlPago" runat="server" CssClass="col">
                         <h6>Pago recibido:</h6>
+                        <asp:Label ID="lblPagado" runat="server"></asp:Label>
                         <asp:TextBox AutoPostBack="true" ID="txtPagado" runat="server"  TextMode="Number"
                             ToolTip="El pago debe ser un n&uacute;mero positivo mayor a uno. (Puede incluir decimales utilizando la coma. Ej: 1,00)" OnTextChanged="txtPagado_TextChanged"></asp:TextBox>
                         <asp:CompareValidator runat="server"
@@ -138,7 +143,7 @@
                     </asp:Panel>
                     <asp:Panel ID="pnlConvertido" runat="server" CssClass="col" Visible="false">
                         <h6>Pago en Colones:</h6>
-                        <asp:TextBox ID="txtConvertido" runat="server" Enabled="False"></asp:TextBox>
+                        <asp:Label ID="lblConvertido" runat="server"></asp:Label>
                     </asp:Panel>
                 </div>
                 <div class="row">
@@ -153,5 +158,4 @@
             </div>
         </div>
     </div>
-    <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 </asp:Content>

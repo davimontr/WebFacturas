@@ -11,7 +11,7 @@ namespace slnLogica
     {
         List<TipoMoneda> obtenerTodos();
         TipoMoneda obtenerPorId(int Id);
-        int obtenerTipoCambioDeMonedaPorId(int Id);
+        decimal obtenerTipoCambioDeMonedaPorId(int Id);
     }
 
     public class AccionesTipoMoneda : AccionesEntidades, IServiciosTipoMoneda
@@ -27,7 +27,7 @@ namespace slnLogica
             return this.contexto.TipoMonedas.Where(tp => tp.Id == Id).SingleOrDefault();
         }
 
-        public int obtenerTipoCambioDeMonedaPorId(int Id)
+        public decimal obtenerTipoCambioDeMonedaPorId(int Id)
         {
             return this.obtenerPorId(Id).TipoCambio;
         }

@@ -31,6 +31,15 @@ namespace slnPresentacion {
         protected global::System.Web.UI.WebControls.HiddenField hdnIdentificador;
         
         /// <summary>
+        /// lblMensaje control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMensaje;
+        
+        /// <summary>
         /// txtFactura control.
         /// </summary>
         /// <remarks>
@@ -148,13 +157,13 @@ namespace slnPresentacion {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// txtTotal control.
+        /// lblTotal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTotal;
+        protected global::System.Web.UI.WebControls.Label lblTotal;
         
         /// <summary>
         /// ddlTipoMoneda control.
@@ -184,13 +193,13 @@ namespace slnPresentacion {
         protected global::System.Web.UI.WebControls.Panel pnlCambio;
         
         /// <summary>
-        /// txtCambio control.
+        /// lblCambio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCambio;
+        protected global::System.Web.UI.WebControls.Label lblCambio;
         
         /// <summary>
         /// pnlPago control.
@@ -200,6 +209,15 @@ namespace slnPresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlPago;
+        
+        /// <summary>
+        /// lblPagado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPagado;
         
         /// <summary>
         /// txtPagado control.
@@ -220,13 +238,13 @@ namespace slnPresentacion {
         protected global::System.Web.UI.WebControls.Panel pnlConvertido;
         
         /// <summary>
-        /// txtConvertido control.
+        /// lblConvertido control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtConvertido;
+        protected global::System.Web.UI.WebControls.Label lblConvertido;
         
         /// <summary>
         /// btnSalvar control.
@@ -236,14 +254,5 @@ namespace slnPresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSalvar;
-        
-        /// <summary>
-        /// lblMensaje control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
     }
 }
