@@ -68,38 +68,6 @@ namespace slnPresentacion
         }
 
 
-        public void reportPDF(GridView cuadricula, HttpResponse respuesta)
-        {
-            using (StringWriter escritor = new StringWriter())
-            {
-                using (HtmlTextWriter escritorHTML = new HtmlTextWriter(escritor))
-                {
-                    if(this.ocultarComandos)
-                    {
-                        this.ocultarCeldaComandos(cuadricula);
-                    }
-                    //cuadricula.RenderControl(escritorHTML);
-                    cuadricula.RenderBeginTag(escritorHTML);
-                    //
-                    StringReader lector = new StringReader(escritor.ToString());
-                    Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
-
-                    PdfWriter escritorPDF = PdfWriter.GetInstance(pdfDoc, respuesta.OutputStream);
-                    //
-                    pdfDoc.Open();
-                    iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(escritorPDF, pdfDoc, lector);
-                    pdfDoc.Close();
-                    //
-                    respuesta.ContentType = "application/pdf";
-                    respuesta.AddHeader("content-disposition", "attachment;filename=GridViewExport.pdf");
-                    respuesta.Cache.SetCacheability(HttpCacheability.NoCache);
-                    respuesta.Write(pdfDoc);
-                    respuesta.End();
-                }
-            }
-        }
-
-
 
     }
 }

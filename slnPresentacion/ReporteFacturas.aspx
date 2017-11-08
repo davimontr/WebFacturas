@@ -51,5 +51,16 @@
 
     </div>
 
+       <div class="container-fluid">
+       <div class="row">
+           <div class="col">
+                <asp:Button ID="btnPdf" runat="server" Text="Exportar PDF" CssClass="btn-dark" OnClick="btnPdf_Click"/>
+           </div>
+           <div class="col">
+                <asp:Button ID="btnExcel" runat="server" Text="Exportar Excel" CssClass="btn-dark" OnClick="btnExcel_Click"/>
+           </div>
+       </div>
+   </div>
+
 
 </asp:Content>

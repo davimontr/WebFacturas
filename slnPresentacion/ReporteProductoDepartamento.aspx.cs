@@ -111,7 +111,7 @@ namespace slnPresentacion.Reportes
 
         protected void btnPdf_Click(object sender, EventArgs e)
         {
-            new Exportador().reportPDF(this.GridView1, Response);
+            new Exportador().enPDF(this.GridView1, Response);
         }
 
         protected void btnExcel_Click(object sender, EventArgs e)
