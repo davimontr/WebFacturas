@@ -16,6 +16,13 @@
                  <a href="/CierreCajaForm.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Cierre cajas</a>
             </div>
             <div class="col-sm text-center">
+               <a href="/ReportPrductosProveedor.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Productos por Proveedor</a>
+            </div>
+             <div class="col-sm text-center">
+               <a href="/ReporteFacturas.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Productos por Facturas</a>
+            </div>
+
+            <div class="col-sm text-center">
                <a href="#" class="badge badge-pill badge-info" style="font-size: medium;">Reporte...</a>
             </div>
         </div>

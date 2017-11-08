@@ -52,6 +52,7 @@
     <Compile Include="AccionesFormaPago.cs" />
     <Compile Include="AccionesProductos.cs" />
     <Compile Include="AccionesProveedores.cs" />
+    <Compile Include="AccionesReportes.cs" />
     <Compile Include="AccionesRoles.cs" />
     <Compile Include="AccionesTipoMoneda.cs" />
     <Compile Include="AccionesUsuarios.cs" />

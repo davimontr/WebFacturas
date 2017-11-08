@@ -14,6 +14,9 @@ namespace slnLogica
         void actualizaProveedor(int Id, string Nombre);
         void eliminarProveedor(int Id);
         Proveedor obtenProveedorSegunIdentificador(int Id);
+        List<object> reportTodosProvee();
+        List<object> reportProveedores(int idProvee);
+
     }
 
     public class AccionesProveedores : AccionesEntidades, IserviciosProveedores
@@ -52,6 +55,38 @@ namespace slnLogica
             Proveedor proveedor = this.obtenProveedorSegunIdentificador(Id);
             this.contexto.Proveedors.Remove(proveedor);
             this.contexto.SaveChanges();
+        }
+
+        public List<object> reportTodosProvee()
+        {
+
+            return (from d in contexto.Proveedors
+                    join p in contexto.Productos on d.Id equals p.IdProveedor
+                    where p.IdProveedor == d.Id
+                    select new
+                    {
+                        Codigo = p.Id,
+                        Producto = p.Nombre,
+                        Proveedores = d.Nombre
+                    }
+                    ).ToList().Cast<object>().ToList();
+
+        }
+
+        //metodo que contiene el select para unir
+        public List<object> reportProveedores(int idProvee)
+        {
+
+            return (from d in contexto.Proveedors
+                    join p in contexto.Productos on d.Id equals p.IdProveedor
+                    where p.IdProveedor == idProvee
+                    select new
+                    {
+                        Codigo = p.Id,
+                        Producto = p.Nombre,
+                        Proveedores = d.Nombre
+                    }
+                         ).ToList().Cast<object>().ToList();
         }
 
     }
