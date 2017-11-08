@@ -1,12 +1,13 @@
 ﻿using System;
 using slnLogica;
 using slnDatos;
-using System.Collections.Generic;
 using System.Web.UI.WebControls;
+using System.Web.UI;
+using System.Globalization;
 
 namespace slnPresentacion
 {
-    public partial class FacturaForm : System.Web.UI.Page
+    public partial class FacturaForm : Page
     {
         private IserviciosFacturas facturas = new AccionesFacturas();
         private IserviciosProductos productos = new AccionesProductos();
@@ -29,16 +30,22 @@ namespace slnPresentacion
                 this.ddlCliente.Enabled = false;
                 this.ddlFormaPago.SelectedValue = factura.IdFormaPago.ToString();
                 this.ddlFormaPago.Enabled = false;
-                this.txtTotal.Text = factura.Total.ToString();
+                this.lblTotal.Text = factura.Total.ToString();
                 this.ddlTipoMoneda.SelectedValue = factura.IdTipoMoneda.ToString();
                 this.ddlTipoMoneda.Enabled = false;
+                if (1 != factura.IdTipoMoneda)
+                {
+                    this.pnlConvertido.Visible = true;
+                    decimal convertido = decimal.Parse(factura.Convertido.ToString());
+                    this.lblConvertido.Text = convertido.ToString("n");
+                }
                 this.hdnIdentificador.Value = Identificador.ToString();
+                this.lblPagado.Text = factura.Pagado.ToString("n");
+                this.txtPagado.Visible = false;
                 this.cargarLineaArticulos(Identificador);
                 this.pnlLineaAgregar.Visible = false;
-                foreach (GridViewRow fila in this.gvLineaArticulos.Rows)
-                {
-                    fila.Enabled = false;
-                }
+                int columnas = this.gvLineaArticulos.Columns.Count;
+                this.gvLineaArticulos.Columns[--columnas].Visible = false;
                 this.btnSalvar.Visible = false;
             }
             else
@@ -138,6 +145,18 @@ namespace slnPresentacion
 
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
+            if (this.gvLineaArticulos.Rows.Count == 0 && "btnAgregarArticulo" != ((Button)sender).ID)
+            {
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    GetType(),
+                    "Alerta",
+                    "alert('Debe agregar al menos UNA linea de articulo.');",
+                    true
+                );
+                return;
+            }
+
             try
             {
                 string Identificador = this.hdnIdentificador.Value;
@@ -153,14 +172,41 @@ namespace slnPresentacion
                 }
                 else
                 {
+                    decimal? convertido = null;
+                    decimal transformado;
+                    if (decimal.TryParse(this.lblConvertido.Text, out transformado))
+                    {
+                        convertido = transformado;
+                    }
+
+                    decimal pagado = 0;
+                    int tipoMoneda = int.Parse(this.ddlTipoMoneda.SelectedValue);
+                    if (this.redireccionar && !decimal.TryParse(this.txtPagado.Text, out pagado))
+                    {
+                        throw new ArgumentException("El pago debe ser definido.");
+                    }
+
                     this.facturas.actualizaFactura(
                         int.Parse(Identificador),
                         this.txtFactura.Text,
                         DateTime.Parse(this.txtFecha.Text),
                         int.Parse(this.ddlCliente.SelectedValue),
                         int.Parse(this.ddlFormaPago.SelectedValue),
-                        int.Parse(this.ddlTipoMoneda.SelectedValue)
+                        tipoMoneda,
+                        pagado,
+                        convertido
                    );
+
+                    decimal total = decimal.Parse(this.lblTotal.Text);
+                    if (this.redireccionar && 1 != tipoMoneda && total > decimal.Parse(this.lblConvertido.Text))
+                    {
+                        throw new ArgumentException("El pago debe ser mayor o igual al total.");
+                    }
+                    else if (this.redireccionar && 1 == tipoMoneda && total > pagado)
+                    {
+                        throw new ArgumentException("El pago debe ser mayor o igual al total.");
+                    }
+
                 }
 
                 if (this.redireccionar)
@@ -183,20 +229,27 @@ namespace slnPresentacion
 
         protected void btnAgregarArticulo_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(this.txtCantidad.Text))
+            {
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    GetType(),
+                    "Alerta",
+                    "alert('Debe agregar una cantidad minima de un articulo.');",
+                    true
+                );
+                return;
+            }
             this.invocarSalvarFactura(sender, e);
 
             int IdFactura = int.Parse(this.hdnIdentificador.Value);
             Producto producto = this.productos.obtenProductoSegunIdentificador(int.Parse(this.ddlProducto.SelectedValue));
 
             this.lineaArticulos.incluirLineaArticulo(producto, int.Parse(this.txtCantidad.Text), IdFactura);
-
-            this.invocarSalvarFactura(sender, e);
             this.cargarLineaArticulos(IdFactura);
-            Factura factura = this.facturas.obtenFacturaSegunIdentificador(IdFactura);
-            this.txtTotal.Text = factura.Total.ToString();
         }
 
-        protected void gvLineaArticulos_RowDeleting(object sender, System.Web.UI.WebControls.GridViewDeleteEventArgs e)
+        protected void gvLineaArticulos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
@@ -207,6 +260,60 @@ namespace slnPresentacion
             {
                 this.lblMensaje.Text = ex.Message;
             }
+        }
+
+        protected void ddlFormaPago_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ("Contado" == this.ddlFormaPago.SelectedItem.Text)
+            {
+                this.pnlPago.Visible = true;
+                this.ddlTipoMoneda.Enabled = true;
+            }
+            else
+            {
+                this.ddlTipoMoneda.SelectedValue = "1";
+                this.ddlTipoMoneda.Enabled = false;
+                this.txtPagado.Text = string.Empty;
+                this.pnlPago.Visible = false;
+                this.ddlTipoMoneda_SelectedIndexChanged(sender, e);
+            }
+        }
+
+        protected void ddlTipoMoneda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool mostrar = false;
+            if ("Colones" != this.ddlTipoMoneda.SelectedItem.Text)
+            {
+                mostrar = true;
+                decimal cambio = this.tipoMonedas.
+                    obtenerTipoCambioDeMonedaPorId(int.Parse(this.ddlTipoMoneda.SelectedValue));
+                this.lblCambio.Text = cambio.ToString("n");
+                this.txtPagado_TextChanged(sender, e);
+            }
+            this.pnlCambio.Visible = mostrar;
+            this.pnlConvertido.Visible = mostrar;
+        }
+
+        protected void txtPagado_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.txtPagado.Text) || string.IsNullOrEmpty(this.lblCambio.Text))
+            {
+                return;
+            }
+            decimal pagado = Convert.ToDecimal(this.txtPagado.Text, CultureInfo.InvariantCulture);
+            decimal cambio = Convert.ToDecimal(this.lblCambio.Text, CultureInfo.CurrentCulture);
+            this.lblConvertido.Text = (cambio * pagado).ToString("n");
+        }
+
+        protected void gvLineaArticulos_DataBound(object sender, EventArgs e)
+        {
+            decimal total = 0;
+            foreach (GridViewRow linea in this.gvLineaArticulos.Rows)
+            {
+                total += decimal.Parse(linea.Cells[5].Text);
+            }
+            this.facturas.actualizaTotalFactura(int.Parse(this.hdnIdentificador.Value), total);
+            this.lblTotal.Text = total.ToString("n");
         }
     }
 }

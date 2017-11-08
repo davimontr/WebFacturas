@@ -12,7 +12,9 @@ namespace slnLogica
         List<Factura> obtenerTodos();
         void incluirFactura(string Numero, DateTime Fecha, int IdCliente, int IdFormaPago, int IdTipoMoneda);
         Factura obtenFacturaSegunIdentificador(int Id);
-        void actualizaFactura(int Id, string Numero, DateTime Fecha, int Idcliente, int IdFormaPago, int IdTipoMoneda);
+        void actualizaFactura(int Id, string Numero, DateTime Fecha, int Idcliente, 
+            int IdFormaPago, int IdTipoMoneda, decimal Pagado, Nullable<decimal> convertido);
+        void actualizaTotalFactura(int Id, decimal Total);
         void eliminarFactura(int Id);
         Factura obtenFacturaSegunNumero(string Numero);
         decimal reporteCierre(DateTime fecha);
@@ -39,8 +41,7 @@ namespace slnLogica
                 Fecha = Fecha,
                 IdCliente = IdCliente,
                 IdFormaPago = IdFormaPago,
-                IdTipoMoneda = IdTipoMoneda,
-                //Total = Total
+                IdTipoMoneda = IdTipoMoneda
             });
             this.contexto.SaveChanges();
         }
@@ -51,14 +52,15 @@ namespace slnLogica
         }
 
         // Metodo de modifcar factura
-        public void actualizaFactura(int Id, string Numero, DateTime Fecha, int Idcliente, int IdFormaPago, int IdTipoMoneda )
+        public void actualizaFactura(int Id, string Numero, DateTime Fecha, int Idcliente, 
+            int IdFormaPago, int IdTipoMoneda, decimal Pagado, Nullable<decimal> Convertido)
         {
-             decimal total=0;
+            decimal total = 0;
             List<LineaArticulo> lineas = this.Linea.obtenerTodosPorIdFactura(Id);
             foreach (LineaArticulo Linea in lineas )
             {
-           
-             total = total + Linea.Precio;
+
+                total = total + Linea.Precio;
              
             }
 
@@ -68,7 +70,16 @@ namespace slnLogica
             factura.IdCliente = Idcliente;
             factura.IdFormaPago = IdFormaPago;
             factura.IdTipoMoneda = IdTipoMoneda;
-            factura.Total=total;
+            factura.Total = total;
+            factura.Pagado = Pagado;
+            factura.Convertido = Convertido;
+            this.contexto.SaveChanges();
+        }
+
+        public void actualizaTotalFactura(int Id, decimal Total)
+        {
+            Factura factura = this.obtenFacturaSegunIdentificador(Id);
+            factura.Total = Total;
             this.contexto.SaveChanges();
         }
 

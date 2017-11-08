@@ -37,7 +37,7 @@ namespace slnPresentacion
                 this.txtExistencia.Text = producto.Existencia.ToString();
                 this.ddlProveedor.SelectedValue = producto.IdProveedor.ToString();
                 this.hdnIdentificador.Value = Identificador.ToString();
-                this.ddlDepartamento.SelectedValue = producto.Departamento.ToString();
+                this.ddlDepartamento.SelectedValue = producto.Departamento.Id.ToString();
                 this.checkboxGravado.AutoPostBack = producto.Gravado;
             }
         }
