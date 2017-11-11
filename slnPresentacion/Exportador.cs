@@ -42,13 +42,11 @@ namespace slnPresentacion
                 using (HtmlTextWriter escritorHTML = new HtmlTextWriter(escritor))
                 {
 
-                    if(this.ocultarComandos)
+                    if (this.ocultarComandos)
                     {
                         this.ocultarCeldaComandos(cuadricula);
                     }
                     cuadricula.RenderControl(escritorHTML);
-                    //cuadricula.RenderBeginTag(escritorHTML);
-
                     //
                     StringReader lector = new StringReader(escritor.ToString());
                     Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
@@ -67,7 +65,29 @@ namespace slnPresentacion
             }
         }
 
+        public void enExcel(GridView cuadricula, HttpResponse respuesta)
+        {
+            using (StringWriter escritor = new StringWriter())
+            {
+                using (HtmlTextWriter escritorHTML = new HtmlTextWriter(escritor))
+                {
+                    respuesta.Clear();
+                    respuesta.Buffer = true;
+                    respuesta.ContentType = "application/vnd.ms-excel";
+                    respuesta.AddHeader("content-disposition", "attachment;filename=MyFiles.xls");
+                    respuesta.Charset = "";
 
+                    if (this.ocultarComandos)
+                    {
+                        this.ocultarCeldaComandos(cuadricula);
+                    }
+                    cuadricula.RenderControl(escritorHTML);
+
+                    respuesta.Write(escritor.ToString());
+                    respuesta.End();
+                }
+            }
+        }
 
     }
 }
