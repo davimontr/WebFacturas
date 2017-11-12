@@ -13,10 +13,7 @@ namespace slnPresentacion
 
         private IserviciosProveedores provee = new AccionesProveedores();
         private IServiciosDepartamentos departamentos = new AccionesDepartamentos();
-
-        int valor = 0;
-
-
+        
         //metodo para cargar los proveedores
         private void cargarProveedores()
         {

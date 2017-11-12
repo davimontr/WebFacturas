@@ -13,31 +13,13 @@ namespace slnPresentacion {
     public partial class CierreCajaForm {
         
         /// <summary>
-        /// MenuInterno control.
+        /// cldFecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::slnPresentacion.MenuInterno MenuInterno;
-        
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// CalendarObtenerFecha control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalendarObtenerFecha;
+        protected global::System.Web.UI.WebControls.Calendar cldFecha;
         
         /// <summary>
         /// btnGenerar control.
@@ -49,22 +31,13 @@ namespace slnPresentacion {
         protected global::System.Web.UI.WebControls.Button btnGenerar;
         
         /// <summary>
-        /// lblTotal control.
+        /// gvCiereCaja control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotal;
-        
-        /// <summary>
-        /// dgCiereCaja control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgCiereCaja;
+        protected global::System.Web.UI.WebControls.GridView gvCiereCaja;
         
         /// <summary>
         /// lblMensaje control.
@@ -74,5 +47,23 @@ namespace slnPresentacion {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMensaje;
+        
+        /// <summary>
+        /// btnPdf control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPdf;
+        
+        /// <summary>
+        /// btnExcel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnExcel;
     }
 }

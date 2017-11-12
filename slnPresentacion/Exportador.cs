@@ -57,7 +57,7 @@ namespace slnPresentacion
                     pdfDoc.Close();
                     //
                     respuesta.ContentType = "application/pdf";
-                    respuesta.AddHeader("content-disposition", "attachment;filename=GridViewExport.pdf");
+                    respuesta.AddHeader("content-disposition", "attachment;filename="+ cuadricula.ID  +".pdf");
                     respuesta.Cache.SetCacheability(HttpCacheability.NoCache);
                     respuesta.Write(pdfDoc);
                     respuesta.End();
@@ -74,7 +74,7 @@ namespace slnPresentacion
                     respuesta.Clear();
                     respuesta.Buffer = true;
                     respuesta.ContentType = "application/vnd.ms-excel";
-                    respuesta.AddHeader("content-disposition", "attachment;filename=MyFiles.xls");
+                    respuesta.AddHeader("content-disposition", "attachment;filename=" + cuadricula.ID + ".xls");
                     respuesta.Charset = "";
 
                     if (this.ocultarComandos)

@@ -1,28 +1,26 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dashboard.Master" AutoEventWireup="true" CodeBehind="CierreCajaForm.aspx.cs" Inherits="slnPresentacion.CierreCajaForm" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dashboard.Master" AutoEventWireup="true" CodeBehind="CierreCajaForm.aspx.cs" Inherits="slnPresentacion.CierreCajaForm" EnableEventValidation="false" %>
 
-<%@ Register Src="~/controles/MenuInterno.ascx" TagName="MenuInterno" TagPrefix="ucMenu" %>
-<asp:Content ID="Content2" ContentPlaceHolderID="menuInterno" runat="server">
-    <ucMenu:MenuInterno ID="MenuInterno" runat="server" />
-</asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="contenido" runat="server">
     <h1>Cierre de Caja</h1>
-    <asp:Label ID="Label1" runat="server" Text="Buscar fecha"></asp:Label>
-    <asp:Calendar ID="CalendarObtenerFecha" runat="server"></asp:Calendar>
+    <asp:Calendar ID="cldFecha" runat="server" OnDayRender="cldFecha_DayRender"></asp:Calendar>
     <br />
-    <asp:Button ID="btnGenerar" runat="server" Text="Generar" Height="38px" Width="108px" OnClick="btnGenerar_Click" />
+    <asp:Button ID="btnGenerar" runat="server" Text="Generar" CssClass="btn-secondary" OnClick="btnGenerar_Click" />
     <br />
-<h4>
-    Total de Facturas
-</h4>
-  <asp:Label ID="lblTotal" runat="server" Text=""></asp:Label>
-    <br />
-    <br />
-<asp:GridView ID="dgCiereCaja" runat="server" Height="135px" Width="678px"></asp:GridView>
-    <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
+    <%# gvCiereCaja.Rows.Count != 0 ? "<h4>Detalle</h4>" :""%>
+    <asp:GridView ID="gvCiereCaja" runat="server"
+        EmptyDataText="No hay detalles registrados a mostrar"
+        CssClass="table table-striped"
+        AutoGenerateColumns="true">
+    </asp:GridView>
+    <asp:Label ID="lblMensaje" ForeColor="Red" runat="server"></asp:Label>
+    <div class="container-fluid">
+       <div class="row">
+           <div class="col">
+                <asp:Button ID="btnPdf" runat="server" Text="Exportar PDF" CssClass="btn-dark" OnClick="btnPdf_Click"/>
+           </div>
+           <div class="col">
+                <asp:Button ID="btnExcel" runat="server" Text="Exportar Excel" CssClass="btn-dark" OnClick="btnExcel_Click"/>
+           </div>
+       </div>
+   </div>
 </asp:Content>
-
-
-
-
-
-

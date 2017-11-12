@@ -17,16 +17,13 @@ namespace slnLogica
         void actualizaTotalFactura(int Id, decimal Total);
         void eliminarFactura(int Id);
         Factura obtenFacturaSegunNumero(string Numero);
-        decimal reporteCierre(DateTime fecha);
-      
-        
+        List<object> reporteCierre(DateTime fecha);
     }
 
     public class AccionesFacturas : AccionesEntidades, IserviciosFacturas
     {
         private IserviciosLineaArticulo Linea = new AccionesLineaArticulo();
-
-
+        
         public List<Factura> obtenerTodos()
         {
             return this.contexto.Facturas.ToList();
@@ -96,20 +93,67 @@ namespace slnLogica
             return this.contexto.Facturas.FirstOrDefault(f => f.Numero.Equals(Numero));
         }
 
-
-        public decimal reporteCierre(DateTime fecha)
+        public List<object> reporteCierre(DateTime fecha)
         {
-            return (from f in contexto.Facturas
-                    where f.Fecha == fecha
-                    select f.Total
-                     ).Sum();
-               
+            var ventas = (from f in this.contexto.Facturas
+                          where f.Fecha == fecha
+                          select f)
+                          .Sum(f => (decimal?)f.Total) ?? 0;
+
+            var gravados = this.contexto.LineaArticuloes
+                .Join(this.contexto.Facturas,
+                ln => ln.IdFactura,
+                f => f.Id,
+                (ln, f) => new { ln, f })
+                .Join(this.contexto.Productos,
+                c => c.ln.IdProducto,
+                p => p.Id,
+                (ln, p) => new { ln, p }
+                )
+                .Where(ln => ln.ln.f.Fecha == fecha)
+                .Where(ln => ln.p.Gravado == true)
+                .Sum(s => (decimal?)s.ln.ln.Precio) ?? 0;
+
+            var excentos = (from ln in this.contexto.LineaArticuloes
+                            join f in this.contexto.Facturas on ln.IdFactura equals f.Id
+                            join p in this.contexto.Productos on ln.IdProducto equals p.Id
+                            where f.Fecha == fecha && p.Gravado == false
+                            select ln)
+                            .Sum(ln => (decimal?)ln.Precio) ?? 0;
+
+            var colones = (from f in this.contexto.Facturas
+                           where f.Fecha == fecha && f.IdTipoMoneda == 1
+                           select f)
+                          .Sum(f => (decimal?)f.Pagado) ?? 0;
+
+            var dolares = (from f in this.contexto.Facturas
+                           where f.Fecha == fecha && f.IdTipoMoneda == 2
+                           select f)
+                          .Sum(f => (decimal?)f.Pagado) ?? 0;
+
+            var euros = (from f in this.contexto.Facturas
+                         where f.Fecha == fecha && f.IdTipoMoneda == 3
+                         select f)
+                          .Sum(f => (decimal?)f.Pagado) ?? 0;
+
+            var convertidos = (from f in this.contexto.Facturas
+                               where f.Fecha == fecha
+                               select f)
+                          .Sum(f => (decimal?)f.Convertido) ?? 0;
+
+            var lista = new List<object>();
+            lista.Add(new {
+                Ventas = ventas,
+                Gravados = gravados,
+                Excentos = excentos,
+                Colones = colones,
+                Dolares = dolares,
+                Euros = euros,
+                Convertidos = convertidos,
+                Pagado = colones + convertidos
+            });
+
+            return lista;
         }
-
-
-    
-
-
-
     }
 }

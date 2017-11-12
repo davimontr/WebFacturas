@@ -16,25 +16,41 @@ namespace slnPresentacion
         {
             if (!Page.IsPostBack)
             {
-
-
-                defineFechaPredeterminada();
+                this.cldFecha.TodaysDate = DateTime.Today;
+                this.cldFecha.SelectedDate = DateTime.Today;
+                this.gvCiereCaja.DataBind();
             }
         }
-
-
-        private void defineFechaPredeterminada()
+        
+        protected void cldFecha_DayRender(object sender, DayRenderEventArgs e)
         {
-            DateTime today = DateTime.Today;
-            this.CalendarObtenerFecha.TodaysDate = today;
-            this.CalendarObtenerFecha.SelectedDate = this.CalendarObtenerFecha.TodaysDate;
-
+            if (e.Day.Date > DateTime.Today)
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = System.Drawing.Color.Gray;
+                e.Cell.Font.Strikeout = true;
+            }
         }
 
         protected void btnGenerar_Click(object sender, EventArgs e)
         {
-            this.lblTotal.Text = this.factura.reporteCierre(this.CalendarObtenerFecha.SelectedDate).ToString();
+            this.gvCiereCaja.DataSource = this.factura.reporteCierre(this.cldFecha.SelectedDate);
+            this.gvCiereCaja.DataBind();
+        }
+       
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
+        }
 
+        protected void btnPdf_Click(object sender, EventArgs e)
+        {
+            new Exportador().enPDF(this.gvCiereCaja, Response);
+        }
+
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            new Exportador().enExcel(this.gvCiereCaja, Response);
         }
     }
 }
