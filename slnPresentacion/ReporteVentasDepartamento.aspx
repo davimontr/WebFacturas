@@ -13,6 +13,9 @@
                 <asp:DropDownList ID="ddlDepartamento" runat="server" OnSelectedIndexChanged="ddlDepartamento_SelectedIndexChanged" AutoPostBack="True">
                 </asp:DropDownList>
             </div>
+  
+            <asp:Calendar ID="cldFecha" runat="server" OnDayRender="cldFecha_DayRender"></asp:Calendar>
+
         </div>
     </section> 
     <asp:GridView ID="GridView1" runat="server" 

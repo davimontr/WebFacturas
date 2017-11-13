@@ -107,12 +107,20 @@ namespace slnPresentacion
             ScriptManager.RegisterStartupScript(this, GetType(), "Alerta", "alert('NO se logra exportar a Excel.');", true);
         }
 
+        protected void cldFecha_DayRender(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date > DateTime.Today)
+            {
+                e.Day.IsSelectable = false;
+                e.Cell.ForeColor = System.Drawing.Color.Gray;
+                e.Cell.Font.Strikeout = true;
+            }
+        }
 
-
-
-
-
-
-
+        protected void btnBuscarFecha_Click(object sender, EventArgs e)
+        {
+            this.GridView1.DataSource = this.repFac.reportFacturasPorDepartamentos(this.cldFecha.SelectedDate);
+            this.GridView1.DataBind();
+        }
     }
 }

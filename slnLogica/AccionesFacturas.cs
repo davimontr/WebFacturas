@@ -17,9 +17,11 @@ namespace slnLogica
         void actualizaTotalFactura(int Id, decimal Total);
         void eliminarFactura(int Id);
         Factura obtenFacturaSegunNumero(string Numero);
-        decimal reporteCierre(DateTime fecha);
-      
-        
+        //decimal reporteCierre(DateTime fecha);
+        List<object> reporteCierre(DateTime fecha);
+
+
+
     }
 
     public class AccionesFacturas : AccionesEntidades, IserviciosFacturas
