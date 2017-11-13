@@ -14,10 +14,6 @@ namespace slnPresentacion.Reportes
         private IserviciosProductos prod = new AccionesProductos();
         private IServiciosDepartamentos departamentos = new AccionesDepartamentos();
 
-
-        int valor = 0;
-
-
         private void cargarDepartamentos()
         {
             try

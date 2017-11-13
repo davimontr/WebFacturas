@@ -8,7 +8,7 @@
         </div>
     </section>
     <div class="container">
-        <div class="row">
+        <div class="row" style="height: 50px;">
             <div class="col-sm text-center">
                 <a href="/ReporteProductoDepartamento.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Productos por Departamento</a>
             </div>
@@ -18,7 +18,7 @@
             <div class="col-sm text-center">
                <a href="/ReportPrductosProveedor.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Productos por Proveedor</a>
             </div>
-             <div class="col-sm text-center">
+            <div class="col-sm text-center">
                <a href="/ReporteFacturas.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Productos por Facturas</a>
             </div>
                <div class="col-sm text-center">
@@ -28,6 +28,15 @@
 
             
 
+            <div class="col-sm text-center">
+               <a href="#" class="badge badge-pill badge-info" style="font-size: medium;">Reporte...</a>
+            </div>
+            <div class="col-sm text-center">
+               <a href="#" class="badge badge-pill badge-info" style="font-size: medium;">Reporte...</a>
+            </div>
+            <div class="col-sm text-center">
+               <a href="#" class="badge badge-pill badge-info" style="font-size: medium;">Reporte...</a>
+            </div>
             <div class="col-sm text-center">
                <a href="#" class="badge badge-pill badge-info" style="font-size: medium;">Reporte...</a>
             </div>
