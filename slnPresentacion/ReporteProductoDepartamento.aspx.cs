@@ -46,9 +46,7 @@ namespace slnPresentacion.Reportes
 
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-          
-
+        {         
             if (!Page.IsPostBack)
             {
 
@@ -58,6 +56,10 @@ namespace slnPresentacion.Reportes
             }
         }
 
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
+        }
 
         private void cargarGrid()
         {

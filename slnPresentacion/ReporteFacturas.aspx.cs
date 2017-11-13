@@ -31,6 +31,10 @@ namespace slnPresentacion
 
         }
 
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
+        }
 
         private void cargarGrid()
         {

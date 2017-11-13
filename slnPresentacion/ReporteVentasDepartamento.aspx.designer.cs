@@ -10,16 +10,16 @@
 namespace slnPresentacion {
     
     
-    public partial class ReportPrductosProveedor {
+    public partial class ReporteVentasDepartamento {
         
         /// <summary>
-        /// Control ddlPRoveedor.
+        /// Control ddlDepartamento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPRoveedor;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDepartamento;
         
         /// <summary>
         /// Control GridView1.

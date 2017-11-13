@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dashboard.Master" AutoEventWireup="true" CodeBehind="ReportesGenerales.aspx.cs" Inherits="slnPresentacion.ReportesGenerales" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dashboard.Master" AutoEventWireup="true" CodeBehind="ReportesGenerales.aspx.cs" Inherits="slnPresentacion.ReportesGenerales"  %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <h1>Reportes Generales</h1>
@@ -21,6 +21,12 @@
              <div class="col-sm text-center">
                <a href="/ReporteFacturas.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Productos por Facturas</a>
             </div>
+               <div class="col-sm text-center">
+               <a href="/ReporteVentasDepartamento.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Ventas por Departamentos</a>
+            </div>
+
+
+            
 
             <div class="col-sm text-center">
                <a href="#" class="badge badge-pill badge-info" style="font-size: medium;">Reporte...</a>

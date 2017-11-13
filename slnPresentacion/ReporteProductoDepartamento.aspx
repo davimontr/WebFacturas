@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dashboard.Master" AutoEventWireup="true" CodeBehind="ReporteProductoDepartamento.aspx.cs" Inherits="slnPresentacion.Reportes.ReporteProductoDepartamento" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dashboard.Master" AutoEventWireup="true" CodeBehind="ReporteProductoDepartamento.aspx.cs" Inherits="slnPresentacion.Reportes.ReporteProductoDepartamento" EnableEventValidation="false" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <h1>Reporte por Departamentos</h1>

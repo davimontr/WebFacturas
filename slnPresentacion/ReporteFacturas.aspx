@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dashboard.Master" AutoEventWireup="true" CodeBehind="ReporteFacturas.aspx.cs" Inherits="slnPresentacion.ReporteFacturas" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Dashboard.Master" AutoEventWireup="true" CodeBehind="ReporteFacturas.aspx.cs" Inherits="slnPresentacion.ReporteFacturas" EnableEventValidation="false" %>
 
 
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">

@@ -168,6 +168,7 @@
     <Content Include="ReporteFacturas.aspx" />
     <Content Include="ReporteProductoDepartamento.aspx" />
     <Content Include="ReportesGenerales.aspx" />
+    <Content Include="ReporteVentasDepartamento.aspx" />
     <Content Include="ReportPrductosProveedor.aspx" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
@@ -317,6 +318,13 @@
     </Compile>
     <Compile Include="ReportesGenerales.aspx.designer.cs">
       <DependentUpon>ReportesGenerales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteVentasDepartamento.aspx.cs">
+      <DependentUpon>ReporteVentasDepartamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReporteVentasDepartamento.aspx.designer.cs">
+      <DependentUpon>ReporteVentasDepartamento.aspx</DependentUpon>
     </Compile>
     <Compile Include="ReportPrductosProveedor.aspx.cs">
       <DependentUpon>ReportPrductosProveedor.aspx</DependentUpon>

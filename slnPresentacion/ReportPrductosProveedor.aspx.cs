@@ -37,6 +37,12 @@ namespace slnPresentacion
         }
 
 
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Verifies that the control is rendered */
+        }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -90,6 +96,16 @@ namespace slnPresentacion
                 this.lblMensaje.Text = ex.Message;
             }
 
+        }
+
+        protected void btnPdf_Click(object sender, EventArgs e)
+        {
+            new Exportador().enPDF(this.GridView1, Response);
+        }
+
+        protected void btnExcel_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "Alerta", "alert('NO se logra exportar a Excel.');", true);
         }
 
 
