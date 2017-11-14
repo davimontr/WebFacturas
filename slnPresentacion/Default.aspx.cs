@@ -38,7 +38,7 @@ namespace WebFacturas
         protected void Page_Load(object sender, EventArgs e)
         {
             wsIndicadoresEconomicos webservice = new wsIndicadoresEconomicos();
-            webservice.ObtenerIndicadoresEconomicos("indicador","fecha_inicio","fecha_final","nombre","sub_niveles");
+            //webservice.ObtenerIndicadoresEconomicos("indicador","fecha_inicio","fecha_final","nombre","sub_niveles");
         }
     }
 }
