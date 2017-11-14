@@ -2,6 +2,7 @@
 using System.Web.UI;
 using slnLogica;
 using slnDatos;
+using slnPresentacion.cr.fi.bccr.indicadoreseconomicos;
 
 namespace WebFacturas
 {
@@ -20,6 +21,7 @@ namespace WebFacturas
                     {
                         Page.Session.Add("sesion", usuario);
                         Response.Redirect("~/Dashboard.aspx");
+                       
                     }
                     else
                     {
@@ -31,6 +33,11 @@ namespace WebFacturas
                     this.lblInicioSession.Text = ex.Message;
                 }
             }
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

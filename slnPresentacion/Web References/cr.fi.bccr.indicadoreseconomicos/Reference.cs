@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace slnLogica.cr.fi.bccr.indicadoreseconomicos {
+namespace slnPresentacion.cr.fi.bccr.indicadoreseconomicos {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -38,7 +38,7 @@ namespace slnLogica.cr.fi.bccr.indicadoreseconomicos {
         
         /// <remarks/>
         public wsIndicadoresEconomicos() {
-            this.Url = global::slnLogica.Properties.Settings.Default.slnLogica_cr_fi_bccr_indicadoreseconomicos_wsIndicadoresEconomicos;
+            this.Url = global::slnPresentacion.Properties.Settings.Default.slnPresentacion_cr_fi_bccr_indicadoreseconomicos_wsIndicadoresEconomicos;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
