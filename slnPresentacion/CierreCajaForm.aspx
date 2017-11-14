@@ -7,6 +7,7 @@
     <asp:Button ID="btnGenerar" runat="server" Text="Generar" CssClass="btn-secondary" OnClick="btnGenerar_Click" />
     <br />
     <asp:GridView ID="gvCiereCaja" runat="server"
+        Caption="Cierre cajas"
         EmptyDataText="No hay detalles registrados a mostrar"
         CssClass="table table-striped"
         AutoGenerateColumns="true">
@@ -21,6 +22,7 @@
                 <div class="row">
                     <div class="col">
                         <asp:GridView ID="gvImpuestos" runat="server"
+                            Caption="Detalle impuestos"
                             EmptyDataText="No hay detalles de impuestos a mostrar"
                             CssClass="table table-striped"
                             AutoGenerateColumns="false">

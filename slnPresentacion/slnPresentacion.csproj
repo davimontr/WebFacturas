@@ -131,7 +131,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CierreCajaForm.aspx" />
-    <Content Include="CierreCajas.aspx" />
     <Content Include="ClienteForm.aspx" />
     <Content Include="Clientes.aspx" />
     <Content Include="controles\MensajeSession.ascx" />
@@ -193,13 +192,6 @@
     </Compile>
     <Compile Include="CierreCajaForm.aspx.designer.cs">
       <DependentUpon>CierreCajaForm.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="CierreCajas.aspx.cs">
-      <DependentUpon>CierreCajas.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CierreCajas.aspx.designer.cs">
-      <DependentUpon>CierreCajas.aspx</DependentUpon>
     </Compile>
     <Compile Include="ClienteForm.aspx.cs">
       <DependentUpon>ClienteForm.aspx</DependentUpon>

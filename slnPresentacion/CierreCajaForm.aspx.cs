@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using slnLogica;
-using slnDatos;
+
 namespace slnPresentacion
 {
     public partial class CierreCajaForm : System.Web.UI.Page
@@ -50,7 +48,10 @@ namespace slnPresentacion
 
         protected void btnPdf_Click(object sender, EventArgs e)
         {
-            new Exportador().enPDF(this.gvCiereCaja, Response);
+            List<GridView> cuadriculas = new List<GridView>();
+            cuadriculas.Add(this.gvCiereCaja);
+            cuadriculas.Add(this.gvImpuestos);
+            new Exportador().cuadriculasEnPDF(cuadriculas, Response);
         }
 
         protected void btnExcel_Click(object sender, EventArgs e)

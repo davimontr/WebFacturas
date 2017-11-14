@@ -1,5 +1,6 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using System.Web.UI;
@@ -35,34 +36,48 @@ namespace slnPresentacion
             }
         }
 
-        public void enPDF(GridView cuadricula, HttpResponse respuesta)
+        public void cuadriculasEnPDF(List<GridView> cuadriculas, HttpResponse respuesta)
         {
+            //
             using (StringWriter escritor = new StringWriter())
             {
+                //
                 using (HtmlTextWriter escritorHTML = new HtmlTextWriter(escritor))
                 {
-
-                    if (this.ocultarComandos)
+                    //
+                    foreach (GridView cuadricula in cuadriculas)
                     {
-                        this.ocultarCeldaComandos(cuadricula);
+                        //
+                        if (this.ocultarComandos)
+                        {
+                            this.ocultarCeldaComandos(cuadricula);
+                        }
+                        cuadricula.RenderControl(escritorHTML);
                     }
-                    cuadricula.RenderControl(escritorHTML);
                     //
                     StringReader lector = new StringReader(escritor.ToString());
                     Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
                     PdfWriter escritorPDF = PdfWriter.GetInstance(pdfDoc, respuesta.OutputStream);
                     //
                     pdfDoc.Open();
+                    //
                     iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(escritorPDF, pdfDoc, lector);
                     pdfDoc.Close();
                     //
                     respuesta.ContentType = "application/pdf";
-                    respuesta.AddHeader("content-disposition", "attachment;filename="+ cuadricula.ID  +".pdf");
+                    respuesta.AddHeader("content-disposition", "attachment;filename=" + cuadriculas[0].Page.ID + ".pdf");
                     respuesta.Cache.SetCacheability(HttpCacheability.NoCache);
                     respuesta.Write(pdfDoc);
                     respuesta.End();
                 }
             }
+        }
+
+        public void enPDF(GridView cuadricula, HttpResponse respuesta)
+        {
+            List<GridView> cuadriculas = new List<GridView>();
+            cuadriculas.Add(cuadricula);
+            this.cuadriculasEnPDF(cuadriculas, respuesta);
         }
 
         public void enExcel(GridView cuadricula, HttpResponse respuesta)
