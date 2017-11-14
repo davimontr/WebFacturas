@@ -96,6 +96,19 @@
           <Property Name="Clave" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IdRol" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Facturacion.dbo.lineaArticulosImpuestos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="lineaArticulosImpuestos">
+          <Key>
+            <PropertyRef Name="Impuesto" />
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="Impuesto" Type="int" Nullable="false" />
+          <Property Name="Costos" Type="int" />
+          <Property Name="Cantidades" Type="int" />
+          <Property Name="Total" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Facturas_Clientes">
           <End Role="Clientes" Type="Self.Clientes" Multiplicity="1" />
           <End Role="Facturas" Type="Self.Facturas" Multiplicity="*" />
@@ -203,6 +216,15 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoMoneda" EntityType="Self.TipoMoneda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lineaArticulosImpuestos" EntityType="Self.lineaArticulosImpuestos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[lineaArticulosImpuestos].[Impuesto] AS [Impuesto], 
+[lineaArticulosImpuestos].[Costos] AS [Costos], 
+[lineaArticulosImpuestos].[Cantidades] AS [Cantidades], 
+[lineaArticulosImpuestos].[Total] AS [Total], 
+[lineaArticulosImpuestos].[Fecha] AS [Fecha]
+FROM [dbo].[lineaArticulosImpuestos] AS [lineaArticulosImpuestos]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Facturas_Clientes" Association="Self.FK_Facturas_Clientes">
             <End Role="Clientes" EntitySet="Clientes" />
             <End Role="Facturas" EntitySet="Facturas" />
@@ -283,6 +305,7 @@
             <End Role="Factura" EntitySet="Facturas" />
             <End Role="LineaArticulo" EntitySet="LineaArticuloes" />
           </AssociationSet>
+          <EntitySet Name="lineaArticulosImpuestos" EntityType="FacturacionModel.lineaArticulosImpuesto" />
         </EntityContainer>
         <EntityType Name="Cliente">
           <Key>
@@ -487,6 +510,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="lineaArticulosImpuesto">
+          <Key>
+            <PropertyRef Name="Impuesto" />
+            <PropertyRef Name="Fecha" />
+          </Key>
+          <Property Name="Impuesto" Type="Int32" Nullable="false" />
+          <Property Name="Costos" Type="Int32" />
+          <Property Name="Cantidades" Type="Int32" />
+          <Property Name="Total" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -591,6 +625,17 @@
                 <ScalarProperty Name="TipoCambio" ColumnName="TipoCambio" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lineaArticulosImpuestos">
+            <EntityTypeMapping TypeName="FacturacionModel.lineaArticulosImpuesto">
+              <MappingFragment StoreEntitySet="lineaArticulosImpuestos">
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Cantidades" ColumnName="Cantidades" />
+                <ScalarProperty Name="Costos" ColumnName="Costos" />
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

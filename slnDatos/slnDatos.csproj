@@ -77,6 +77,9 @@
     <Compile Include="LineaArticulo.cs">
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>
+    <Compile Include="lineaArticulosImpuesto.cs">
+      <DependentUpon>Facturas.tt</DependentUpon>
+    </Compile>
     <Compile Include="Producto.cs">
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>

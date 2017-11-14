@@ -15,6 +15,7 @@ namespace slnLogica
         void eliminarLineaArticulo(int Id);
         List<LineaArticulo> obtenerTodosPorIdFactura(int IdFactura);
         LineaArticulo obtenerSegunProductoFactura(int IdProducto, int IdFactura);
+        List<lineaArticulosImpuesto> reporteImpuestoPorFecha(DateTime fecha);
     }
 
     public   class AccionesLineaArticulo : AccionesEntidades, IserviciosLineaArticulo
@@ -95,6 +96,11 @@ namespace slnLogica
         public List<LineaArticulo> obtenerTodosPorIdFactura(int IdFactura)
         {
             return this.contexto.LineaArticuloes.Include("Producto").Where(ln => ln.IdFactura == IdFactura).ToList();
+        }
+
+        public List<lineaArticulosImpuesto> reporteImpuestoPorFecha(DateTime fecha)
+        {
+            return this.contexto.lineaArticulosImpuestos.Where(lni => lni.Fecha == fecha).ToList();
         }
     }
 }

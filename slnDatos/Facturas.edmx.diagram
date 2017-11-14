@@ -23,6 +23,7 @@
         <AssociationConnector Association="FacturacionModel.FK_Facturas_FormaPago" />
         <AssociationConnector Association="FacturacionModel.FK_Facturas_TipoMoneda" />
         <AssociationConnector Association="FacturacionModel.FK_LineaArticulo_Facturas" />
+        <EntityTypeShape EntityType="FacturacionModel.lineaArticulosImpuesto" Width="1.5" PointX="0.5" PointY="6" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

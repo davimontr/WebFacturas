@@ -19,9 +19,6 @@ namespace slnLogica
         Factura obtenFacturaSegunNumero(string Numero);
         //decimal reporteCierre(DateTime fecha);
         List<object> reporteCierre(DateTime fecha);
-
-
-
     }
 
     public class AccionesFacturas : AccionesEntidades, IserviciosFacturas

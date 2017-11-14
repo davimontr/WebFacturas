@@ -11,6 +11,7 @@ namespace slnPresentacion
     public partial class CierreCajaForm : System.Web.UI.Page
     {
         private IserviciosFacturas factura = new AccionesFacturas();
+        private IserviciosLineaArticulo lineas = new AccionesLineaArticulo();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,6 +20,7 @@ namespace slnPresentacion
                 this.cldFecha.TodaysDate = DateTime.Today;
                 this.cldFecha.SelectedDate = DateTime.Today;
                 this.gvCiereCaja.DataBind();
+                this.gvImpuestos.DataBind();
             }
         }
         
@@ -34,8 +36,11 @@ namespace slnPresentacion
 
         protected void btnGenerar_Click(object sender, EventArgs e)
         {
-            this.gvCiereCaja.DataSource = this.factura.reporteCierre(this.cldFecha.SelectedDate);
+            DateTime fecha = this.cldFecha.SelectedDate;
+            this.gvCiereCaja.DataSource = this.factura.reporteCierre(fecha);
             this.gvCiereCaja.DataBind();
+            this.gvImpuestos.DataSource = this.lineas.reporteImpuestoPorFecha(fecha);
+            this.gvImpuestos.DataBind();
         }
        
         public override void VerifyRenderingInServerForm(Control control)

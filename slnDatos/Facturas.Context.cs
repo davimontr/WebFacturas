@@ -35,5 +35,6 @@ namespace slnDatos
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Factura> Facturas { get; set; }
         public DbSet<TipoMoneda> TipoMonedas { get; set; }
+        public DbSet<lineaArticulosImpuesto> lineaArticulosImpuestos { get; set; }
     }
 }

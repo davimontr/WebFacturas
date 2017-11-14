@@ -152,7 +152,7 @@
                     <div class="col">
                     </div>
                     <div class="col align-self-end text-center">
-                        <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Pagar" OnClick="btnSalvar_Click" />
+                        <asp:Button ID="btnSalvar" runat="server" CssClass="btn btn-primary" Text="Pagar" OnClick="btnSalvar_Click" />
                     </div>
                 </div>
             </div>
