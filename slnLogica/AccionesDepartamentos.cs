@@ -18,8 +18,7 @@ namespace slnLogica
         Departamento obtenerDepartamentoSegunID(int Id);
         List<object> reportTodosDepa();
         List<object> reportDepartamento(int idDepa);
-
-
+        List<object> reporteVentasDepartamentoFecha(DateTime fecha);
     }
 
 
@@ -134,6 +133,21 @@ namespace slnLogica
             return this.contexto.Departamentos.FirstOrDefault(c => c.Id == Id);
         }
 
-
+        public List<object> reporteVentasDepartamentoFecha(DateTime fecha)
+        {
+            return (from ln in this.contexto.LineaArticuloes
+                    join f in this.contexto.Facturas on ln.IdFactura equals f.Id
+                    join p in this.contexto.Productos on ln.IdProducto equals p.Id
+                    join d in this.contexto.Departamentos on p.IdDepartamento equals d.Id
+                    where f.Fecha == fecha
+                    group ln by ln.Producto.Departamento.Nombre into g
+                    select new {
+                        Departamento = g.Key,
+                        Cantidades = g.Sum(ln => ln.Precio)
+                    })
+                .ToList()
+                .Cast<object>()
+                .ToList();
+        }
     }
 }
