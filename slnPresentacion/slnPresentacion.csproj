@@ -112,6 +112,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -138,6 +139,7 @@
     <Content Include="Departamentos.aspx" />
     <Content Include="DepartamentoForm.aspx" />
     <Content Include="FacturaForm.aspx" />
+    <Content Include="GraficoVentas.aspx" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -256,6 +258,13 @@
     </Compile>
     <Compile Include="FacturaForm.aspx.designer.cs">
       <DependentUpon>FacturaForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GraficoVentas.aspx.cs">
+      <DependentUpon>GraficoVentas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GraficoVentas.aspx.designer.cs">
+      <DependentUpon>GraficoVentas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inicio.Master.cs">
       <DependentUpon>Inicio.Master</DependentUpon>
