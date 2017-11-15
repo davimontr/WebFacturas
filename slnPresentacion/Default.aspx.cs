@@ -45,7 +45,7 @@ namespace WebFacturas
                 DataSet  respuesta = webservice.ObtenerIndicadoresEconomicos("137", fecha, fecha, "FacturacionUACA", "N");
                 if(respuesta.Tables[0].Rows.Count > 0)
                 {
-                    this.lblInicioSession.Text = respuesta.Tables[0].Rows[0]["NUM_VALOR"].ToString();
+                    this.lblInicioSession.Text = respuesta.Tables[0].Rows[0].ItemArray[2].ToString();
                 }
             }
         }
