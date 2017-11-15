@@ -3,6 +3,7 @@ using System.Web.UI;
 using slnLogica;
 using slnDatos;
 using slnPresentacion.cr.fi.bccr.indicadoreseconomicos;
+using System.Data;
 
 namespace WebFacturas
 {
@@ -37,8 +38,16 @@ namespace WebFacturas
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            wsIndicadoresEconomicos webservice = new wsIndicadoresEconomicos();
-            //webservice.ObtenerIndicadoresEconomicos("indicador","fecha_inicio","fecha_final","nombre","sub_niveles");
+            if(!Page.IsPostBack)
+            {
+                wsIndicadoresEconomicos webservice = new wsIndicadoresEconomicos();
+                string fecha = DateTime.Today.ToString("dd/MM/yyyy");
+                DataSet  respuesta = webservice.ObtenerIndicadoresEconomicos("137", fecha, fecha, "FacturacionUACA", "N");
+                if(respuesta.Tables[0].Rows.Count > 0)
+                {
+                    this.lblInicioSession.Text = respuesta.Tables[0].Rows[0]["NUM_VALOR"].ToString();
+                }
+            }
         }
     }
 }
