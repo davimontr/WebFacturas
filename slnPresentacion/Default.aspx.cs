@@ -42,7 +42,8 @@ namespace WebFacturas
             {
                 wsIndicadoresEconomicos webservice = new wsIndicadoresEconomicos();
                 string fecha = DateTime.Today.ToString("dd/MM/yyyy");
-                DataSet  respuesta = webservice.ObtenerIndicadoresEconomicos("137", fecha, fecha, "FacturacionUACA", "N");
+                fecha = "01/01/2008";
+                DataSet  respuesta = webservice.ObtenerIndicadoresEconomicos("317", fecha, fecha, "FacturacionUACA", "N");
                 if(respuesta.Tables[0].Rows.Count > 0)
                 {
                     this.lblInicioSession.Text = respuesta.Tables[0].Rows[0].ItemArray[2].ToString();
