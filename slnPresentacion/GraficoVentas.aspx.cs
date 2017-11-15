@@ -12,7 +12,7 @@ namespace slnPresentacion
     {
 
 
-        private IserviciosReportes repFac = new AccionesReportes();
+        private IserviciosReportes grafiVentas = new AccionesReportes();
 
 
         private IserviciosFacturas fac = new AccionesFacturas();
@@ -25,7 +25,11 @@ namespace slnPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (!Page.IsPostBack)
+            {
+                cargarChar();
 
+            }
 
 
         }
@@ -35,6 +39,22 @@ namespace slnPresentacion
         {
             /* Verifies that the control is rendered */
         }
+
+
+        private void cargarChar()
+        {
+            try
+            {
+                Chart1.DataSource = this.grafiVentas.graficoVentasDepartamentos();
+                Chart1.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                this.lblMensaje.Text = ex.Message;
+            }
+        }
+
 
 
 

@@ -44,6 +44,7 @@ namespace WebFacturas
                 { "/Usuarios.aspx", "Usuarios" },
                 { "/Perfil.aspx", "Perfil" },
                 {"/ReportesGenerales.aspx", "Reportes Generales" },
+                {"/GraficoVentas.aspx", "Grafico Ventas por Departamento" },
                 { "https://www.google.com/", "Ayuda" }
             };
 

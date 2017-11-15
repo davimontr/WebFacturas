@@ -15,6 +15,7 @@ namespace slnLogica
         List<object> reportFacturas(string numFac);
         List<object> reportFacturasPorDepartamentos(DateTime fecha);
         List<object> reportFacturasDepartamentos();
+        List<object> graficoVentasDepartamentos();
 
     }
 
@@ -112,6 +113,36 @@ namespace slnLogica
 
 
     }
+
+
+        public List<object> graficoVentasDepartamentos()
+        {
+
+            return (from ln in contexto.LineaArticuloes
+                    join f in contexto.Facturas on ln.IdFactura equals f.Id
+                    join p in contexto.Productos on ln.IdProducto equals p.Id
+                    join d in contexto.Departamentos on p.IdDepartamento equals d.Id
+                    group ln by d.Nombre into g
+
+                    select new
+
+
+                    {
+
+                        Nombre = g.Key,
+
+                        Total = g.Sum(ln => ln.Cantidad)
+
+
+                    }).ToList().Cast<object>().ToList();
+
+
+        }
+
+
+
+
+
 
     }
 }
