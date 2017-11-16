@@ -3,6 +3,22 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="contenido" runat="server">
     <h1>Cierre de Caja</h1>
     <asp:Calendar ID="cldFecha" runat="server" OnDayRender="cldFecha_DayRender"></asp:Calendar>
+
+            <asp:Chart ID="Chart1" runat="server">
+            <Titles>
+                <asp:Title ShadowOffset="3" Name="Items" />
+            </Titles>
+            <Legends>
+                <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
+            </Legends>
+            <Series>
+                <asp:Series Name="Default"></asp:Series>
+            </Series>
+            <ChartAreas>
+                <asp:ChartArea Name="ChartArea1" BorderWidth="0"></asp:ChartArea>
+            </ChartAreas>
+        </asp:Chart>
+
     <br />
     <asp:Button ID="btnGenerar" runat="server" Text="Generar" CssClass="btn-secondary" OnClick="btnGenerar_Click" />
     <br />
@@ -14,8 +30,7 @@
     </asp:GridView>
     <button class="btn btn-primary" type="button" data-toggle="collapse"
         data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        Detalle impuestos
-    </button>
+        Detalle impuestos</button>
     <div class="collapse show" id="collapseExample">
         <div class="card card-body">
             <div class="container-fluid">

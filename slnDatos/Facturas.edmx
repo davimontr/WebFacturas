@@ -96,8 +96,8 @@
           <Property Name="Clave" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="IdRol" Type="int" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'Facturacion.dbo.lineaArticulosImpuestos' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Facturacion.dbo.lineaArticulosImpuestos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="lineaArticulosImpuestos">
           <Key>
             <PropertyRef Name="Impuesto" />

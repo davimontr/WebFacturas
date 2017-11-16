@@ -26,16 +26,14 @@ namespace slnPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
 
-<<<<<<< HEAD
+
             if (!Page.IsPostBack)
             {
                 cargarChar();
 
             }
 
-=======
-            
->>>>>>> master
+
 
         }
 
@@ -45,7 +43,7 @@ namespace slnPresentacion
             /* Verifies that the control is rendered */
         }
 
-<<<<<<< HEAD
+
 
         private void cargarChar()
         {
@@ -65,7 +63,7 @@ namespace slnPresentacion
 
 
 
-=======
+
         protected void txtFecha_TextChanged(object sender, EventArgs e)
         {
             var resultados = this.departamentos.reporteVentasDepartamentoFecha(DateTime.Parse(this.txtFecha.Text));
@@ -83,6 +81,6 @@ namespace slnPresentacion
             this.Chart1.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
             this.Chart1.Legends[0].Enabled = true;
         }
->>>>>>> master
+
     }
 }

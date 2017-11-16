@@ -4,6 +4,9 @@
 
 
 
+
+
+
 <asp:Content ID="Content2" ContentPlaceHolderID="contenido" runat="server">
     <h1>Grafico de Ventas</h1>
     <section class="row text-center placeholders">
@@ -40,12 +43,12 @@
 
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 
-<<<<<<< HEAD
+
  
 
 </asp:Content>
-=======
-    <div class="container-fluid">
+
+<%--    <div class="container-fluid">
         <div class="row">
             <div class="col">
                 <%--<asp:Button ID="btnPdf" runat="server" Text="Exportar PDF" CssClass="btn-dark" OnClick="btnPdf_Click" />--%>
@@ -54,7 +57,9 @@
                 <%--<asp:Button ID="btnExcel" runat="server" Text="Exportar Excel" CssClass="btn-dark" OnClick="btnExcel_Click" />--%>
             </div>
         </div>
-    </div>
+    </div>--%>
 
 </asp:Content>
->>>>>>> master
+
+
+

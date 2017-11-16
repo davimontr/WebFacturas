@@ -11,6 +11,12 @@ namespace slnPresentacion
         private IserviciosFacturas factura = new AccionesFacturas();
         private IserviciosLineaArticulo lineas = new AccionesLineaArticulo();
 
+        private IServiciosDepartamentos departamento = new AccionesDepartamentos();
+
+
+        private object fecha;
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -39,8 +45,31 @@ namespace slnPresentacion
             this.gvCiereCaja.DataBind();
             this.gvImpuestos.DataSource = this.lineas.reporteImpuestoPorFecha(fecha);
             this.gvImpuestos.DataBind();
+
+
+            this.cldFecha.SelectedDate = fecha;
+
+            var resultados = this.departamento.reporteVentasDepartamentoFecha(fecha);
+
+
+            List<string> x = new List<string>(resultados.Count);
+            List<decimal> y = new List<decimal>(resultados.Count);
+            foreach (var fila in resultados)
+            {
+                x.Add(fila.GetType().GetProperty("Departamento").GetValue(fila).ToString());
+                y.Add(decimal.Parse(fila.GetType().GetProperty("Cantidades").GetValue(fila).ToString()));
+            }
+            var xs = x.ToArray();
+            var ys = y.ToArray();
+            this.Chart1.Series[0].Points.DataBindXY(x, y);
+            //this.Chart1.Series[0].ChartType = SeriesChartType.Pie;
+            this.Chart1.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
+            this.Chart1.Legends[0].Enabled = true;
+
+
+
         }
-       
+
         public override void VerifyRenderingInServerForm(Control control)
         {
             /* Verifies that the control is rendered */
@@ -58,5 +87,7 @@ namespace slnPresentacion
         {
             new Exportador().enExcel(this.gvCiereCaja, Response);
         }
+
+
     }
 }
