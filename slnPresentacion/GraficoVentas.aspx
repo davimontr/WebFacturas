@@ -10,22 +10,51 @@
         <div class="col-6 col-sm-6 placeholder">
             <h4>Administraci&oacute;n Ventas por Departamento</h4>
         </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <asp:TextBox ID="txtFecha" runat="server" TextMode="Date"
+                        AutoPostBack="true" OnTextChanged="txtFecha_TextChanged"></asp:TextBox>
+                </div>
+            </div>
+        </div>
         <asp:Chart ID="Chart1" runat="server">
+            <Titles>
+                <asp:Title ShadowOffset="3" Name="Items" />
+            </Titles>
+            <Legends>
+                <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
+            </Legends>
             <Series>
-                <asp:Series Name="Series1"></asp:Series>
+                <asp:Series Name="Default"></asp:Series>
             </Series>
             <ChartAreas>
-                <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+                <asp:ChartArea Name="ChartArea1" BorderWidth="0"></asp:ChartArea>
             </ChartAreas>
         </asp:Chart>
-    </section> 
-    
+    </section>
+
 
 
 
 
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 
+<<<<<<< HEAD
  
 
 </asp:Content>
+=======
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <%--<asp:Button ID="btnPdf" runat="server" Text="Exportar PDF" CssClass="btn-dark" OnClick="btnPdf_Click" />--%>
+            </div>
+            <div class="col">
+                <%--<asp:Button ID="btnExcel" runat="server" Text="Exportar Excel" CssClass="btn-dark" OnClick="btnExcel_Click" />--%>
+            </div>
+        </div>
+    </div>
+
+</asp:Content>
+>>>>>>> master

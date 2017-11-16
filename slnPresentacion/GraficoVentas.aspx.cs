@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using slnLogica;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace slnPresentacion
 {
@@ -25,12 +26,16 @@ namespace slnPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
 
+<<<<<<< HEAD
             if (!Page.IsPostBack)
             {
                 cargarChar();
 
             }
 
+=======
+            
+>>>>>>> master
 
         }
 
@@ -40,6 +45,7 @@ namespace slnPresentacion
             /* Verifies that the control is rendered */
         }
 
+<<<<<<< HEAD
 
         private void cargarChar()
         {
@@ -59,5 +65,24 @@ namespace slnPresentacion
 
 
 
+=======
+        protected void txtFecha_TextChanged(object sender, EventArgs e)
+        {
+            var resultados = this.departamentos.reporteVentasDepartamentoFecha(DateTime.Parse(this.txtFecha.Text));
+            List<string> x = new List<string>(resultados.Count);
+            List<decimal> y = new List<decimal>(resultados.Count);
+            foreach(var fila in resultados)
+            {
+                x.Add(fila.GetType().GetProperty("Departamento").GetValue(fila).ToString());
+                y.Add(decimal.Parse(fila.GetType().GetProperty("Cantidades").GetValue(fila).ToString()));
+            }
+            var xs = x.ToArray();
+            var ys = y.ToArray();
+            this.Chart1.Series[0].Points.DataBindXY(x, y);
+            this.Chart1.Series[0].ChartType = SeriesChartType.Pie;
+            this.Chart1.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
+            this.Chart1.Legends[0].Enabled = true;
+        }
+>>>>>>> master
     }
 }
