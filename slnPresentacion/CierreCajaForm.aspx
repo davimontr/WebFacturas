@@ -2,9 +2,18 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="contenido" runat="server">
     <h1>Cierre de Caja</h1>
-    <asp:Calendar ID="cldFecha" runat="server" OnDayRender="cldFecha_DayRender"></asp:Calendar>
 
-            <asp:Chart ID="Chart1" runat="server">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col">
+
+                  <asp:Calendar ID="cldFecha" runat="server" OnDayRender="cldFecha_DayRender"></asp:Calendar>
+
+            </div>
+            <div class="col">
+
+                           <asp:Chart ID="Chart1" runat="server">
             <Titles>
                 <asp:Title ShadowOffset="3" Name="Items" />
             </Titles>
@@ -18,6 +27,19 @@
                 <asp:ChartArea Name="ChartArea1" BorderWidth="0"></asp:ChartArea>
             </ChartAreas>
         </asp:Chart>
+
+            </div>
+
+        </div>
+
+
+ 
+
+    </div>
+    
+    
+    
+
 
     <br />
     <asp:Button ID="btnGenerar" runat="server" Text="Generar" CssClass="btn-secondary" OnClick="btnGenerar_Click" />

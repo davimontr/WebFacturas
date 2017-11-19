@@ -44,6 +44,8 @@ public partial class Producto
 
     public bool Gravado { get; set; }
 
+    public int Codigo { get; set; }
+
 
 
     public virtual Departamento Departamento { get; set; }
