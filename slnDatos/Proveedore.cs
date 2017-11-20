@@ -15,24 +15,24 @@ namespace slnDatos
 using System;
     using System.Collections.Generic;
     
-public partial class LineaArticulo
+public partial class Proveedore
 {
+
+    public Proveedore()
+    {
+
+        this.Productos = new HashSet<Producto>();
+
+    }
+
 
     public int Id { get; set; }
 
-    public int IdProducto { get; set; }
-
-    public int Cantidad { get; set; }
-
-    public int IdFactura { get; set; }
-
-    public decimal Precio { get; set; }
+    public string Nombre { get; set; }
 
 
 
-    public virtual Factura Factura { get; set; }
-
-    public virtual Producto Producto { get; set; }
+    public virtual ICollection<Producto> Productos { get; set; }
 
 }
 

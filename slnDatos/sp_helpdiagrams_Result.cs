@@ -13,26 +13,19 @@ namespace slnDatos
 {
 
 using System;
-    using System.Collections.Generic;
     
-public partial class Proveedor
+public partial class sp_helpdiagrams_Result
 {
 
-    public Proveedor()
-    {
+    public string Database { get; set; }
 
-        this.Productos = new HashSet<Producto>();
+    public string Name { get; set; }
 
-    }
+    public int ID { get; set; }
 
+    public string Owner { get; set; }
 
-    public int Id { get; set; }
-
-    public string Nombre { get; set; }
-
-
-
-    public virtual ICollection<Producto> Productos { get; set; }
+    public int OwnerID { get; set; }
 
 }
 

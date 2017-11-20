@@ -40,7 +40,7 @@ namespace slnLogica
                     where p.IdDepartamento == d.Id
                     select new
                     {
-                        Codigo = p.Id,
+                        Codigo = p.Codigo,
                         Producto = p.Nombre,
                         Departamento = d.Nombre
                     }

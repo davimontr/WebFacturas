@@ -30,6 +30,7 @@ namespace slnPresentacion
             {
                 int Identificador = int.Parse(Request.QueryString["Id"]);
                 Producto producto = this.productos.obtenProductoSegunIdentificador(Identificador);
+                this.txtCodigo.Text = producto.Codigo.ToString();
                 this.txtProducto.Text = producto.Nombre;
                 this.txtCosto.Text = producto.Costo.ToString();
                 this.txtUtilidad.Text = producto.Utilidad.ToString();
@@ -74,6 +75,7 @@ namespace slnPresentacion
                 if (String.IsNullOrEmpty(Identificador))
                 {
                     this.productos.incluirProducto(
+                        Int32.Parse(this.txtCodigo.Text),
                         this.txtProducto.Text,
                         Int32.Parse(this.txtCosto.Text),
                         Int32.Parse(this.txtUtilidad.Text),
@@ -90,6 +92,7 @@ namespace slnPresentacion
                 else
                 {
                     this.productos.actualizaProducto(
+                        Int32.Parse(this.txtCodigo.Text),
                         int.Parse(Identificador),
                         this.txtProducto.Text,
                         Int32.Parse(this.txtCosto.Text),

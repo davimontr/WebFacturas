@@ -84,10 +84,19 @@
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Proveedor.cs">
+    <Compile Include="Proveedore.cs">
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
+      <DependentUpon>Facturas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>Facturas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>Facturas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagram.cs">
       <DependentUpon>Facturas.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoMoneda.cs">
