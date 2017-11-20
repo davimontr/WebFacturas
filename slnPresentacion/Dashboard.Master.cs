@@ -8,24 +8,27 @@ namespace WebFacturas
 {
     public partial class DashboardMaster : System.Web.UI.MasterPage
     {
-        private void revisarSesion()
-        {
-            if (Page.Session["sesion"] == null)
-            {
-                new SesionMensajes(Page).crearAlerta("Debe iniciar sesion.");
-                Response.Redirect("~/Default.aspx");
-            }
-        }
+        private ControlSesiones controlSesiones;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.revisarSesion();
-            this.agregarNavegacion();
+            this.controlSesiones = new ControlSesiones(Page);
+            if(!this.controlSesiones.existeSesion())
+            {
+                this.controlSesiones.crearAlerta("Debe iniciar sesion.");
+                Response.Redirect("~/Default.aspx");
+            }
+            string ruta = this.contenido.Page.AppRelativeVirtualPath;
+            if(!this.controlSesiones.tienePermisos(ruta))
+            {
+                Response.StatusCode = (int)System.Net.HttpStatusCode.Forbidden;
+                Response.End();
+            }
+            this.agregarNavegacion(ruta);
         }
 
-        private void agregarNavegacion()
-        {
-            string ruta = this.contenido.Page.AppRelativeVirtualPath;
+        private void agregarNavegacion(string ruta)
+        {   
             string[] paginas = {
                 "~/Dashboard.aspx",
                 "~/Clientes.aspx",
@@ -41,12 +44,15 @@ namespace WebFacturas
             NameValueCollection menu = new NameValueCollection()
             {
                 { "/Dashboard.aspx", "Inicio" },
-                { "/Usuarios.aspx", "Usuarios" },
                 { "/Perfil.aspx", "Perfil" },
-                {"/ReportesGenerales.aspx", "Reportes Generales" },
-
                 { "https://www.google.com/", "Ayuda" }
             };
+
+            if(this.controlSesiones.esAdministrador())
+            {
+                menu.Add("/Usuarios.aspx", "Usuarios");
+                menu.Add("/ReportesGenerales.aspx", "Reportes Generales");
+            }
 
             HTML.AppendFormat("<ul class=\"navbar-nav mr-auto\">");
             for (int i = 0; i < menu.Count; i++)
@@ -67,7 +73,7 @@ namespace WebFacturas
         protected void btnSalir_Click(object sender, EventArgs e)
         {
             Page.Session.Remove("sesion");
-            new SesionMensajes(Page).crearAviso("Sesion terminada.");
+            new ControlSesiones(Page).crearAviso("Sesion terminada.");
             Response.Redirect("~/Default.aspx");
         }
     }

@@ -57,7 +57,7 @@ namespace slnPresentacion
                 {
                     this.usuarios.actualizaUsuario(int.Parse(Identificador), this.txtEmail.Text, this.txtClave.Text, int.Parse(this.ddlRoles.SelectedValue));
                 }
-                new SesionMensajes(Page).crearAviso("Usuario salvado.");
+                new ControlSesiones(Page).crearAviso("Usuario salvado.");
                 Response.Redirect("~/Usuarios.aspx");
             }
             catch (Exception ex)

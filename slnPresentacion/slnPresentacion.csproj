@@ -356,7 +356,7 @@
     <Compile Include="ReportPrductosProveedor.aspx.designer.cs">
       <DependentUpon>ReportPrductosProveedor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SesionMensajes.cs" />
+    <Compile Include="ControlSesiones.cs" />
     <Compile Include="UsuarioForm.aspx.cs">
       <DependentUpon>UsuarioForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

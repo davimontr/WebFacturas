@@ -101,7 +101,7 @@ namespace slnPresentacion
                         this.checkboxGravado.Checked
                     );
                 }
-                new SesionMensajes(Page).crearAviso("Producto salvado.");
+                new ControlSesiones(Page).crearAviso("Producto salvado.");
                 Response.Redirect("~/Productos.aspx");
             }
             catch (Exception ex)

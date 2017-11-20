@@ -9,7 +9,7 @@ namespace WebFacturas
         {
             if (Page.Session["sesion"] != null)
             {
-                new SesionMensajes(Page).crearAlerta("Sesion ya esta iniciada.");
+                new ControlSesiones(Page).crearAlerta("Sesion ya esta iniciada.");
                 Response.Redirect("~/Dashboard.aspx");
             }
         }

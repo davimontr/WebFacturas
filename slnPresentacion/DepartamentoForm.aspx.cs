@@ -53,7 +53,7 @@ namespace slnPresentacion
                 {
                     this.departamento.actualizaDepartamento(int.Parse(Identificador), this.txtNombre.Text);
                 }
-                new SesionMensajes(Page).crearAviso("Departamento salvado.");
+                new ControlSesiones(Page).crearAviso("Departamento salvado.");
                 Response.Redirect("~/Departamentos.aspx");
             }
             catch (Exception ex)

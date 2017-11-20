@@ -211,7 +211,7 @@ namespace slnPresentacion
 
                 if (this.redireccionar)
                 {
-                    new SesionMensajes(Page).crearAviso("Factura salvada.");
+                    new ControlSesiones(Page).crearAviso("Factura salvada.");
                     Response.Redirect("~/Dashboard.aspx");
                 }
                 else if (string.IsNullOrEmpty(this.hdnIdentificador.Value))
