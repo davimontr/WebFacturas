@@ -60,9 +60,9 @@ namespace slnPresentacion
         {
             if(!Page.IsPostBack)
             {
-                this.cargarProductoDeUrl();
                 this.cargarProveedores();
                 this.cargarDepartamentos();
+                this.cargarProductoDeUrl();
             }
         }
 

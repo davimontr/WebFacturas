@@ -39,8 +39,8 @@ namespace slnPresentacion
         {
             if (!Page.IsPostBack)
             {
-                this.cargarUsuarioDeUrl();
                 this.cargarRoles();
+                this.cargarUsuarioDeUrl();
             }
         }
 
