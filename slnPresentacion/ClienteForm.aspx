@@ -19,7 +19,7 @@
     <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="El nombre completo es obligatorio." ControlToValidate="txtNombre" ForeColor="Red"></asp:RequiredFieldValidator>
     <br />
-    <asp:Button ID="btnSalvar" runat="server"  class="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />
+    <asp:Button ID="btnSalvar" runat="server"  CssClass="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />
     <br />
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 </asp:Content>

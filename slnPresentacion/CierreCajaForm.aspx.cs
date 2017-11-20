@@ -10,13 +10,8 @@ namespace slnPresentacion
     {
         private IserviciosFacturas factura = new AccionesFacturas();
         private IserviciosLineaArticulo lineas = new AccionesLineaArticulo();
-
         private IServiciosDepartamentos departamento = new AccionesDepartamentos();
-
-
-        private object fecha;
-
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)

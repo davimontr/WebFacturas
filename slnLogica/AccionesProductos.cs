@@ -11,8 +11,8 @@ namespace slnLogica
     {
         List<Producto> obtenerTodos();
         Producto obtenProductoSegunIdentificador(int Id);
-        void  incluirProducto(int Codigo, string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor, int IdDepartamento, bool Gravado);
-        void actualizaProducto(int Id, int Codigo, string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor, int IdDepartamento, bool Gravado);
+        void  incluirProducto(string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor, int IdDepartamento, bool Gravado);
+        void actualizaProducto(int Id, string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor, int IdDepartamento, bool Gravado);
         void eliminarProducto(int Id);
     }
 
@@ -26,10 +26,9 @@ namespace slnLogica
         }
 
         // metodo agregar
-        public void incluirProducto(int Codigo, string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor, int IdDepartamento, bool Gravado)
+        public void incluirProducto(string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor, int IdDepartamento, bool Gravado)
         {
             this.contexto.Productos.Add(new Producto {
-                Codigo = Codigo,
                 Nombre = Nombre,
                 Costo = Costo,
                 Utilidad = Utilidad,
@@ -51,10 +50,9 @@ namespace slnLogica
         }
 
         //actualiza 
-        public void actualizaProducto(int Id, int Codigo, string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor, int IdDepartamento, bool Gravado)
+        public void actualizaProducto(int Id, string Nombre, int Costo, int Utilidad, int Impuesto, int Existencia, int IdProveedor, int IdDepartamento, bool Gravado)
         {
             Producto producto = this.obtenProductoSegunIdentificador(Id);
-            producto.Codigo = Codigo;
             producto.Nombre = Nombre;
             producto.Costo = Costo;
             producto.Utilidad = Utilidad;
