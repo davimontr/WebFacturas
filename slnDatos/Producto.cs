@@ -28,6 +28,8 @@ public partial class Producto
 
     public int Id { get; set; }
 
+    public int Codigo { get; set; }
+
     public string Nombre { get; set; }
 
     public int Costo { get; set; }
@@ -44,15 +46,13 @@ public partial class Producto
 
     public bool Gravado { get; set; }
 
-    public int Codigo { get; set; }
-
 
 
     public virtual Departamento Departamento { get; set; }
 
     public virtual ICollection<LineaArticulo> LineaArticuloes { get; set; }
 
-    public virtual Proveedor Proveedore { get; set; }
+    public virtual Proveedore Proveedore { get; set; }
 
 }
 

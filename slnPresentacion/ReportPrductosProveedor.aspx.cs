@@ -20,7 +20,7 @@ namespace slnPresentacion
             try
             {
                 var listaProveedores = this.provee.obtenerTodos();
-                listaProveedores.Insert(0, new slnDatos.Proveedor{ Id = 0, Nombre = "Todos" });
+                listaProveedores.Insert(0, new slnDatos.Proveedore { Id = 0, Nombre = "Todos" });
                 this.ddlPRoveedor.DataSource = listaProveedores;
                 this.ddlPRoveedor.DataTextField = "Nombre";
                 this.ddlPRoveedor.DataValueField = "Id";

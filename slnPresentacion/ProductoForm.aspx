@@ -11,6 +11,11 @@
         <div class="col-10 col-sm-10 placeholder">
         </div>
     </section>
+        <label for="contenido_txtCodigo">Codigo</label><br />
+    <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" 
+        ErrorMessage="El código del producto es obligatorio." 
+        ControlToValidate="txtCodigo" ForeColor="Red"/><br />
     <label for="contenido_txtProducto">Producto</label><br />
     <asp:TextBox ID="txtProducto" runat="server"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 

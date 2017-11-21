@@ -9,11 +9,11 @@ namespace slnLogica
 {
     public interface IserviciosProveedores
     {
-        List<Proveedor> obtenerTodos();
+        List<Proveedore> obtenerTodos();
         void incluirProveedor(string Nombre);
         void actualizaProveedor(int Id, string Nombre);
         void eliminarProveedor(int Id);
-        Proveedor obtenProveedorSegunIdentificador(int Id);
+        Proveedore obtenProveedorSegunIdentificador(int Id);
         List<object> reportTodosProvee();
         List<object> reportProveedores(int idProvee);
 
@@ -22,29 +22,29 @@ namespace slnLogica
     public class AccionesProveedores : AccionesEntidades, IserviciosProveedores
     {
 
-        public List<Proveedor> obtenerTodos()
+        public List<Proveedore> obtenerTodos()
         {
-            return this.contexto.Proveedors.ToList();
+            return this.contexto.Proveedores.ToList();
         }
 
         // se agrega el proveedor
         public void incluirProveedor(string Nombre)
         {
-            this.contexto.Proveedors.Add(new Proveedor {
+            this.contexto.Proveedores.Add(new Proveedore {
                 Nombre = Nombre
             });
             this.contexto.SaveChanges();
         }
 
-        public Proveedor obtenProveedorSegunIdentificador(int Id)
+        public Proveedore obtenProveedorSegunIdentificador(int Id)
         {
-            return this.contexto.Proveedors.FirstOrDefault(p => p.Id == Id);
+            return this.contexto.Proveedores.FirstOrDefault(p => p.Id == Id);
         }
 
         //actualiza el proveedor
         public void actualizaProveedor(int Id, string Nombre)
         {
-            Proveedor proveed = this.obtenProveedorSegunIdentificador(Id);
+            Proveedore proveed = this.obtenProveedorSegunIdentificador(Id);
             proveed.Nombre = Nombre;
             this.contexto.SaveChanges();
         }
@@ -52,20 +52,20 @@ namespace slnLogica
         //metodo eliminar
         public void eliminarProveedor(int Id)
         {
-            Proveedor proveedor = this.obtenProveedorSegunIdentificador(Id);
-            this.contexto.Proveedors.Remove(proveedor);
+            Proveedore proveedor = this.obtenProveedorSegunIdentificador(Id);
+            this.contexto.Proveedores.Remove(proveedor);
             this.contexto.SaveChanges();
         }
 
         public List<object> reportTodosProvee()
         {
 
-            return (from d in contexto.Proveedors
+            return (from d in contexto.Proveedores
                     join p in contexto.Productos on d.Id equals p.IdProveedor
                     where p.IdProveedor == d.Id
                     select new
                     {
-                        Codigo = p.Id,
+                        Codigo = p.Codigo,
                         Producto = p.Nombre,
                         Proveedores = d.Nombre
                     }
@@ -77,7 +77,7 @@ namespace slnLogica
         public List<object> reportProveedores(int idProvee)
         {
 
-            return (from d in contexto.Proveedors
+            return (from d in contexto.Proveedores
                     join p in contexto.Productos on d.Id equals p.IdProveedor
                     where p.IdProveedor == idProvee
                     select new

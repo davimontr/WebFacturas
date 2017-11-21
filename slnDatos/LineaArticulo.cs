@@ -30,9 +30,9 @@ public partial class LineaArticulo
 
 
 
-    public virtual Producto Producto { get; set; }
-
     public virtual Factura Factura { get; set; }
+
+    public virtual Producto Producto { get; set; }
 
 }
 

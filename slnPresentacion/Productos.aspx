@@ -28,6 +28,7 @@
                 <ItemStyle CssClass="d-none" />
                 <HeaderStyle CssClass="d-none" />
             </asp:BoundField>
+            <asp:BoundField DataField="Codigo" HeaderText="Codigo" />
             <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
             <asp:BoundField DataField="Costo" HeaderText="Costo" />
             <asp:BoundField DataField="Utilidad" HeaderText="Utilidad" />
