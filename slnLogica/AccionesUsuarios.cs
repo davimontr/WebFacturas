@@ -84,11 +84,13 @@ namespace slnLogica
 
         public void actualizaUsuario(int Id, string correo, string contrasena,int rol)
         {
-            string clave = this.encriptarClaveUsuario(contrasena);
-            Usuario usu = this.obtenUsuarioSegunIdentificador(Id);
-            usu.Email = correo;
-            usu.Clave = clave;
-            usu.IdRol = rol;
+            Usuario usuario = this.obtenUsuarioSegunIdentificador(Id);
+            usuario.Email = correo;
+            if (!usuario.Clave.Equals(contrasena))
+            {
+                usuario.Clave = this.encriptarClaveUsuario(contrasena);
+            }
+            usuario.IdRol = rol;
             this.contexto.SaveChanges();
         }
 

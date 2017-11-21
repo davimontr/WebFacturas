@@ -41,7 +41,7 @@ namespace slnPresentacion
                 {
                     this.proveedores.actualizaProveedor(int.Parse(Identificador), this.txtNombre.Text);
                 }
-                new SesionMensajes(Page).crearAviso("Proveedor salvado.");
+                new ControlSesiones(Page).crearAviso("Proveedor salvado.");
                 Response.Redirect("~/Proveedores.aspx");
             }
             catch (Exception ex)

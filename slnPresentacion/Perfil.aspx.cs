@@ -49,7 +49,7 @@ namespace slnPresentacion
             try {
                 Usuario sesion = (Usuario)Page.Session["sesion"];
                 this.usuarios.actualizaUsuario(sesion.Id, this.txtEmail.Text, this.txtClave.Text, int.Parse(this.ddlRoles.SelectedValue));
-                new SesionMensajes(Page).crearAviso("Perfil salvado.");
+                new ControlSesiones(Page).crearAviso("Perfil salvado.");
                 Page.Session["sesion"] = this.usuarios.obtenUsuarioSegunIdentificador(sesion.Id);
                 Response.Redirect("~/Dashboard.aspx");
             }
