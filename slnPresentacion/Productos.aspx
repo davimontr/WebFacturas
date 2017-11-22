@@ -36,8 +36,11 @@
             <asp:BoundField DataField="Existencia" HeaderText="Existencia" />
             <asp:BoundField DataField="Proveedore.Nombre" HeaderText="Proveedor" />
             <asp:BoundField DataField="Departamento.Nombre" HeaderText ="Departamento" />
-            <asp:BoundField DataField="Gravado" HeaderText="Gravado" />
-
+            <asp:TemplateField HeaderText="Gravado">
+                <ItemTemplate>
+                    <asp:Label ID="lblGravado" runat="server" Text='<%# (bool)Eval("Gravado") == true ? "Si" : "No" %>'></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:CommandField EditText="Editar" ShowEditButton="true">
                 <ControlStyle CssClass="btn btn-primary active" />
             </asp:CommandField>
