@@ -39,7 +39,7 @@ namespace slnPresentacion
                 this.ddlProveedor.SelectedValue = producto.IdProveedor.ToString();
                 this.hdnIdentificador.Value = Identificador.ToString();
                 this.ddlDepartamento.SelectedValue = producto.Departamento.Id.ToString();
-                this.checkboxGravado.AutoPostBack = producto.Gravado;
+                this.checkboxGravado.Checked = producto.Gravado;
             }
         }
 
@@ -69,38 +69,37 @@ namespace slnPresentacion
 
         protected void btnSalvar_Click(object sender, EventArgs e)
         {
+            int impuesto = 0;
+            int.TryParse(this.txtImpuesto.Text, out impuesto);
             try
             {
                 string Identificador = this.hdnIdentificador.Value;
                 if (String.IsNullOrEmpty(Identificador))
                 {
                     this.productos.incluirProducto(
-                        Int32.Parse(this.txtCodigo.Text),
+                        int.Parse(this.txtCodigo.Text),
                         this.txtProducto.Text,
-                        Int32.Parse(this.txtCosto.Text),
-                        Int32.Parse(this.txtUtilidad.Text),
-                        Int32.Parse(this.txtImpuesto.Text),
-                        Int32.Parse(this.txtExistencia.Text),
-                        Int32.Parse(this.ddlProveedor.SelectedValue),
-                         Int32.Parse(this.ddlDepartamento.SelectedValue),
-                         this.checkboxGravado.Checked 
-
-
-
+                        int.Parse(this.txtCosto.Text),
+                        int.Parse(this.txtUtilidad.Text),
+                        impuesto,
+                        int.Parse(this.txtExistencia.Text),
+                        int.Parse(this.ddlProveedor.SelectedValue),
+                        int.Parse(this.ddlDepartamento.SelectedValue),
+                        this.checkboxGravado.Checked
                     );
                 }
                 else
                 {
                     this.productos.actualizaProducto(
-                        Int32.Parse(this.txtCodigo.Text),
+                        int.Parse(this.txtCodigo.Text),
                         int.Parse(Identificador),
                         this.txtProducto.Text,
-                        Int32.Parse(this.txtCosto.Text),
-                        Int32.Parse(this.txtUtilidad.Text),
-                        Int32.Parse(this.txtImpuesto.Text),
-                        Int32.Parse(this.txtExistencia.Text),
-                        Int32.Parse(this.ddlProveedor.SelectedValue),
-                        Int32.Parse(this.ddlDepartamento.SelectedValue),
+                        int.Parse(this.txtCosto.Text),
+                        int.Parse(this.txtUtilidad.Text),
+                        impuesto,
+                        int.Parse(this.txtExistencia.Text),
+                        int.Parse(this.ddlProveedor.SelectedValue),
+                        int.Parse(this.ddlDepartamento.SelectedValue),
                         this.checkboxGravado.Checked
                     );
                 }
