@@ -91,8 +91,8 @@ namespace slnPresentacion
                 else
                 {
                     this.productos.actualizaProducto(
-                        int.Parse(this.txtCodigo.Text),
                         int.Parse(Identificador),
+                        int.Parse(this.txtCodigo.Text),
                         this.txtProducto.Text,
                         int.Parse(this.txtCosto.Text),
                         int.Parse(this.txtUtilidad.Text),
