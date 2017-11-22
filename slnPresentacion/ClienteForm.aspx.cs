@@ -46,7 +46,7 @@ namespace slnPresentacion
             }
             catch (Exception ex)
             {
-                this.lblMensaje.Text = ex.Message;
+                this.lblMensaje.Text = ex.GetBaseException().Message;
             }
         }
     }

@@ -40,7 +40,7 @@ namespace WebFacturas
                 }
                 catch (Exception ex)
                 {
-                    this.lblInicioSession.Text = ex.Message;
+                    this.lblInicioSession.Text = ex.GetBaseException().Message;
                 }
             }
         }
