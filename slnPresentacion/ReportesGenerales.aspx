@@ -29,12 +29,7 @@
             <div class="col-sm text-center">
                 <a href="/GraficoVentas.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Grafico de ventas</a>
             </div>
-            <div class="col-sm text-center">
-                <a href="#" class="badge badge-pill badge-info" style="font-size: medium;">Reporte...</a>
-            </div>
-            <div class="col-sm text-center">
-                <a href="#" class="badge badge-pill badge-info" style="font-size: medium;">Reporte...</a>
-            </div>
+          
         </div>
     </div>
 </asp:Content>
