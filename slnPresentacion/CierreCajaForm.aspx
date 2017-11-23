@@ -64,10 +64,10 @@
                             CssClass="table table-striped"
                             AutoGenerateColumns="false">
                             <Columns>
-                                <asp:BoundField DataField="Impuesto" HeaderText="Impuesto" />
-                                <asp:BoundField DataField="Costos" HeaderText="Costos" />
-                                <asp:BoundField DataField="Cantidades" HeaderText="Cantidades" />
-                                <asp:BoundField DataField="Total" HeaderText="Total" />
+                                <asp:BoundField DataField="Impuesto" HeaderText="Impuesto"/>
+                                <asp:BoundField DataField="Costos" HeaderText="Costos" DataFormatString="{0:n}"/>
+                                <asp:BoundField DataField="Cantidades" HeaderText="Cantidades" DataFormatString="{0:n}" />
+                                <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:n}" />
                                 <asp:BoundField DataField="Fecha" HeaderText="Fecha">
                                     <ItemStyle CssClass="d-none" />
                                     <HeaderStyle CssClass="d-none" />

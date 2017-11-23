@@ -57,6 +57,8 @@
         Operator="GreaterThanEqual"
         ValueToCompare ="1" Type="Integer"
         Display="Dynamic"/><br />
+    <% if (this.checkboxGravado.Checked)
+        { %>
     <label for="contenido_txtImpuesto">Impuesto</label><br />
     <asp:TextBox ID="txtImpuesto" runat="server" TextMode="Number" 
         ToolTip="El impuesto es porcentual y debe ser n&uacute;mero positivo mayor a uno."></asp:TextBox>
@@ -74,7 +76,9 @@
         ErrorMessage="Debe ser mayor a uno."
         Operator="GreaterThanEqual"
         ValueToCompare ="1" Type="Integer"
-        Display="Dynamic"/><br />
+        Display="Dynamic"/>
+    <% } %>
+    <br />
     <label for="contenido_txtExistencia">Existencia</label><br />
     <asp:TextBox ID="txtExistencia" runat="server" TextMode="Number"
         ToolTip="La existencia debe ser n&uacute;mero positivo mayor a uno."></asp:TextBox>

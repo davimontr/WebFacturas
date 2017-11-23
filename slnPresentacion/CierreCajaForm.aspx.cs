@@ -57,7 +57,6 @@ namespace slnPresentacion
             var xs = x.ToArray();
             var ys = y.ToArray();
             this.Chart1.Series[0].Points.DataBindXY(x, y);
-            //this.Chart1.Series[0].ChartType = SeriesChartType.Pie;
             this.Chart1.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
             this.Chart1.Legends[0].Enabled = true;
 
