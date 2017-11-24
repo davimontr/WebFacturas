@@ -28,7 +28,7 @@
                 <ItemStyle CssClass="d-none" />
                 <HeaderStyle CssClass="d-none" />
             </asp:BoundField>
-            <asp:BoundField DataField="Cedula" HeaderText="Cedula" />
+            <asp:BoundField DataField="Cedula" HeaderText="C&eacute;dula" />
             <asp:BoundField DataField="NombreCompleto" HeaderText="Nombre" />
             <asp:CommandField EditText="Editar" ShowEditButton="true">
                 <ControlStyle CssClass="btn btn-primary active" />

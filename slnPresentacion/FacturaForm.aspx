@@ -19,7 +19,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <label for="contenido_txtFactura">Factura</label><br />
+                <label for="contenido_txtFactura">N&uacute;mero de factura</label><br />
                 <asp:TextBox ID="txtFactura" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="La factura es obligatoria." ControlToValidate="txtFactura" ForeColor="Red"></asp:RequiredFieldValidator>
             </div>
@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-12">
                 <div>
-                    <h4>Lineas de Articulos</h4>
+                    <h4>L&iacute;nea de Articulos</h4>
                 </div>
             </div>
             <asp:Panel ID="pnlLineaAgregar" runat="server" CssClass="col-sm-12 col-md-12">
