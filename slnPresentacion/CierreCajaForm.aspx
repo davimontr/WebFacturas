@@ -2,45 +2,29 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="contenido" runat="server">
     <h1>Cierre de Caja</h1>
-
     <div class="container-fluid">
         <div class="row">
-
             <div class="col">
-
-                  <asp:Calendar ID="cldFecha" runat="server" OnDayRender="cldFecha_DayRender"></asp:Calendar>
-
+                <asp:Calendar ID="cldFecha" runat="server" OnDayRender="cldFecha_DayRender"></asp:Calendar>
             </div>
             <div class="col">
-
-                           <asp:Chart ID="Chart1" runat="server">
-            <Titles>
-                <asp:Title ShadowOffset="3" Name="Items" />
-            </Titles>
-            <Legends>
-                <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
-            </Legends>
-            <Series>
-                <asp:Series Name="Default"></asp:Series>
-            </Series>
-            <ChartAreas>
-                <asp:ChartArea Name="ChartArea1" BorderWidth="0"></asp:ChartArea>
-            </ChartAreas>
-        </asp:Chart>
-
+                <asp:Chart ID="Chart1" runat="server">
+                    <Titles>
+                        <asp:Title ShadowOffset="3" Name="Items" />
+                    </Titles>
+                    <Legends>
+                        <asp:Legend Alignment="Center" Docking="Bottom" IsTextAutoFit="False" Name="Default" LegendStyle="Row" />
+                    </Legends>
+                    <Series>
+                        <asp:Series Name="Default"></asp:Series>
+                    </Series>
+                    <ChartAreas>
+                        <asp:ChartArea Name="ChartArea1" BorderWidth="0"></asp:ChartArea>
+                    </ChartAreas>
+                </asp:Chart>
             </div>
-
         </div>
-
-
- 
-
     </div>
-    
-    
-    
-
-
     <br />
     <asp:Button ID="btnGenerar" runat="server" Text="Generar" CssClass="btn-secondary" OnClick="btnGenerar_Click" />
     <br />
@@ -64,8 +48,8 @@
                             CssClass="table table-striped"
                             AutoGenerateColumns="false">
                             <Columns>
-                                <asp:BoundField DataField="Impuesto" HeaderText="Impuesto"/>
-                                <asp:BoundField DataField="Costos" HeaderText="Costos" DataFormatString="{0:n}"/>
+                                <asp:BoundField DataField="Impuesto" HeaderText="Impuesto" />
+                                <asp:BoundField DataField="Costos" HeaderText="Costos" DataFormatString="{0:n}" />
                                 <asp:BoundField DataField="Cantidades" HeaderText="Cantidades" DataFormatString="{0:n}" />
                                 <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:n}" />
                                 <asp:BoundField DataField="Fecha" HeaderText="Fecha">

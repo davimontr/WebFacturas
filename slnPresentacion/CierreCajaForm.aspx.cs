@@ -41,12 +41,7 @@ namespace slnPresentacion
             this.gvImpuestos.DataSource = this.lineas.reporteImpuestoPorFecha(fecha);
             this.gvImpuestos.DataBind();
 
-
-            this.cldFecha.SelectedDate = fecha;
-
             var resultados = this.departamento.reporteVentasDepartamentoFecha(fecha);
-
-
             List<string> x = new List<string>(resultados.Count);
             List<decimal> y = new List<decimal>(resultados.Count);
             foreach (var fila in resultados)
@@ -54,14 +49,9 @@ namespace slnPresentacion
                 x.Add(fila.GetType().GetProperty("Departamento").GetValue(fila).ToString());
                 y.Add(decimal.Parse(fila.GetType().GetProperty("Cantidades").GetValue(fila).ToString()));
             }
-            var xs = x.ToArray();
-            var ys = y.ToArray();
-            this.Chart1.Series[0].Points.DataBindXY(x, y);
+            this.Chart1.Series[0].Points.DataBindXY(x.ToArray(), y.ToArray());
             this.Chart1.ChartAreas["ChartArea1"].Area3DStyle.Enable3D = true;
             this.Chart1.Legends[0].Enabled = true;
-
-
-
         }
 
         public override void VerifyRenderingInServerForm(Control control)

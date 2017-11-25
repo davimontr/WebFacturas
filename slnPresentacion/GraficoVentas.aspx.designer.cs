@@ -13,13 +13,22 @@ namespace slnPresentacion {
     public partial class GraficoVentas {
         
         /// <summary>
-        /// txtFecha control.
+        /// cldFecha control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFecha;
+        protected global::System.Web.UI.WebControls.Calendar cldFecha;
+        
+        /// <summary>
+        /// gvFechaFecturas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvFechaFecturas;
         
         /// <summary>
         /// Chart1 control.

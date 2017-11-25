@@ -138,11 +138,5 @@ namespace slnLogica
 
 
         }
-
-
-
-
-
-
     }
 }

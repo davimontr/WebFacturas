@@ -18,6 +18,7 @@ namespace slnLogica
         void eliminarFactura(int Id);
         Factura obtenFacturaSegunNumero(string Numero);
         List<object> reporteCierre(DateTime fecha);
+        List<object> reporteFechaFacturas();
     }
 
     public class AccionesFacturas : AccionesEntidades, IserviciosFacturas
@@ -154,6 +155,19 @@ namespace slnLogica
             });
 
             return lista;
+        }
+
+        public List<object> reporteFechaFacturas()
+        {
+            return (from f in this.contexto.Facturas
+                    select new {
+                        Factura = f.Numero,
+                        Fecha = f.Fecha,
+                        Total = f.Total
+                    })
+                    .ToList()
+                    .Cast<object>()
+                    .ToList();
         }
     }
 }

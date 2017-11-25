@@ -10,26 +10,26 @@
     <div class="container">
         <div class="row" style="height: 50px;">
             <div class="col-sm text-center">
-                <a href="/ReporteProductoDepartamento.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Productos por Departamento</a>
+                <a href="/CierreCajaForm.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Cierre cajas diario</a>
             </div>
             <div class="col-sm text-center">
-                <a href="/CierreCajaForm.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Cierre cajas</a>
+                <a href="/ReporteProductoDepartamento.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Productos por Departamento</a>
             </div>
             <div class="col-sm text-center">
                 <a href="/ReportPrductosProveedor.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Productos por Proveedor</a>
             </div>
+        </div>
+        <div class="row" style="height: 50px;">
             <div class="col-sm text-center">
                 <a href="/ReporteFacturas.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Productos por Facturas</a>
             </div>
-        </div>
-        <div class="row" style="height: 50px;">
             <div class="col-sm text-center">
                 <a href="/ReporteVentasDepartamento.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Ventas por Departamentos</a>
             </div>
             <div class="col-sm text-center">
                 <a href="/GraficoVentas.aspx" class="badge badge-pill badge-info" style="font-size: medium;">Grafico de ventas</a>
             </div>
-          
+
         </div>
     </div>
 </asp:Content>
