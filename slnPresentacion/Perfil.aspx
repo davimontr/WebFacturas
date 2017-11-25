@@ -16,9 +16,11 @@
     <label for="contenido_txtClave">Clave</label><br />
     <asp:TextBox ID="txtClave" runat="server" TextMode="Password"></asp:TextBox>
     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="La clave es obligatoria." ControlToValidate="txtClave" ForeColor="Red"></asp:RequiredFieldValidator>
-    <br />
-    <label for="contenido_ddRoles">Rol</label><br />
-    <asp:DropDownList ID="ddlRoles" runat="server" DataTextField="Nombre" DataValueField="Id"></asp:DropDownList>
+    <asp:Panel ID="pnlRol" runat="server">
+        <br />
+        <label for="contenido_ddRoles">Rol</label><br />
+        <asp:DropDownList ID="ddlRoles" runat="server" DataTextField="Nombre" DataValueField="Id"></asp:DropDownList>
+    </asp:Panel>
     <br />
     <asp:Button ID="btnSalvar" runat="server" class="btn btn-primary" Text="Salvar" OnClick="btnSalvar_Click" />
     <br />

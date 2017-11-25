@@ -41,6 +41,10 @@ namespace slnPresentacion
             {
                 this.cargarRoles();
                 this.cargarUsuarioSesion();
+                if(!new ControlSesiones(Page).esAdministrador())
+                {
+                    this.pnlRol.Visible = false;
+                }
             }
         }
 

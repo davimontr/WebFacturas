@@ -53,6 +53,7 @@ namespace slnPresentacion
         {
             string[] paginas = {
                 "~/Usuarios.aspx",
+                "~/UsuarioForm.aspx",
                 "~/ReportesGenerales.aspx",
                 "~/ReporteProductoDepartamento.aspx",
                 "~/CierreCajaForm.aspx",
