@@ -16,6 +16,7 @@ namespace slnLogica
         List<LineaArticulo> obtenerTodosPorIdFactura(int IdFactura);
         LineaArticulo obtenerSegunProductoFactura(int IdProducto, int IdFactura);
         List<lineaArticulosImpuesto> reporteImpuestoPorFecha(DateTime fecha);
+        decimal calcularPrecio(Producto Producto, int Cantidad);
     }
 
     public   class AccionesLineaArticulo : AccionesEntidades, IserviciosLineaArticulo
@@ -26,7 +27,7 @@ namespace slnLogica
             return this.contexto.LineaArticuloes.ToList();
         }
 
-        protected decimal calcularPrecio(Producto Producto, int Cantidad)
+        public decimal calcularPrecio(Producto Producto, int Cantidad)
         {
             decimal impuesto = 0;
             if (Producto.Gravado)

@@ -1,12 +1,15 @@
 ﻿using System;
 using slnLogica;
 using System.Web.UI;
+using System.Collections.Generic;
+using slnDatos;
 
 namespace slnPresentacion
 {
     public partial class Productos : System.Web.UI.Page
     { 
         private IserviciosProductos productos = new AccionesProductos();
+        private IserviciosLineaArticulo lineas = new AccionesLineaArticulo();
     
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,7 +20,24 @@ namespace slnPresentacion
         {
             try
             {
-                this.gvProductos.DataSource = this.productos.obtenerTodos();
+                List<object> productos = new List<object>();
+                foreach(Producto producto in this.productos.obtenerTodos())
+                {
+                    productos.Add(new {
+                        Id = producto.Id,
+                        Codigo = producto.Codigo,
+                        Nombre = producto.Nombre,
+                        Costo = producto.Costo,
+                        Utilidad = producto.Utilidad,
+                        Impuesto = producto.Impuesto,
+                        Existencia = producto.Existencia,
+                        Proveedor = producto.Proveedore.Nombre,
+                        Departamento = producto.Departamento.Nombre,
+                        Gravado = producto.Gravado,
+                        Precio = this.lineas.calcularPrecio(producto, 1)
+                    });
+                }
+                this.gvProductos.DataSource = productos;
                 this.gvProductos.DataBind();
             }
             catch (Exception ex)

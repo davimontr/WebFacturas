@@ -34,13 +34,14 @@
             <asp:BoundField DataField="Utilidad" HeaderText="Utilidad" />
             <asp:BoundField DataField="Impuesto" HeaderText="Impuesto" />
             <asp:BoundField DataField="Existencia" HeaderText="Existencia" />
-            <asp:BoundField DataField="Proveedore.Nombre" HeaderText="Proveedor" />
-            <asp:BoundField DataField="Departamento.Nombre" HeaderText ="Departamento" />
+            <asp:BoundField DataField="Proveedor" HeaderText="Proveedor" />
+            <asp:BoundField DataField="Departamento" HeaderText ="Departamento" />
             <asp:TemplateField HeaderText="Gravado">
                 <ItemTemplate>
                     <asp:Label ID="lblGravado" runat="server" Text='<%# (bool)Eval("Gravado") == true ? "Si" : "No" %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
+             <asp:BoundField DataField="Precio" HeaderText="Precio Unitario" DataFormatString="{0:n}" />
             <asp:CommandField EditText="Editar" ShowEditButton="true">
                 <ControlStyle CssClass="btn btn-primary active" />
             </asp:CommandField>
