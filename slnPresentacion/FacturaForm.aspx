@@ -91,7 +91,7 @@
                             <ItemStyle CssClass="d-none" />
                             <HeaderStyle CssClass="d-none" />
                         </asp:BoundField>
-                        <asp:BoundField DataField="Precio" HeaderText="Precio" />
+                        <asp:BoundField DataField="Precio" HeaderText="Precio" DataFormatString="{0:n}" />
                         <asp:CommandField DeleteText="Borrar" ShowDeleteButton="True">
                             <ControlStyle CssClass="btn btn-danger btn-sm" />
                         </asp:CommandField>
