@@ -86,8 +86,7 @@ namespace slnPresentacion.Reportes
 
         protected void btnExcel_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "Alerta", "alert('NO se logra exportar a Excel.');", true);
-        }
-        
+            new Exportador().enExcel(this.GridView1, Response);
+        }        
     }
 }

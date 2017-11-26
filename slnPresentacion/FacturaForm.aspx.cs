@@ -290,6 +290,11 @@ namespace slnPresentacion
                 this.lblCambio.Text = cambio.ToString("n");
                 this.txtPagado_TextChanged(sender, e);
             }
+            else
+            {
+                this.lblCambio.Text = string.Empty;
+                this.lblConvertido.Text = string.Empty;
+            }
             this.pnlCambio.Visible = mostrar;
             this.pnlConvertido.Visible = mostrar;
         }

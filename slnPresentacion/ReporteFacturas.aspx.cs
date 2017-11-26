@@ -10,14 +10,9 @@ namespace slnPresentacion
 {
     public partial class ReporteFacturas : System.Web.UI.Page
     {
-
-
-
         private IserviciosReportes repFac = new AccionesReportes();
-
         private IServiciosDepartamentos departamentos = new AccionesDepartamentos();
-
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -52,7 +47,6 @@ namespace slnPresentacion
             }
         }
 
-
         protected void Filtrar_Click(object sender, EventArgs e)
         {
             try
@@ -82,7 +76,7 @@ namespace slnPresentacion
 
         protected void btnExcel_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "Alerta", "alert('NO se logra exportar a Excel.');", true);
+            new Exportador().enExcel(this.GridView1, Response);
         }
     }
 }

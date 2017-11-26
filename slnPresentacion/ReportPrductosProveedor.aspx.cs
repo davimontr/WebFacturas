@@ -57,12 +57,8 @@ namespace slnPresentacion
         {
             try
             {
-
                 GridView1.DataSource = this.provee.reportTodosProvee();
-
-
                 GridView1.DataBind();
-
             }
             catch (Exception ex)
             {
@@ -72,7 +68,6 @@ namespace slnPresentacion
 
         protected void ddlPRoveedor_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             try
             {
                 int IdProvee = int.Parse(this.ddlPRoveedor.SelectedValue);
@@ -101,9 +96,7 @@ namespace slnPresentacion
 
         protected void btnExcel_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "Alerta", "alert('NO se logra exportar a Excel.');", true);
+            new Exportador().enExcel(this.GridView1, Response);
         }
-
-
     }
 }

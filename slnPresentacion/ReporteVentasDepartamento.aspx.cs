@@ -96,7 +96,7 @@ namespace slnPresentacion
 
         protected void btnExcel_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "Alerta", "alert('NO se logra exportar a Excel.');", true);
+            new Exportador().enExcel(this.GridView1, Response);
         }
 
         protected void cldFecha_DayRender(object sender, DayRenderEventArgs e)
