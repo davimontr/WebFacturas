@@ -29,7 +29,6 @@ namespace slnLogica
         
         public List<object> reportTodosDepa()
         {
-
             return (from d in contexto.Departamentos
                     join p in contexto.Productos on d.Id equals p.IdDepartamento
                     where p.IdDepartamento == d.Id
