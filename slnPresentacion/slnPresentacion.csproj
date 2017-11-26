@@ -138,6 +138,9 @@
     <Content Include="controles\MenuInterno.ascx" />
     <Content Include="Departamentos.aspx" />
     <Content Include="DepartamentoForm.aspx" />
+    <Content Include="errores\403.html" />
+    <Content Include="errores\404.html" />
+    <Content Include="errores\500.html" />
     <Content Include="FacturaForm.aspx" />
     <Content Include="GraficoVentas.aspx" />
     <Content Include="packages.config" />
