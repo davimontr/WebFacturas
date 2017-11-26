@@ -32,7 +32,17 @@
         Caption="Cierre cajas"
         EmptyDataText="No hay detalles registrados a mostrar"
         CssClass="table table-striped"
-        AutoGenerateColumns="true">
+        AutoGenerateColumns="false">
+        <Columns>
+            <asp:BoundField DataField="Ventas" HeaderText="Ventas" DataFormatString="{0:n}" />
+            <asp:BoundField DataField="Gravados" HeaderText="Gravados" DataFormatString="{0:n}" />
+            <asp:BoundField DataField="Excentos" HeaderText="Excentos" DataFormatString="{0:n}" />
+            <asp:BoundField DataField="Colones" HeaderText="Colones" DataFormatString="{0:n}" />
+            <asp:BoundField DataField="Dolares" HeaderText="Dolares" DataFormatString="{0:n}" />
+            <asp:BoundField DataField="Euros" HeaderText="Euros" DataFormatString="{0:n}" />
+            <asp:BoundField DataField="Convertidos" HeaderText="Convertidos" DataFormatString="{0:n}" />
+            <asp:BoundField DataField="Pagado" HeaderText="Pagado" DataFormatString="{0:n}" />
+        </Columns>
     </asp:GridView>
     <button class="btn btn-primary" type="button" data-toggle="collapse"
         data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -50,7 +60,7 @@
                             <Columns>
                                 <asp:BoundField DataField="Impuesto" HeaderText="Impuesto" />
                                 <asp:BoundField DataField="Costos" HeaderText="Costos" DataFormatString="{0:n}" />
-                                <asp:BoundField DataField="Cantidades" HeaderText="Cantidades" DataFormatString="{0:n}" />
+                                <asp:BoundField DataField="Cantidades" HeaderText="Cantidades" />
                                 <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:n}" />
                                 <asp:BoundField DataField="Fecha" HeaderText="Fecha">
                                     <ItemStyle CssClass="d-none" />

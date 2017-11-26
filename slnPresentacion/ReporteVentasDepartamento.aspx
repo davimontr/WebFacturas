@@ -26,7 +26,8 @@
         BorderWidth="1px" 
         CellPadding="3" 
         Font-Size="Large" 
-        GridLines="Vertical">
+        GridLines="Vertical"
+        AutoGenerateColumns="false">
         <AlternatingRowStyle BackColor="#DCDCDC" />
         <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
         <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
@@ -37,6 +38,10 @@
         <SortedAscendingHeaderStyle BackColor="#0000A9" />
         <SortedDescendingCellStyle BackColor="#CAC9C9" />
         <SortedDescendingHeaderStyle BackColor="#000065" />
+        <Columns>
+            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+            <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:n}" />
+        </Columns>
     </asp:GridView>
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
 

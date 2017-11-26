@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using slnDatos;
 
 
@@ -20,18 +18,15 @@ namespace slnLogica
         List<object> reportDepartamento(int idDepa);
         List<object> reporteVentasDepartamentoFecha(DateTime fecha);
     }
-
-
+    
     public class AccionesDepartamentos : AccionesEntidades, IServiciosDepartamentos
     {
-
         public List<Departamento> obtenerDepartamento()
         {
             return this.contexto.Departamentos.ToList();
 
         }
-
-
+        
         public List<object> reportTodosDepa()
         {
 
@@ -47,48 +42,23 @@ namespace slnLogica
                     ).ToList().Cast<object>().ToList();
 
         }
-
-
+        
         public List<object> reportDepartamento(int idDepa)
         {
-            //return (from d in this.contexto.Departamentos where d.Id == 1 select d).ToList() ;
-
-            //return (from d in this.contexto.Departamentos join
-            //(from p in this.contexto.Productos );
-
-            //    this.contexto.Departamentos where d.Id == 1 select d).ToList();
-
-            // return   (SELECT Productos.Id AS Codigo, Productos.Nombre AS Producto, Departamentos.Nombre AS Departamento FROM Departamentos INNER JOIN Productos ON Departamentos.Id = Productos.IdDepartamento).ToList();
-
-            //return (FROM Departamentos INNER JOIN Productos ON Departamentos.Id = Productos.IdDepartamento is this.contexto.Departamentos SELECT Productos.Id AS Codigo, Productos.Nombre AS Producto, Departamentos.Nombre AS Departamento ).ToList();
-
-
-            //return (from d in contexto.Departamentos
-            //        join p in contexto.Productos on d.Id equals p.IdDepartamento
-            //        select new
-            //        {
-            //            Codigo = p.Id,
-            //            Produ = p.Nombre,
-            //            Depa = d.Nombre
-            //        }).ToList();
-
-
-            return  (from d in contexto.Departamentos
-                         join p in contexto.Productos on d.Id equals p.IdDepartamento
-                     where p.IdDepartamento == idDepa
-                         select new
-                         {
-                             Codigo = p.Id,
-                             Producto = p.Nombre,
-                             Departamento = d.Nombre
-                         }                         
-                         ).ToList().Cast<object>().ToList();
+            return (from ln in contexto.LineaArticuloes
+                    join f in contexto.Facturas on ln.IdFactura equals f.Id
+                    join p in contexto.Productos on ln.IdProducto equals p.Id
+                    join d in contexto.Departamentos on p.IdDepartamento equals d.Id
+                    where p.IdDepartamento == idDepa
+                    group ln by d.Nombre into g
+                    select new
+                    {
+                        Nombre = g.Key,
+                        Total = g.Sum(ln => ln.Precio)
+                    }).ToList().Cast<object>().ToList();
         }
-
-
-
+        
         // metodo de agregar
-
         public void incluirDepartamento(string nombre)
         {
             this.contexto.Departamentos.Add(new Departamento {Nombre = nombre});
@@ -106,7 +76,6 @@ namespace slnLogica
             this.contexto.SaveChanges();
         }
 
-
         //metodo eliminar
         public void eliminarDepartamento(int id)
         {
@@ -118,15 +87,7 @@ namespace slnLogica
 
 
         }
-
-
-
-        //public Departamento obtenLineaDepartamentoSegunIdentificador(int Id)
-        //{
-        //    return this.contexto.Departamentos.FirstOrDefault(u => u.Id == Id);
-        //}
-
-
+        
         public Departamento obtenerDepartamentoSegunID(int Id)
 
         {

@@ -1,23 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using slnLogica;
 
 namespace slnPresentacion
 {
-    public partial class ReporteVentasDepartamento : System.Web.UI.Page
+    public partial class ReporteVentasDepartamento : Page
     {
-
         private IserviciosReportes repFac = new AccionesReportes();
-
-
         private IserviciosFacturas fac = new AccionesFacturas();
         private IServiciosDepartamentos departamentos = new AccionesDepartamentos();
-
-
+        
         private void cargarDepartamentos()
         {
             try
@@ -43,8 +36,7 @@ namespace slnPresentacion
                 this.lblMensaje.Text = ex.GetBaseException().Message;
             }
         }
-
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 

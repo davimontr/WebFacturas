@@ -32,14 +32,12 @@ namespace slnPresentacion
                 this.lblMensaje.Text = ex.GetBaseException().Message;
             }
         }
-
-
+        
         public override void VerifyRenderingInServerForm(Control control)
         {
             /* Verifies that the control is rendered */
         }
-
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -53,6 +51,7 @@ namespace slnPresentacion
             }
 
         }
+        
         //metodo que carga todos los proveedores en el datagridview8
         private void cargarGrid()
         {
