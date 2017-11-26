@@ -20,32 +20,28 @@ namespace slnLogica
     {
         public List<object> reportTodasFactu()
         {
-            return (from c in contexto.Clientes
-                    join f in contexto.Facturas on c.Id equals f.IdCliente
+            return (from f in this.contexto.Facturas
+                    join c in this.contexto.Clientes on f.IdCliente equals c.Id
                     select new
                     {
-                        Venta = f.Numero,
+                        Factura = f.Numero,
                         Fecha = f.Fecha,
                         Cliente = c.NombreCompleto,
-                        f.Total
+                        Total = f.Total
                     }).ToList().Cast<object>().ToList();
         }
         
         public List<object> reportFacturas(string numFac)
         {
-            return (from c in contexto.Clientes
-                    join f in contexto.Facturas on c.Id equals f.IdCliente
-                    join l in contexto.LineaArticuloes on f.Id equals l.IdFactura
-                    join p in contexto.Productos on l.IdProducto equals p.Id
+            return (from f in this.contexto.Facturas 
+                    join c in this.contexto.Clientes on f.IdCliente equals c.Id
                     where f.Numero == numFac
                     select new
                     {
-                        Venta = f.Numero,
+                        Factura = f.Numero,
                         Fecha = f.Fecha,
                         Cliente = c.NombreCompleto,
-                        Producto = p.Nombre,
-                        l.Precio,
-                        f.Total
+                        Total = f.Total
                     }).ToList().Cast<object>().ToList();
         }
 

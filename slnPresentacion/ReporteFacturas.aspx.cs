@@ -36,10 +36,7 @@ namespace slnPresentacion
             try
             {
                 GridView1.DataSource = this.repFac.reportTodasFactu();
-
-
                 GridView1.DataBind();
-
             }
             catch (Exception ex)
             {

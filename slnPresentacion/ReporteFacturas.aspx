@@ -23,7 +23,8 @@
         BorderWidth="1px"
         CellPadding="3"
         Font-Size="Large"
-        GridLines="Vertical">
+        GridLines="Vertical"
+        AutoGenerateColumns="false">
         <AlternatingRowStyle BackColor="#DCDCDC" />
         <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
         <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
@@ -35,6 +36,9 @@
         <SortedDescendingCellStyle BackColor="#CAC9C9" />
         <SortedDescendingHeaderStyle BackColor="#000065" />
         <Columns>
+            <asp:BoundField DataField="Factura" HeaderText="Factura" />
+            <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd/MM/yyyy}" />
+            <asp:BoundField DataField="Cliente" HeaderText="Cliente" />
             <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:n}" />
         </Columns>
     </asp:GridView>
