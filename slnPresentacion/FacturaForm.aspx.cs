@@ -47,6 +47,12 @@ namespace slnPresentacion
                 int columnas = this.gvLineaArticulos.Columns.Count;
                 this.gvLineaArticulos.Columns[--columnas].Visible = false;
                 this.btnSalvar.Visible = false;
+                decimal vuelto = factura.Total - factura.Pagado;
+                if (!factura.TipoMoneda.Nombre.Equals("Colones"))
+                {
+                    vuelto = factura.Total - factura.Convertido ?? 0;
+                }
+                this.lblVuelto.Text = vuelto.ToString("n");
             }
             else
             {

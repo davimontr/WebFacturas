@@ -45,7 +45,7 @@ namespace WebFacturas
             {
                 { "/Dashboard.aspx", "Inicio" },
                 { "/Perfil.aspx", "Perfil" },
-                { "https://www.google.com/", "Ayuda" }
+                { "/Ayuda.aspx", "Ayuda" }
             };
 
             if(this.controlSesiones.esAdministrador())

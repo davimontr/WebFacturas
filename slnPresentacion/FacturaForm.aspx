@@ -118,6 +118,10 @@
                         <h6>Total:&nbsp;</h6>
                         <asp:Label ID="lblTotal" runat="server"></asp:Label>
                     </div>
+                    <asp:Panel ID="pnlVuelto" runat="server" CssClass="col" Visible="false">
+                        <h6>Vuelto:</h6>
+                        <asp:Label ID="lblVuelto" ForeColor="Red" Font-Bold="true" runat="server"></asp:Label>
+                    </asp:Panel>
                 </div>
                 <div class="row">
                     <div class="col">

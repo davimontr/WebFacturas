@@ -131,6 +131,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ayuda.aspx" />
     <Content Include="CierreCajaForm.aspx" />
     <Content Include="ClienteForm.aspx" />
     <Content Include="Clientes.aspx" />
@@ -149,6 +150,7 @@
     </Content>
     <Content Include="Dashboard.Master" />
     <Content Include="Inicio.Master" />
+    <Content Include="recursos\manual.pdf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -191,6 +193,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ayuda.aspx.cs">
+      <DependentUpon>Ayuda.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ayuda.aspx.designer.cs">
+      <DependentUpon>Ayuda.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CierreCajaForm.aspx.cs">
       <DependentUpon>CierreCajaForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
