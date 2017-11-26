@@ -109,7 +109,7 @@ namespace slnPresentacion
             }
         }
 
-        protected void btnBuscarFecha_Click(object sender, EventArgs e)
+        protected void cldFecha_SelectionChanged(object sender, EventArgs e)
         {
             this.GridView1.DataSource = this.repFac.reportFacturasPorDepartamentos(this.cldFecha.SelectedDate);
             this.GridView1.DataBind();

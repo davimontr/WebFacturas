@@ -13,9 +13,7 @@
                 <asp:DropDownList ID="ddlDepartamento" runat="server" OnSelectedIndexChanged="ddlDepartamento_SelectedIndexChanged" AutoPostBack="True">
                 </asp:DropDownList>
             </div>
-  
-            <asp:Calendar ID="cldFecha" runat="server" OnDayRender="cldFecha_DayRender"></asp:Calendar>
-
+            <asp:Calendar ID="cldFecha" runat="server" OnDayRender="cldFecha_DayRender" OnSelectionChanged="cldFecha_SelectionChanged"></asp:Calendar>
         </div>
     </section> 
     <asp:GridView ID="GridView1" runat="server" 
@@ -44,7 +42,6 @@
         </Columns>
     </asp:GridView>
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
-
      <div class="container-fluid">
        <div class="row">
            <div class="col">
@@ -55,5 +52,4 @@
            </div>
        </div>
    </div>
-
 </asp:Content>
