@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using slnDatos;
 
 namespace slnLogica
@@ -18,11 +15,9 @@ namespace slnLogica
 
     public class AccionesProductos : AccionesEntidades, IserviciosProductos
     {
-
         public List<Producto> obtenerTodos()
         {
             return this.contexto.Productos.ToList();
-
         }
 
         // metodo agregar
@@ -66,7 +61,6 @@ namespace slnLogica
             this.contexto.SaveChanges();
         }
 
-
         //metodo eliminar
         public void eliminarProducto(int Id)
         {
@@ -75,7 +69,5 @@ namespace slnLogica
             this.contexto.SaveChanges();
 
         }
-
-
     }
 }
