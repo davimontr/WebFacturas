@@ -35,7 +35,6 @@
         <SortedDescendingHeaderStyle BackColor="#000065" />
     </asp:GridView>
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
-
      <div class="container-fluid">
        <div class="row">
            <div class="col">
@@ -46,5 +45,4 @@
            </div>
        </div>
    </div>
-
 </asp:Content>

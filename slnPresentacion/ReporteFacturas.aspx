@@ -10,30 +10,19 @@
         <div class="col-4 col-sm-4 placeholder">
             <h4>Filtro</h4>
             <div>
-
-<%--                <asp:DropDownList ID="ddlReportFacturas" runat="server" OnSelectedIndexChanged="ddlReportFacturas_SelectedIndexChanged" AutoPostBack="True">
-                </asp:DropDownList>--%>
-
-            </div>
-            <div>
-
-                <asp:TextBox ID="txtFiltro" runat="server" ></asp:TextBox>
+                <asp:TextBox ID="txtFiltro" runat="server"></asp:TextBox>
                 <asp:Button ID="txtFiltrar" runat="server" OnClick="Filtrar_Click" Text="Filtrar" />
-
-
             </div>
-
-
         </div>
-    </section> 
-    <asp:GridView ID="GridView1" runat="server" 
-        EmptyDataText="No Existen Productos En Dado Departameto" 
-        BackColor="White" 
-        BorderColor="#999999" 
-        BorderStyle="None" 
-        BorderWidth="1px" 
-        CellPadding="3" 
-        Font-Size="Large" 
+    </section>
+    <asp:GridView ID="GridView1" runat="server"
+        EmptyDataText="No Existen Productos En Dado Departameto"
+        BackColor="White"
+        BorderColor="#999999"
+        BorderStyle="None"
+        BorderWidth="1px"
+        CellPadding="3"
+        Font-Size="Large"
         GridLines="Vertical">
         <AlternatingRowStyle BackColor="#DCDCDC" />
         <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
@@ -45,22 +34,19 @@
         <SortedAscendingHeaderStyle BackColor="#0000A9" />
         <SortedDescendingCellStyle BackColor="#CAC9C9" />
         <SortedDescendingHeaderStyle BackColor="#000065" />
+        <Columns>
+            <asp:BoundField DataField="Total" HeaderText="Total" DataFormatString="{0:n}" />
+        </Columns>
     </asp:GridView>
     <asp:Label ID="lblMensaje" ForeColor="Red" Font-Bold="true" runat="server" Text=""></asp:Label>
-    <div>
-
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <asp:Button ID="btnPdf" runat="server" Text="Exportar PDF" CssClass="btn-dark" OnClick="btnPdf_Click" />
+            </div>
+            <div class="col">
+                <asp:Button ID="btnExcel" runat="server" Text="Exportar Excel" CssClass="btn-dark" OnClick="btnExcel_Click" />
+            </div>
+        </div>
     </div>
-
-       <div class="container-fluid">
-       <div class="row">
-           <div class="col">
-                <asp:Button ID="btnPdf" runat="server" Text="Exportar PDF" CssClass="btn-dark" OnClick="btnPdf_Click"/>
-           </div>
-           <div class="col">
-                <asp:Button ID="btnExcel" runat="server" Text="Exportar Excel" CssClass="btn-dark" OnClick="btnExcel_Click"/>
-           </div>
-       </div>
-   </div>
-
-
 </asp:Content>

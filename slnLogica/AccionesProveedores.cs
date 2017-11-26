@@ -67,9 +67,8 @@ namespace slnLogica
                     {
                         Codigo = p.Codigo,
                         Producto = p.Nombre,
-                        Proveedores = d.Nombre
-                    }
-                    ).ToList().Cast<object>().ToList();
+                        Proveedor = d.Nombre
+                    }).ToList().Cast<object>().ToList();
 
         }
 
@@ -84,9 +83,8 @@ namespace slnLogica
                     {
                         Codigo = p.Id,
                         Producto = p.Nombre,
-                        Proveedores = d.Nombre
-                    }
-                         ).ToList().Cast<object>().ToList();
+                        Proveedor = d.Nombre
+                    }).ToList().Cast<object>().ToList();
         }
 
     }

@@ -29,16 +29,17 @@ namespace slnLogica
         
         public List<object> reportTodosDepa()
         {
-            return (from d in contexto.Departamentos
-                    join p in contexto.Productos on d.Id equals p.IdDepartamento
-                    where p.IdDepartamento == d.Id
+            return (from ln in contexto.LineaArticuloes
+                    join f in contexto.Facturas on ln.IdFactura equals f.Id
+                    join p in contexto.Productos on ln.IdProducto equals p.Id
+                    join d in contexto.Departamentos on p.IdDepartamento equals d.Id
+                    group ln by d.Nombre into g
                     select new
                     {
-                        Codigo = p.Codigo,
-                        Producto = p.Nombre,
-                        Departamento = d.Nombre
-                    }
-                    ).ToList().Cast<object>().ToList();
+                        Nombre = g.Key,
+                        Total = g.Sum(ln => ln.Precio)
+                    })
+                    .ToList().Cast<object>().ToList();
 
         }
         
@@ -50,11 +51,12 @@ namespace slnLogica
                     join d in contexto.Departamentos on p.IdDepartamento equals d.Id
                     where p.IdDepartamento == idDepa
                     group ln by d.Nombre into g
-                    select new
+                    select new 
                     {
                         Nombre = g.Key,
                         Total = g.Sum(ln => ln.Precio)
-                    }).ToList().Cast<object>().ToList();
+                    })
+                    .ToList().Cast<object>().ToList();
         }
         
         // metodo de agregar
