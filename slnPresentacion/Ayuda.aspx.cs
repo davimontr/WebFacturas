@@ -11,7 +11,7 @@ namespace slnPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect("~/recursos/manual.pdf");
+            Response.Redirect("~/recursos/Manual de Usuario de SIFAW.pdf");
         }
     }
 }
