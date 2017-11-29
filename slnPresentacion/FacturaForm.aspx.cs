@@ -178,6 +178,7 @@ namespace slnPresentacion
                 }
                 else
                 {
+                    bool esContado = (1 == int.Parse(this.ddlFormaPago.SelectedValue));
                     decimal? convertido = null;
                     decimal transformado;
                     if (decimal.TryParse(this.lblConvertido.Text, out transformado))
@@ -187,7 +188,7 @@ namespace slnPresentacion
 
                     decimal pagado = 0;
                     int tipoMoneda = int.Parse(this.ddlTipoMoneda.SelectedValue);
-                    if (this.redireccionar && !decimal.TryParse(this.txtPagado.Text, out pagado))
+                    if (esContado && this.redireccionar && !decimal.TryParse(this.txtPagado.Text, out pagado))
                     {
                         throw new ArgumentException("El pago debe ser definido.");
                     }
@@ -204,11 +205,11 @@ namespace slnPresentacion
                    );
 
                     decimal total = decimal.Parse(this.lblTotal.Text);
-                    if (this.redireccionar && 1 != tipoMoneda && total > decimal.Parse(this.lblConvertido.Text))
+                    if (esContado && this.redireccionar && 1 != tipoMoneda && total > decimal.Parse(this.lblConvertido.Text))
                     {
                         throw new ArgumentException("El pago debe ser mayor o igual al total.");
                     }
-                    else if (this.redireccionar && 1 == tipoMoneda && total > pagado)
+                    else if (esContado && this.redireccionar && 1 == tipoMoneda && total > pagado)
                     {
                         throw new ArgumentException("El pago debe ser mayor o igual al total.");
                     }
