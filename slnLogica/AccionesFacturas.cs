@@ -142,6 +142,13 @@ namespace slnLogica
                                select f)
                           .Sum(f => (decimal?)f.Convertido) ?? 0;
 
+            var credito = (from f in this.contexto.Facturas
+                               where f.Fecha == fecha && f.IdFormaPago == 2
+                               select f)
+                         .Sum(f => (decimal?)f.Total);
+
+            var pagado = colones + convertidos;
+
             var lista = new List<object>();
             lista.Add(new {
                 Ventas = ventas,
@@ -151,7 +158,9 @@ namespace slnLogica
                 Dolares = dolares,
                 Euros = euros,
                 Convertidos = convertidos,
-                Pagado = colones + convertidos
+                Pagado = pagado,
+                Credito = credito,
+                Diferencia = ventas - (pagado + credito)
             });
 
             return lista;

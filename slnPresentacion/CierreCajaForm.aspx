@@ -42,6 +42,8 @@
             <asp:BoundField DataField="Euros" HeaderText="Euros" DataFormatString="{0:n}" />
             <asp:BoundField DataField="Convertidos" HeaderText="Convertidos" DataFormatString="{0:n}" />
             <asp:BoundField DataField="Pagado" HeaderText="Pagado" DataFormatString="{0:n}" />
+            <asp:BoundField DataField="Credito" HeaderText="Credito" DataFormatString="{0:n}" />
+            <asp:BoundField DataField="Diferencia" HeaderText="Diferencia" DataFormatString="{0:n}" />
         </Columns>
     </asp:GridView>
     <button class="btn btn-primary" type="button" data-toggle="collapse"

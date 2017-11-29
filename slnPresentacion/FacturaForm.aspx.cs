@@ -40,7 +40,10 @@ namespace slnPresentacion
                     this.lblConvertido.Text = convertido.ToString("n");
                 }
                 this.hdnIdentificador.Value = Identificador.ToString();
-                this.lblPagado.Text = factura.Pagado.ToString("n");
+                if(factura.FormaPago.Nombre.Equals("Contado"))
+                {
+                    this.lblPagado.Text = factura.Pagado.ToString("n");
+                }                
                 this.txtPagado.Visible = false;
                 this.cargarLineaArticulos(Identificador);
                 this.pnlLineaAgregar.Visible = false;
@@ -52,7 +55,11 @@ namespace slnPresentacion
                 {
                     vuelto = factura.Total - factura.Convertido ?? 0;
                 }
-                this.lblVuelto.Text = vuelto.ToString("n");
+                if(0 >= vuelto)
+                {
+                    this.pnlVuelto.Visible = true;
+                    this.lblVuelto.Text = vuelto.ToString("n");
+                }
             }
             else
             {
