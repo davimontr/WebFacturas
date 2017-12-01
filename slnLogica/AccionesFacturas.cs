@@ -145,7 +145,7 @@ namespace slnLogica
             var credito = (from f in this.contexto.Facturas
                                where f.Fecha == fecha && f.IdFormaPago == 2
                                select f)
-                         .Sum(f => (decimal?)f.Total);
+                         .Sum(f => (decimal?)f.Total) ?? 0;
 
             var pagado = colones + convertidos;
 
